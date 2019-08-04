@@ -6,7 +6,7 @@
 /*   By: mlokhors <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/03/22 15:34:42 by mlokhors       #+#    #+#                */
-/*   Updated: 2019/08/02 16:47:00 by mlokhors      ########   odam.nl         */
+/*   Updated: 2019/08/03 19:10:47 by mark          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,6 +106,14 @@ int				ft_iswhitespace(int c);
 /* 
 ** printf
 */
+typedef struct	s_container
+{
+	va_list		ap;
+	int			width;
+	int			precision;
+}				t_container;
+
+int             ft_printf(char *str, ...);
 
 
 #endif
