@@ -6,7 +6,7 @@
 /*   By: mlokhors <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/03/22 15:34:42 by mlokhors       #+#    #+#                */
-/*   Updated: 2019/08/03 19:10:47 by mark          ########   odam.nl         */
+/*   Updated: 2019/08/05 15:00:36 by mlokhors      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,11 @@
 
 # include <string.h>
 # include <stdarg.h>
+# define HASH (1 << 0)
+# define NUL (1 << 1)
+# define MIN (1 << 2)
+# define PLUS (1 << 3)
+# define SPACE (1 << 4)
 
 /*
 ** part 1
@@ -106,11 +111,16 @@ int				ft_iswhitespace(int c);
 /* 
 ** printf
 */
+
+
 typedef struct	s_container
 {
-	va_list		ap;
+	va_list		*ap;
 	int			width;
 	int			precision;
+	char		flags;
+
+
 }				t_container;
 
 int             ft_printf(char *str, ...);
