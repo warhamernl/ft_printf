@@ -6,7 +6,7 @@
 /*   By: mlokhors <mlokhors@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/08/02 14:06:17 by mlokhors       #+#    #+#                */
-/*   Updated: 2019/08/05 15:00:28 by mlokhors      ########   odam.nl         */
+/*   Updated: 2019/08/07 02:09:53 by mark          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,30 @@
 #include <unistd.h>
 #include "libft.h"
 #include <stdlib.h>
+void            check_widthprecision(char **str, t_container *list)
+{
+    
+}
 
+void            check_flag(char **str, t_container *list)
+{
+    while (**str == '#' || **str == '0' || **str == '-' || **str == ' ' || **str == '+')
+    if (**str == '#')
+        list->flags |= HASH;
+    if (**str == '0')
+        list->flags |= NUL;
+    if (**str == '-')
+        list->flags |= MIN;
+    if (**str == ' ')
+        list->flags |= SPACE;
+    if (**str == '+')
+        list->flags |= PLUS;   
 
-
+}
 
 int             parser(char *str, t_container *list)
 {
+    list->flags = 0;
     list->precision = 0;
     list->width = 0;
     if (*str == '#' || *str == '0' || *str == '-' || *str == ' ' || *str == '+')
