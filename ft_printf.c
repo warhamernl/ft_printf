@@ -6,7 +6,7 @@
 /*   By: mlokhors <mlokhors@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/08/02 14:06:17 by mlokhors       #+#    #+#                */
-/*   Updated: 2019/08/07 02:09:53 by mark          ########   odam.nl         */
+/*   Updated: 2019/08/07 02:39:32 by mark          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,45 @@
 #include <unistd.h>
 #include "libft.h"
 #include <stdlib.h>
+
+
+int             check_conversion(char **str, t_container *list)
+
+void            check_lenthmod(char **str, t_container *list)
+{
+    if (**str == 'h')
+    {
+        if ( **str + 1 == 'h')
+            list->lengthmod = LEN_H;
+        else
+            list->lengthmod = LEN_HH;
+    }
+    if (**str == 'l')
+    {
+        if ( **str + 1 == 'l')
+            list->lengthmod = LEN_L;
+        else
+            list->lengthmod = LEN_LL;
+    }
+    if (**str == 'L')
+    {
+            list->lengthmod = LEN_FL;
+    }
+}
+
 void            check_widthprecision(char **str, t_container *list)
 {
+    if (**str == '*')
+        list->width = va_arg(*list->ap, int);
+    if (**str >= '0' && **str <= '9')
+        list->width = ft_atoi(*str);
+    if (**str == '.')
+    {
+        if (**str == '*')
+            list->precision = va_arg(*list->ap, int);
+        if (**str >= '0' && **str <= '9')
+            list->precision = ft_atoi(*str);
+    }
     
 }
 
@@ -38,6 +75,7 @@ void            check_flag(char **str, t_container *list)
 
 int             parser(char *str, t_container *list)
 {
+    list->lengthmod = 0;
     list->flags = 0;
     list->precision = 0;
     list->width = 0;
@@ -49,7 +87,7 @@ int             parser(char *str, t_container *list)
         check_lenthmod(&str, list);   
     if (*str == 'c' || *str == 'd' || *str == 'e' || *str == 'E' || *str == 'f' || *str == 's')
     {
-        check_conversion(&str, list);
+        if (check_conversion(&str, list) == 0);
         return (0);
     }
     return (-1);

@@ -6,7 +6,7 @@
 /*   By: mlokhors <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/03/22 15:34:42 by mlokhors       #+#    #+#                */
-/*   Updated: 2019/08/05 15:00:36 by mlokhors      ########   odam.nl         */
+/*   Updated: 2019/08/07 02:28:15 by mark          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,16 @@
 
 # include <string.h>
 # include <stdarg.h>
-# define HASH (1 << 0)
-# define NUL (1 << 1)
-# define MIN (1 << 2)
-# define PLUS (1 << 3)
-# define SPACE (1 << 4)
+# define HASH (char)(1 << 0)
+# define NUL (char)(1 << 1)
+# define MIN (char)(1 << 2)
+# define PLUS (char)(1 << 3)
+# define SPACE (char)(1 << 4)
+# define LEN_H (char)(1 << 0)
+# define LEN_HH (char)(1 << 1)
+# define LEN_L	(char)(1 << 2)
+# define LEN_LL (char)(1 << 3)
+# define LEN_FL (char)(1 << 4)
 
 /*
 ** part 1
@@ -119,6 +124,7 @@ typedef struct	s_container
 	int			width;
 	int			precision;
 	char		flags;
+	char		lengthmod;
 
 
 }				t_container;
