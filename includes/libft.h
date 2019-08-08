@@ -6,7 +6,7 @@
 /*   By: mlokhors <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/03/22 15:34:42 by mlokhors       #+#    #+#                */
-/*   Updated: 2019/08/07 02:28:15 by mark          ########   odam.nl         */
+/*   Updated: 2019/08/08 17:09:23 by mark          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,7 +117,24 @@ int				ft_iswhitespace(int c);
 ** printf
 */
 
+ typedef enum    e_desc {
+ E_CHAR             = 0,
+ E_STRING           = 1,
+ E_VOID_POINTER     = 2,
+ E_INT              = 3,
+ E_IINT             = 4,
+ E_OCTAL            = 5,
+ E_HEX              = 6,
+ E_UHEX             = 7,
+ E_FLOAT            = 8,
+ E_INVALID          = -1
+ }				t_desc;
 
+ typedef struct  s_pair {
+ char    key;
+ t_desc  desc;
+ }               t_pair;
+ 
 typedef struct	s_container
 {
 	va_list		*ap;
