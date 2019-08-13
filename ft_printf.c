@@ -6,7 +6,7 @@
 /*   By: mlokhors <mlokhors@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/08/02 14:06:17 by mlokhors       #+#    #+#                */
-/*   Updated: 2019/08/13 16:37:15 by mlokhors      ########   odam.nl         */
+/*   Updated: 2019/08/13 20:35:28 by mark          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,11 +65,11 @@ void         f_char(t_container *list)
 {
     char yelp;
     
-    yelp = va_arg(*(list->ap), int);
-    printf("%c", yelp);
+    yelp = va_arg(list->ap, int);
+    write(1, &yelp, 1);
     return;
 }
-/* 
+
 static     const t_print_var var_list[] = {
         f_char,
         f_string,
@@ -81,11 +81,10 @@ static     const t_print_var var_list[] = {
         f_uhex,
         f_float
                                     };
-*/
 
- void        conversion_spec(t_container *list, int number)
-{
-    const t_print_var functions[] = {
+
+
+const t_print_var functions[] = {
         f_char,
         f_string,
         f_void_pointer,
@@ -96,9 +95,7 @@ static     const t_print_var var_list[] = {
         f_uhex,
         f_float
                                     };
-    functions[number](list);
-}
-/*
+
  t_pair g_lookup_array[] = {
  { 'c', E_CHAR },
  { 's', E_STRING },
@@ -110,22 +107,11 @@ static     const t_print_var var_list[] = {
  { 'X', E_UHEX },
  { 'f', E_FLOAT },
  };
- */
+
  t_desc find_descriptor(char c)
  {
-    t_pair g_lookup_array[] = {
-    { 'c', E_CHAR },
-    { 's', E_STRING },
-    { 'p', E_VOID_POINTER },
-    { 'i', E_IINT },
-    { 'd', E_INT },
-    { 'o', E_OCTAL },
-    { 'x', E_HEX },
-    { 'X', E_UHEX },
-    { 'f', E_FLOAT }
-    };
-
-    size_t i = 0;
+    size_t i; 
+    i = 0;
     size_t length = sizeof(g_lookup_array) / sizeof(t_pair); // 3
     while (i < length)
     {
@@ -220,23 +206,33 @@ int             parser(char *str, t_container *list)
         number = find_descriptor(*str);
         if (number == -1)
             return(-1);
- //       var_list[number](list);
-        conversion_spec(list, number);
+        var_list[number](list);
         return (0);
     }
     return (-1);
 }
+/*
 void            writer(t_container list, char *str)
 {
     
 }
+*/
 int             ft_printf(char *str, ...)
 {
     t_container list;
-
-    empty(&list);
     va_start(list.ap, str);
-    writer(list, str);
+
+    while (*str)
+    {
+        if (*str == '%')
+        {
+            parser(str, &list);
+            str++;
+            str++;
+        }
+        write(1, str, 1);
+        str++;
+    }
     va_end(list.ap);
     return (0);        
 }
@@ -244,7 +240,7 @@ int             ft_printf(char *str, ...)
 
 int     main(void)
 {
-    ft_printf("je %c p%coeder", 'x', 'X');
+    ft_printf("yelp %c t", 'x');
 
     return(0);
 }
