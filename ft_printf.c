@@ -6,7 +6,7 @@
 /*   By: mlokhors <mlokhors@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/08/02 14:06:17 by mlokhors       #+#    #+#                */
-/*   Updated: 2019/08/13 04:36:58 by mark          ########   odam.nl         */
+/*   Updated: 2019/08/13 16:37:15 by mlokhors      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ void         f_char(t_container *list)
 {
     char yelp;
     
-    yelp = va_arg(*list->ap, int);
+    yelp = va_arg(*(list->ap), int);
     printf("%c", yelp);
     return;
 }
@@ -122,8 +122,8 @@ static     const t_print_var var_list[] = {
     { 'o', E_OCTAL },
     { 'x', E_HEX },
     { 'X', E_UHEX },
-    { 'f', E_FLOAT },
-                            };
+    { 'f', E_FLOAT }
+    };
 
     size_t i = 0;
     size_t length = sizeof(g_lookup_array) / sizeof(t_pair); // 3
@@ -226,32 +226,18 @@ int             parser(char *str, t_container *list)
     }
     return (-1);
 }
-int             print_str(char *str)
+void            writer(t_container list, char *str)
 {
-    
-}
 
+}
 int             ft_printf(char *str, ...)
 {
-    va_list     argc;
     t_container list;
-    char        *cpy;
-    int            i;
 
-    i = 0;
-    cpy = str;
-    list.ap = &argc;
-    va_start(*(list.ap), str);
-    while (*str)
-    {
-        if (*str == '%')
-        {
-            str += print_str(str);
-        }
-
-    }
-    str += print_str(str);
-    va_end(*(list.ap));
+    empty(&list);
+    va_start(list.ap, str);
+    writer(list, str);
+    va_end(list.ap);
     return (0);        
 }
 

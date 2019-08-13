@@ -6,7 +6,7 @@
 /*   By: mlokhors <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/03/22 15:34:42 by mlokhors       #+#    #+#                */
-/*   Updated: 2019/08/12 23:12:43 by mark          ########   odam.nl         */
+/*   Updated: 2019/08/13 16:37:15 by mlokhors      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,7 +139,7 @@ int				ft_iswhitespace(int c);
  
 typedef struct	s_container
 {
-	va_list		*ap;
+	va_list		ap;
 	va_list		cpy;
 	int			width;
 	int			precision;
@@ -148,6 +148,13 @@ typedef struct	s_container
 
 
 }				t_container;
+
+typedef struct	s_writer
+{
+	void	(*write)(struct s_writer*, char *, size_t);
+	size_t	written;
+	
+}				t_writer;
 
 typedef	void	(*t_print_var)(t_container *list);
 int             ft_printf(char *str, ...);
