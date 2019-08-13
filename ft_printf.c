@@ -228,7 +228,7 @@ int             parser(char *str, t_container *list)
 }
 void            writer(t_container list, char *str)
 {
-
+    
 }
 int             ft_printf(char *str, ...)
 {

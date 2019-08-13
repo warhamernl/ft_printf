@@ -151,7 +151,7 @@ typedef struct	s_container
 
 typedef struct	s_writer
 {
-	void	(*write)(struct s_writer*, char *, size_t);
+	void	(*write)(struct s_writer *, char *, size_t);
 	size_t	written;
 	
 }				t_writer;

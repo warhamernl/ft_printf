@@ -25,3 +25,13 @@ void	ft_putstr(char const *s)
 		i++;
 	}
 }
+
+write(1, s, ft_strlen(s));
+
+while (1)
+{
+	gewrapt object;
+	count++;
+}
+
+custom_write( char *mem, size_t size, *struct)
