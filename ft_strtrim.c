@@ -5,8 +5,8 @@
 /*                                                     +:+                    */
 /*   By: mlokhors <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/03/30 18:22:42 by mlokhors      #+#    #+#                 */
-/*   Updated: 2019/04/07 16:12:48 by mlokhors      ########   odam.nl         */
+/*   Created: 2019/03/30 18:22:42 by mlokhors       #+#    #+#                */
+/*   Updated: 2019/08/10 22:58:37 by mark          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,10 @@ char	*ft_strtrim(char const *s)
 {
 	size_t	begin;
 	size_t	end;
-	int		index;
 	char	*trimmed;
 
 	if (!s)
 		return (NULL);
-	index = 0;
 	end = ft_strlen(s);
 	begin = 0;
 	while (s[begin] == ' ' || s[begin] == '\n' || s[begin] == '\t')
