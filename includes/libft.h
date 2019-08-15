@@ -6,7 +6,7 @@
 /*   By: mlokhors <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/03/22 15:34:42 by mlokhors       #+#    #+#                */
-/*   Updated: 2019/08/13 16:37:15 by mlokhors      ########   odam.nl         */
+/*   Updated: 2019/08/15 14:20:11 by mlokhors      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,14 +148,14 @@ typedef struct	s_container
 
 
 }				t_container;
-
+/*
 typedef struct	s_writer
 {
 	void	(*write)(struct s_writer *, char *, size_t);
 	size_t	written;
 	
 }				t_writer;
-
+*/
 typedef	void	(*t_print_var)(t_container *list);
 int             ft_printf(char *str, ...);
 
