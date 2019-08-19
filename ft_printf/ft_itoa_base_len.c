@@ -6,18 +6,20 @@
 /*   By: mark <mark@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/08/17 18:23:42 by mark           #+#    #+#                */
-/*   Updated: 2019/08/17 20:27:32 by mark          ########   odam.nl         */
+/*   Updated: 2019/08/19 16:44:13 by mlokhors      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include <stdio.h>
 
-static int	ft_numlen(unsigned long long nb, int base)
+static int	ft_numlen(int nb, int base)
 {
 	int i;
 
 	i = 0;
+	if (nb < 0)
+		i = 1;
 	while (nb != 0)
 	{
 		nb /= base;
@@ -26,60 +28,47 @@ static int	ft_numlen(unsigned long long nb, int base)
 	return (i);
 }
 
-static char	ft_base(unsigned long long n,unsigned int base,unsigned int times)
+static char	ft_base(int *n, int base, int *b)
 {
-	unsigned long long temp;
-	unsigned long long con;
+	int store;
+	int temp;
+	int con;
+	char basesmall[]="0123456789abcdefghijklmnopqrstuvwxyz";
+//	char basebig[]="0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
-	if (n > base)
-		temp = n / ft_power(base, times - 1);
+	store = *n / ft_power(base, (*b - 1));
+	temp = store % base;
+	if (*n >= 0)
+		con = basesmall[temp];
 	else
-		temp = n % base;
-	if (temp > 9)
-		con = temp - 10 + 'A';
-	else
-		con = temp + '0';
+		con = basesmall[temp];
+	*n -= ft_power(base, *b - 1) * temp;
 	return (con);
 }
 
-char		*ft_itoa_base_len(unsigned long long n, int base, int nega)
+char		*ft_itoa_base_len(int n, int base, int nega)
 {
-	int a;
-	char *string;
+	int	a;
 	int b;
-	int c;
+	char	*string;
 
+	if (base <= 1 || base >= 37)
+		return (NULL);
 	a = ft_numlen(n, base);
-//	printf("%d a\n", a);
-	b = a + nega;
+	b = a;
+	if (n == 0)
+		a = 1;
 	string = ft_strnew(a + nega);
-	if (base <= 1 || base >= 37 || !string)
+	if (!string)
 		return (NULL);
 	if (nega == 1)
 		string[0] = '-';
-	printf("%d\n", nega);
-	printf("%d\n", a);
-	while (nega != b)
+	a += nega;
+	while (nega != a)
 	{
-		string[nega] = ft_base(n, base, a);
-		if (a - 1 <= 0)
-			c = 0;
-		else
-			c = ft_power(base, a - 1);
-		n = n - c;
+		string[nega] = ft_base(&n, base, &b);
+		b--;
 		nega++;
-		a--;
 	}
 	return (string);
-}
-
-
-int		main(void)
-{
-	unsigned long long n;
-
-	n = 14;
-
-	printf("%s",ft_itoa_base_len(n, 16, 1));
-
 }

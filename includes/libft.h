@@ -6,7 +6,7 @@
 /*   By: mlokhors <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/03/22 15:34:42 by mlokhors       #+#    #+#                */
-/*   Updated: 2019/08/15 14:20:11 by mlokhors      ########   odam.nl         */
+/*   Updated: 2019/08/19 13:51:59 by mlokhors      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -156,6 +156,7 @@ typedef struct	s_writer
 	
 }				t_writer;
 */
+unsigned long long ft_power(int x, int power);
 typedef	void	(*t_print_var)(t_container *list);
 int             ft_printf(char *str, ...);
 

@@ -6,7 +6,7 @@
 #    By: mlokhors <mlokhors@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2019/08/02 12:58:17 by mlokhors       #+#    #+#                 #
-#    Updated: 2019/08/02 16:47:00 by mlokhors      ########   odam.nl          #
+#    Updated: 2019/08/19 13:51:21 by mlokhors      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -80,6 +80,7 @@ OBJ_NAMES =  ft_memcpy \
 			 ft_itoa_base \
 			 ft_iswhitespace \
 			 ft_printf \
+			 ft_power \
 
 
 OBJS = $(patsubst %, $(OBJ_DIR)/%.o, $(OBJ_NAMES))
