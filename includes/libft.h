@@ -6,7 +6,7 @@
 /*   By: mlokhors <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/03/22 15:34:42 by mlokhors       #+#    #+#                */
-/*   Updated: 2019/08/19 13:51:59 by mlokhors      ########   odam.nl         */
+/*   Updated: 2019/08/19 18:04:03 by mlokhors      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,9 +145,11 @@ typedef struct	s_container
 	int			precision;
 	char		flags;
 	char		lengthmod;
-
+	void		*print;
 
 }				t_container;
+
+
 /*
 typedef struct	s_writer
 {
@@ -156,6 +158,7 @@ typedef struct	s_writer
 	
 }				t_writer;
 */
+char		*ft_itoa_base_len(int n, int base, int nega);
 unsigned long long ft_power(int x, int power);
 typedef	void	(*t_print_var)(t_container *list);
 int             ft_printf(char *str, ...);

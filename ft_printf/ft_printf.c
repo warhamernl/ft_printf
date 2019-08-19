@@ -6,7 +6,7 @@
 /*   By: mlokhors <mlokhors@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/08/02 14:06:17 by mlokhors       #+#    #+#                */
-/*   Updated: 2019/08/15 15:21:04 by mlokhors      ########   odam.nl         */
+/*   Updated: 2019/08/19 17:37:05 by mlokhors      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,12 @@
 
 void         f_uhex(t_container *list)
 {
-    printf("%d\n", list->width);
+    int i;
+    char *str;
+
+    i = va_arg(list->ap, int);
+    str = ft_itoa_base_len(i, 16, 0);
+    write(1, str, ft_strlen(str));
     return;
 }
 
@@ -32,22 +37,42 @@ void         f_float(t_container *list)
 
 void         f_hex(t_container *list)
 {
-    printf("%d\n", list->width);
+    int i;
+    char *str;
+
+    i = va_arg(list->ap, int);
+    str = ft_itoa_base_len(i, 16, 0);
+    write(1, str, ft_strlen(str));
     return;
 }
 void         f_octal(t_container *list)
 {
-    printf("%d\n", list->width);
+    int i;
+    char *str;
+
+    i = va_arg(list->ap, int);
+    str = ft_itoa_base_len(i, 8, 0);
+    write(1, str, ft_strlen(str));
     return;
 }
 void         f_int(t_container *list)
 {
-printf("%d\n", list->width);
+    int i;
+    char *str;
+
+    i = va_arg(list->ap, int);
+    str = ft_itoa_base_len(i, 10, 0);
+    write(1, str, ft_strlen(str));
     return;
 }
 void         f_iint(t_container *list)
 {
-printf("%d\n", list->width);
+    int i;
+    char *str;
+
+    i = va_arg(list->ap, int);
+    str = ft_itoa_base_len(i, 10, 0);
+    write(1, str, ft_strlen(str));
     return;
 }
 void         f_string(t_container *list)
@@ -55,7 +80,7 @@ void         f_string(t_container *list)
     char *str;
 
     str = va_arg(list->ap, char *);
-    write(1, str, sizeof(str));
+    write(1, str, ft_strlen(str));
     return;
 }
 void         f_void_pointer(t_container *list)
@@ -196,11 +221,11 @@ void            empty(t_container *list)
 
 
 
-int             parser(char **str, t_container *list)
+int             parser(char *str, t_container *list)
 {
     t_desc  number;
     empty(list);
-    *str++;
+    str++;
 //   if (*str == '#' || *str == '0' || *str == '-' || *str == ' ' || *str == '+')
 //       check_flag(&str, list);
 //   if  (*str >= '0' && *str <= '9' || *str == '.')
@@ -232,7 +257,7 @@ int             ft_printf(char *str, ...)
     {
         if (*str == '%')
         {
-            parser(&str, &list);
+            parser(str, &list);
             str++;
             str++;
         }
@@ -246,7 +271,7 @@ int             ft_printf(char *str, ...)
 
 int     main(void)
 {
-    ft_printf("yelp %s t", "strink");
+    ft_printf("yelp %x t", 11);
 
     return(0);
 }

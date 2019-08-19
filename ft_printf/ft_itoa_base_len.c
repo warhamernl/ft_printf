@@ -6,7 +6,7 @@
 /*   By: mark <mark@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/08/17 18:23:42 by mark           #+#    #+#                */
-/*   Updated: 2019/08/19 16:44:13 by mlokhors      ########   odam.nl         */
+/*   Updated: 2019/08/19 18:04:03 by mlokhors      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,19 @@ static char	ft_base(int *n, int base, int *b)
 	*n -= ft_power(base, *b - 1) * temp;
 	return (con);
 }
+
+typedef struct	s_number
+{
+	unsigned long long	value;
+	int					positive;
+	int					base;
+}				t_number;
+
+
+// size_t		ft_itoa_base_len(char buf_out[128], t_number *number);
+
+
+
 
 char		*ft_itoa_base_len(int n, int base, int nega)
 {
