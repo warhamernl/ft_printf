@@ -6,7 +6,7 @@
 /*   By: mlokhors <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/03/22 15:34:42 by mlokhors       #+#    #+#                */
-/*   Updated: 2019/08/19 18:04:03 by mlokhors      ########   odam.nl         */
+/*   Updated: 2019/08/21 14:39:03 by mark          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,56 +112,11 @@ int				ft_countwords(const char *s, char c);
 char			*ft_strrev(char *str);
 char			*ft_itoa_base(int n, int base);
 int				ft_iswhitespace(int c);
-
+unsigned long long ft_power(int x, int power);
 /* 
 ** printf
 */
 
-
-
- typedef enum    e_desc {
- E_CHAR             = 0,
- E_STRING           = 1,
- E_VOID_POINTER     = 2,
- E_INT              = 3,
- E_IINT             = 4,
- E_OCTAL            = 5,
- E_HEX              = 6,
- E_UHEX             = 7,
- E_FLOAT            = 8,
- E_INVALID          = -1
- }				t_desc;
-
- typedef struct  s_pair {
- char    key;
- t_desc  desc;
- }               t_pair;
- 
-typedef struct	s_container
-{
-	va_list		ap;
-	va_list		cpy;
-	int			width;
-	int			precision;
-	char		flags;
-	char		lengthmod;
-	void		*print;
-
-}				t_container;
-
-
-/*
-typedef struct	s_writer
-{
-	void	(*write)(struct s_writer *, char *, size_t);
-	size_t	written;
-	
-}				t_writer;
-*/
-char		*ft_itoa_base_len(int n, int base, int nega);
-unsigned long long ft_power(int x, int power);
-typedef	void	(*t_print_var)(t_container *list);
 int             ft_printf(char *str, ...);
-
-
+ 
 #endif

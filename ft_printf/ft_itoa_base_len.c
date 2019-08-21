@@ -6,11 +6,11 @@
 /*   By: mark <mark@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/08/17 18:23:42 by mark           #+#    #+#                */
-/*   Updated: 2019/08/19 18:04:03 by mlokhors      ########   odam.nl         */
+/*   Updated: 2019/08/21 18:44:57 by mark          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf.h"
 #include <stdio.h>
 
 static int	ft_numlen(int nb, int base)
@@ -46,42 +46,31 @@ static char	ft_base(int *n, int base, int *b)
 	return (con);
 }
 
-typedef struct	s_number
-{
-	unsigned long long	value;
-	int					positive;
-	int					base;
-}				t_number;
-
-
 // size_t		ft_itoa_base_len(char buf_out[128], t_number *number);
 
 
 
 
-char		*ft_itoa_base_len(int n, int base, int nega)
+size_t		*ft_itoa_base_len(char buff[128], t_number *number)
 {
-	int	a;
+	int	length;
 	int b;
-	char	*string;
+	size_t	count;
 
-	if (base <= 1 || base >= 37)
+	if (number->base <= 1 || number->base >= 37)
 		return (NULL);
-	a = ft_numlen(n, base);
-	b = a;
-	if (n == 0)
-		a = 1;
-	string = ft_strnew(a + nega);
-	if (!string)
-		return (NULL);
-	if (nega == 1)
-		string[0] = '-';
-	a += nega;
-	while (nega != a)
+	length = ft_numlen(number->number, number->base);
+	b = length;
+	if (number->number == 0)
+		length = 1;
+	if (number->nega == 1)
+		buff[0] = '-';
+	length += number->nega;
+	while (number->nega != length)
 	{
-		string[nega] = ft_base(&n, base, &b);
+		buff[number->nega] = ft_base(&number->number, number->base, &b);
 		b--;
-		nega++;
+		number->nega++;
 	}
-	return (string);
+	return (buff);
 }

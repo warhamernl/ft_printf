@@ -6,15 +6,14 @@
 /*   By: mlokhors <mlokhors@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/08/02 14:06:17 by mlokhors       #+#    #+#                */
-/*   Updated: 2019/08/19 17:37:05 by mlokhors      ########   odam.nl         */
+/*   Updated: 2019/08/21 18:52:27 by mark          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
-#include <stdarg.h>
 #include "libft.h"
-#include <stdlib.h>
-#include <unistd.h>
+#include "ft_printf.h"
+
 
 
 void         f_uhex(t_container *list)
@@ -68,8 +67,9 @@ void         f_int(t_container *list)
 void         f_iint(t_container *list)
 {
     int i;
-    char *str;
+    char str[128];
 
+    ft_memset(str, 0, 128);
     i = va_arg(list->ap, int);
     str = ft_itoa_base_len(i, 10, 0);
     write(1, str, ft_strlen(str));
@@ -115,7 +115,7 @@ static     const t_print_var var_list[] = {
 
 
 
-const t_print_var functions[] = {
+static const t_print_var functions[] = {
         f_char,
         f_string,
         f_void_pointer,
@@ -156,82 +156,17 @@ const t_print_var functions[] = {
     return (E_INVALID);
  }
 
-/*
-void            check_lenthmod(char **str, t_container *list)
-{
-    if (**str == 'h')
-    {
-        if ( **str + 1 == 'h')
-            list->lengthmod = LEN_H;
-        else
-            list->lengthmod = LEN_HH;
-    }
-    if (**str == 'l')
-    {
-        if ( **str + 1 == 'l')
-            list->lengthmod = LEN_L;
-        else
-            list->lengthmod = LEN_LL;
-    }
-    if (**str == 'L')
-    {
-            list->lengthmod = LEN_FL;
-    }
-}
-
-void            check_widthprecision(char **str, t_container *list)
-{
-    if (**str == '*')
-        list->width = va_arg(*list->ap, int);
-    if (**str >= '0' && **str <= '9')
-        list->width = ft_atoi(*str);
-    if (**str == '.')
-    {
-        if (**str == '*')
-            list->precision = va_arg(*list->ap, int);
-        if (**str >= '0' && **str <= '9')
-            list->precision = ft_atoi(*str);
-    }
-    
-}
-
-void            check_flag(char **str, t_container *list)
-{
-    while (**str == '#' || **str == '0' || **str == '-' || **str == ' ' || **str == '+')
-    if (**str == '#')
-        list->flags |= HASH;
-    if (**str == '0')
-        list->flags |= NUL;
-    if (**str == '-')
-        list->flags |= MIN;
-    if (**str == ' ')
-        list->flags |= SPACE;
-    if (**str == '+')
-        list->flags |= PLUS;   
-
-}
-*/
-void            empty(t_container *list)
-{
-    list->lengthmod = 0;
-    list->flags = 0;
-    list->precision = 0;
-    list->width = 0;
-}
-
-
-
 int             parser(char *str, t_container *list)
 {
     t_desc  number;
     empty(list);
     str++;
-//   if (*str == '#' || *str == '0' || *str == '-' || *str == ' ' || *str == '+')
-//       check_flag(&str, list);
-//   if  (*str >= '0' && *str <= '9' || *str == '.')
-//      check_widthprecision(&str, list);
-//   if (*str ==  'h' || *str == 'l' || *str == 'L')
-//        check_lenthmod(&str, list);   
+   if (*str == '#' || *str == '0' || *str == '-' || *str == ' ' || *str == '+')
+       check_flag(&str, list);
+   if  (*str >= '0' && *str <= '9' || *str == '.' || *str == '*')
+      check_widthprecision(&str, list);
+   if (*str ==  'h' || *str == 'l' || *str == 'L')
+        check_lenthmod(&str, list);   
     if (*str == 'c' || *str == 's' || *str == 'p' || *str == 'd'|| *str == 'i'|| *str == 'o' || *str == 'x'|| *str == 'X' || *str == 'f')
     {
         number = find_descriptor(*str);
@@ -252,6 +187,7 @@ int             ft_printf(char *str, ...)
 {
     t_container list;
     va_start(list.ap, str);
+    va_copy(list.cpy, list.ap);
 
     while (*str)
     {

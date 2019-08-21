@@ -5,8 +5,8 @@
 /*                                                     +:+                    */
 /*   By: mlokhors <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/03/28 12:59:58 by mlokhors      #+#    #+#                 */
-/*   Updated: 2019/04/06 21:33:05 by mlokhors      ########   odam.nl         */
+/*   Created: 2019/03/28 12:59:58 by mlokhors       #+#    #+#                */
+/*   Updated: 2019/08/21 13:55:03 by mark          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,10 @@ void	ft_putstr(char const *s)
 		i++;
 	}
 }
+//
+/*
 
+//
 write(1, s, ft_strlen(s));
 
 while (1)
@@ -35,3 +38,4 @@ while (1)
 }
 
 custom_write( char *mem, size_t size, *struct)
+*/

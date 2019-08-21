@@ -6,7 +6,7 @@
 #    By: mlokhors <mlokhors@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2019/08/02 12:58:17 by mlokhors       #+#    #+#                 #
-#    Updated: 2019/08/19 16:51:04 by mlokhors      ########   odam.nl          #
+#    Updated: 2019/08/21 14:45:36 by mark          ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,6 +14,7 @@ NAME = libftprint.a
 
 SRC_DIR = ./
 OBJ_DIR = ./.obj/
+PRT_DIR = ./ft_printf
 FLAGS = -Wall -Werror -Wextra -I./includes
 
 OBJ_NAMES =  ft_memcpy \
@@ -92,7 +93,7 @@ all: $(NAME)
 $(NAME) : $(OBJS) 
 		ar crs $(NAME) $(OBJS)
 
-$(OBJ_DIR)/%.o : $(SRC_DIR)/%.c
+$(OBJ_DIR)/%.o : $(SRC_DIR)/%.c $(PRT_DIR)/%.c
 		mkdir -p $(OBJ_DIR)
 		$(CC) -c -o $@ $< $(FLAGS)
 clean:
