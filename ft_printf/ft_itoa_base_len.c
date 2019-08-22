@@ -6,13 +6,13 @@
 /*   By: mark <mark@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/08/17 18:23:42 by mark           #+#    #+#                */
-/*   Updated: 2019/08/21 18:44:57 by mark          ########   odam.nl         */
+/*   Updated: 2019/08/22 19:10:43 by mlokhors      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include <stdio.h>
-
+/* 
 static int	ft_numlen(int nb, int base)
 {
 	int i;
@@ -51,7 +51,7 @@ static char	ft_base(int *n, int base, int *b)
 
 
 
-size_t		*ft_itoa_base_len(char buff[128], t_number *number)
+size_t		*ft_itoa_base_len(t_buff buff, t_number *number, int *i)
 {
 	int	length;
 	int b;
@@ -64,13 +64,15 @@ size_t		*ft_itoa_base_len(char buff[128], t_number *number)
 	if (number->number == 0)
 		length = 1;
 	if (number->nega == 1)
-		buff[0] = '-';
+		buff.buff[0] = '-';
 	length += number->nega;
 	while (number->nega != length)
 	{
-		buff[number->nega] = ft_base(&number->number, number->base, &b);
+		buff.buff[number->nega + *i] = ft_base(&number->number, number->base, &b);
 		b--;
-		number->nega++;
+		*i++;
 	}
 	return (buff);
 }
+
+*/

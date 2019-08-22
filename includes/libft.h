@@ -6,7 +6,7 @@
 /*   By: mlokhors <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/03/22 15:34:42 by mlokhors       #+#    #+#                */
-/*   Updated: 2019/08/21 14:39:03 by mark          ########   odam.nl         */
+/*   Updated: 2019/08/22 14:31:31 by mlokhors      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,6 @@
 # define LIBFT_H
 
 # include <string.h>
-# include <stdarg.h>
-# define HASH (char)(1 << 0)
-# define NUL (char)(1 << 1)
-# define MIN (char)(1 << 2)
-# define PLUS (char)(1 << 3)
-# define SPACE (char)(1 << 4)
-# define LEN_H (char)(1 << 0)
-# define LEN_HH (char)(1 << 1)
-# define LEN_L	(char)(1 << 2)
-# define LEN_LL (char)(1 << 3)
-# define LEN_FL (char)(1 << 4)
 
 /*
 ** part 1
