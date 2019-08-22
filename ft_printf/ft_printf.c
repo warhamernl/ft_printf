@@ -6,7 +6,7 @@
 /*   By: mlokhors <mlokhors@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/08/02 14:06:17 by mlokhors       #+#    #+#                */
-/*   Updated: 2019/08/22 21:13:51 by mlokhors      ########   odam.nl         */
+/*   Updated: 2019/08/22 21:54:32 by mlokhors      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,24 +57,24 @@ static     const t_print_var var_list[] = {
     return (E_INVALID);
  }
 
-int             parser(char *str, t_container *list, t_buff *buff)
+int             parser(char **str, t_container *list, t_buff *buff)
 {
     t_desc  number;
     empty(list);
-    str++;
-   if (*str == '#' || *str == '0' || *str == '-' || *str == ' ' || *str == '+')
-       check_flag(str, list);
-   if  ((*str >= '0' && *str <= '9') || *str == '.' || *str == '*')
-      check_widthprecision(str, list);
-   if (*str ==  'h' || *str == 'l' || *str == 'L')
-        check_lenthmod(str, list);   
-    if (*str == 'c' || *str == 's' || *str == 'p' || *str == 'd'|| *str == 'i'|| *str == 'o' || *str == 'x'|| *str == 'X' || *str == 'f')
+    (*str)++;
+   if (**str == '#' || **str == '0' || **str == '-' || **str == ' ' || **str == '+')
+       check_flag(&str, list);
+   if  ((**str >= '0' && **str <= '9') || **str == '.' || **str == '*')
+      check_widthprecision(&str, list);
+   if (**str ==  'h' || **str == 'l' || **str == 'L')
+        check_lenthmod(&str, list);   
+    if (**str == 'c' || **str == 's' || **str == 'p' || **str == 'd'|| **str == 'i'|| **str == 'o' || **str == 'x'|| **str == 'X' || **str == 'f')
     {
-        number = find_descriptor(*str);
+        number = find_descriptor(**str);
         if (number == -1)
             return(-1);
         var_list[number](list, buff);
-        str++;
+       (*str)++;
     }
     return (0);
 }
@@ -87,9 +87,9 @@ void            empty(t_container *list)
     list->width = -1;
 }
 
-void            addbuff(t_buff *buff, char c)
+void            addbuff(t_buff *buff, char **c)
 {
-    buff->buff[buff->i] = c;
+    buff->buff[buff->i] = **c;
     buff->i++;
     if (buff->i == BUFF_SIZE)
     {
@@ -114,14 +114,17 @@ int             ft_printf(char *str, ...)
     ft_memset(&buff, 0, BUFF_SIZE);
     while (*str)
     {
-        printf("\n\n1 %s\n", buff.buff);
+   //     printf("\n\n1 %s\n", buff.buff);
         if (*str == '%')
         {
-            parser(str, &list, &buff);
-            printf("\n\n2 %s\n", buff.buff);
+            parser(&str, &list, &buff);
+   //         printf("\n\n2 %s\n", buff.buff);
+            str++;
         }
-        addbuff(&buff, *str);
-        str++;    
+   //     printf("\n\nchar %c\n", *str);
+        
+        addbuff(&buff, &str);
+        str++;   
     }
     rrmaining(&buff);
     va_end(list.ap);

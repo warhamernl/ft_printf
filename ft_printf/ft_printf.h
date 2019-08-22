@@ -6,7 +6,7 @@
 /*   By: mark <mark@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/08/21 14:35:36 by mark           #+#    #+#                */
-/*   Updated: 2019/08/22 21:12:43 by mlokhors      ########   odam.nl         */
+/*   Updated: 2019/08/22 21:49:20 by mlokhors      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,9 +83,9 @@ void         f_octal(t_container *list, t_buff *buff);
 void         f_hex(t_container *list, t_buff *buff);
 void         f_string(t_container *list, t_buff *buff);
 void         f_uhex(t_container *list, t_buff *buff);
-void            check_flag(char *str, t_container *list);
-void            check_widthprecision(char *str, t_container *list);
-void            check_lenthmod(char *str, t_container *list);
+void            check_flag(char ***str, t_container *list);
+void            check_widthprecision(char ***str, t_container *list);
+void            check_lenthmod(char ***str, t_container *list);
 void            empty(t_container *list);
 // size_t		*ft_itoa_base_len(t_buff *buff, t_number *number, int *i);
 unsigned long long ft_power(int x, int power);
