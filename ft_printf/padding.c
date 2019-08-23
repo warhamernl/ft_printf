@@ -6,7 +6,7 @@
 /*   By: mlokhors <mlokhors@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/08/22 17:56:34 by mlokhors       #+#    #+#                */
-/*   Updated: 2019/08/23 02:26:28 by mark          ########   odam.nl         */
+/*   Updated: 2019/08/23 02:30:34 by mark          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void     add_zero(t_buff *buff, t_container *list, int amount)
         i++;
         buff->i++;
     }
-    printf("\nadd_zero%d\n", buff->i);
+ //   printf("\nadd_zero%d\n", buff->i);
 }
 
 void     add_space(t_buff *buff, t_container *list, int amount)
@@ -39,7 +39,7 @@ void     add_space(t_buff *buff, t_container *list, int amount)
         i++;
         buff->i++;
     }
-    printf("\nadd_space%d\n", buff->i);
+ //   printf("\nadd_space%d\n", buff->i);
 }
 
 void    left_padding(t_buff *buff, char *str, t_container *list, int check)

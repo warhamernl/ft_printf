@@ -6,7 +6,7 @@
 /*   By: mark <mark@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/08/21 14:57:22 by mark           #+#    #+#                */
-/*   Updated: 2019/08/23 02:21:18 by mark          ########   odam.nl         */
+/*   Updated: 2019/08/23 02:32:00 by mark          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void         f_char(t_container *list, t_buff *buff)
 {
     char c;
-    printf("\n%s\n", buff->buff);
+ //   printf("\n%s\n", buff->buff);
     c = va_arg(list->ap, int);
     if (list->width == -1)
     {
@@ -29,5 +29,5 @@ void         f_char(t_container *list, t_buff *buff)
     //    else
       //      right_padding(buff, &c, list, 0);
     }
-     printf("\n%s\n", buff->buff);
+ //    printf("\n%s\n", buff->buff);
 }

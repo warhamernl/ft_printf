@@ -6,7 +6,7 @@
 /*   By: mlokhors <mlokhors@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/08/02 14:06:17 by mlokhors       #+#    #+#                */
-/*   Updated: 2019/08/23 02:27:18 by mark          ########   odam.nl         */
+/*   Updated: 2019/08/23 02:34:37 by mark          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,8 +75,9 @@ int             parser(char **str, t_container *list, t_buff *buff)
             return(-1);
         var_list[number](list, buff);
  //      (*str)++;
+        return(0);
     }
-    return (0);
+    return (-1);
 }
 
 void            empty(t_container *list)
@@ -117,9 +118,9 @@ int             ft_printf(char *str, ...)
   //      printf("\n\n1 %s\n", buff.buff);
         if (*str == '%')
         {
-            parser(&str, &list, &buff);
+            str += parser(&str, &list, &buff);
    //         printf("\n\n2 %s\n", buff.buff);
-            str++;
+   //         str++;
         }
        
         
@@ -127,7 +128,7 @@ int             ft_printf(char *str, ...)
         str++;
   //      printf("\n\nchar %d\n", *str);
     }
-    printf("\n\nEND %s\n", buff.buff);
+ //   printf("\n\nEND %s\n", buff.buff);
     rrmaining(&buff);
     va_end(list.ap);
     return (0);        
@@ -136,7 +137,7 @@ int             ft_printf(char *str, ...)
 
 int     main(void)
 {
-    ft_printf("yelp%-4ct", 'x');
+    ft_printf("yelp%-4t", 'x');
 
     return(0);
 }
