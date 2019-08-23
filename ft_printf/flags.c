@@ -6,11 +6,28 @@
 /*   By: mark <mark@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/08/21 18:46:30 by mark           #+#    #+#                */
-/*   Updated: 2019/08/23 02:14:30 by mark          ########   odam.nl         */
+/*   Updated: 2019/08/23 09:20:23 by mark          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+
+static int	num__len(int nb)
+{
+	int i;
+
+	i = 0;
+	if (nb < 0)
+		i = 1;
+	while (nb != 0)
+	{
+		nb /= 10;
+		i++;
+	}
+	return (i);
+}
+
 
 void            check_lenthmod(char ***str, t_container *list)
 {
@@ -48,7 +65,11 @@ void            check_widthprecision(char ***str, t_container *list)
         if (***str == '*')
             list->width = va_arg(list->ap, int);
         if (***str >= '0' && ***str <= '9')
+        {
             list->width = ft_atoi(**str);
+            (**str) += num__len(list->width);
+            continue;
+        }
         if (***str == '.')
         {
             (**str)++;
