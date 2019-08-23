@@ -6,13 +6,13 @@
 /*   By: mark <mark@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/08/21 14:57:22 by mark           #+#    #+#                */
-/*   Updated: 2019/08/23 11:27:16 by mlokhors      ########   odam.nl         */
+/*   Updated: 2019/08/23 13:30:07 by mlokhors      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void         f_char(t_container *list, t_buff *buff)
+void         f_char(t_container *list)
 {
     char c[2];
     char *pointer;
@@ -22,15 +22,15 @@ void         f_char(t_container *list, t_buff *buff)
     pointer = c;
     if (list->width == -1)
     {
-        buff->buff[buff->i] = c[0];
-        buff->i++;
+        list->buff[list->i] = c[0];
+        list->i++;
     }   
     else
     {
         if(list->flags & MIN)
-            left_padding(buff, pointer, list, 0);
-    //    else
-      //      right_padding(buff, &c, list, 0);
+            left_padding(&c[0], list, 0);
+        else
+            right_padding(&c[0], list, 0);
     }
  //    printf("\n%s\n", buff->buff);
 }

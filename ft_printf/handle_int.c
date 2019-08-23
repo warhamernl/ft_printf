@@ -6,13 +6,13 @@
 /*   By: mark <mark@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/08/21 14:57:56 by mark           #+#    #+#                */
-/*   Updated: 2019/08/22 20:16:24 by mlokhors      ########   odam.nl         */
+/*   Updated: 2019/08/23 13:30:41 by mlokhors      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void         f_iint(t_container *list, t_buff *buff)
+void         f_iint(t_container *list)
 {
 /*
     int i;
@@ -24,11 +24,11 @@ void         f_iint(t_container *list, t_buff *buff)
     write(1, str, ft_strlen(str));
    */ 
     printf("%d\n", list->width);
-    printf("%d\n", buff->i);
+    printf("%d\n", list->i);
     return;
 }
 
-void         f_int(t_container *list, t_buff *buff)
+void         f_int(t_container *list)
 {
     /*
     int i;
@@ -39,6 +39,6 @@ void         f_int(t_container *list, t_buff *buff)
     write(1, str, ft_strlen(str));
     */
        printf("%d\n", list->width);
-    printf("%d\n", buff->i);
+    printf("%d\n", list->i);
     return;
 }

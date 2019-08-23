@@ -6,7 +6,7 @@
 /*   By: mark <mark@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/08/21 14:35:36 by mark           #+#    #+#                */
-/*   Updated: 2019/08/23 11:48:16 by mlokhors      ########   odam.nl         */
+/*   Updated: 2019/08/23 13:35:58 by mlokhors      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,14 +56,10 @@ typedef struct	s_container
 	int			precision;
 	int			flags;
 	int			lengthmod;
-
+	char 		buff[BUFF_SIZE];
+	int			i;	
 }				t_container;
 
-typedef struct	s_buff
-{
-	char 	buff[BUFF_SIZE];
-	int		i;	
-}				t_buff;
 
 typedef struct s_number
 {
@@ -73,30 +69,24 @@ typedef struct s_number
 
 }				t_number;
 
-typedef struct s_writer
-{
-		(*t_write)(t_writer self,char str, int len);
-		int			count;
-		void        *pointer;
-}				t_writer;
 
-
-void    left_padding(t_buff *buff, char *str, t_container *list, int check);
-void         f_char(t_container *list, t_buff *buff);
-void         f_float(t_container *list, t_buff *buff);
-void         f_iint(t_container *list, t_buff *buff);
-void         f_int(t_container *list, t_buff *buff);
-void         f_void_pointer(t_container *list, t_buff *buff);
-void         f_octal(t_container *list, t_buff *buff);
-void         f_hex(t_container *list, t_buff *buff);
-void         f_string(t_container *list, t_buff *buff);
-void         f_uhex(t_container *list, t_buff *buff);
-void            check_flag(char ***str, t_container *list);
-void            check_widthprecision(char ***str, t_container *list);
-void            check_lenthmod(char ***str, t_container *list);
+void    right_padding(char *str, t_container *list, int check);
+void    left_padding(char *str, t_container *list, int check);
+void         f_char(t_container *list);
+void         f_float(t_container *list);
+void         f_iint(t_container *list);
+void         f_int(t_container *list);
+void         f_void_pointer(t_container *list);
+void         f_octal(t_container *list);
+void         f_hex(t_container *list);
+void         f_string(t_container *list);
+void         f_uhex(t_container *list);
+void            check_flag(char **str, t_container *list);
+void            check_widthprecision(char **str, t_container *list);
+void            check_lenthmod(char **str, t_container *list);
 void            empty(t_container *list);
 // size_t		*ft_itoa_base_len(t_buff *buff, t_number *number, int *i);
 unsigned long long ft_power(int x, int power);
-typedef	void	(*t_print_var)(t_container *list, t_buff *buff);
+typedef	void	(*t_print_var)(t_container *list);
 
 #endif

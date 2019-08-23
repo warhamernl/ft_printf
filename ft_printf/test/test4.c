@@ -1,15 +1,9 @@
 #include <stdio.h>
 
-
-
 int main (void)
 {   
-    char strink[]="strink is best cool";
-    while (strink)
-    {
-
-        strink++;
-    }
+    char strink[]="bla\0bla";
+    printf("\0%s", strink);
 }
 
 /*  CHARS

@@ -6,7 +6,7 @@
 /*   By: mlokhors <mlokhors@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/08/02 14:06:17 by mlokhors       #+#    #+#                */
-/*   Updated: 2019/08/23 11:43:33 by mlokhors      ########   odam.nl         */
+/*   Updated: 2019/08/23 13:48:19 by mlokhors      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,23 +57,23 @@ static     const t_print_var var_list[] = {
     return (E_INVALID);
  }
 
-int             parser(char **str, t_container *list, t_buff *buff)
+int             parser(char **str, t_container *list)
 {
     t_desc  number;
     empty(list);
     (*str)++;
    if (**str == '#' || **str == '0' || **str == '-' || **str == ' ' || **str == '+')
-       check_flag(&str, list);
+       check_flag(str, list);
    if  ((**str >= '0' && **str <= '9') || **str == '.' || **str == '*')
-      check_widthprecision(&str, list);
+      check_widthprecision(str, list);
    if (**str ==  'h' || **str == 'l' || **str == 'L')
-        check_lenthmod(&str, list);   
+        check_lenthmod(str, list);   
     if (**str == 'c' || **str == 's' || **str == 'p' || **str == 'd'|| **str == 'i'|| **str == 'o' || **str == 'x'|| **str == 'X' || **str == 'f')
     {
         number = find_descriptor(**str);
         if (number == -1)
             return(-1);
-        var_list[number](list, buff);
+        var_list[number](list);
        (*str)++;
         return(0);
     }
@@ -88,20 +88,20 @@ void            empty(t_container *list)
     list->width = -1;
 }
 
-void            addbuff(t_buff *buff, char **c)
+void            addbuff(t_container *list, char c)
 {
-    buff->buff[buff->i] = **c;
-    buff->i++;
-    if (buff->i == BUFF_SIZE)
+    list->buff[list->i] = c;
+    list->i++;
+    if (list->i == BUFF_SIZE)
     {
-        write(1, buff->buff, BUFF_SIZE -1);
-        buff->i = 0;
+        write(1, list->buff, BUFF_SIZE -1);
+        list->i = 0;
     }
 }
 
-void            rrmaining(t_buff *buff)
+void            rrmaining(t_container list)
 {
-    write(1, buff->buff, buff->i);
+    write(1, list.buff, list.i);
 }
 
 int             ft_printf(char *str, ...)
@@ -109,28 +109,27 @@ int             ft_printf(char *str, ...)
     t_container list;
     va_start(list.ap, str);
     va_copy(list.cpy, list.ap);
-    t_buff buff;
 
-    buff.i = 0;
-    ft_memset(&buff, 0, BUFF_SIZE);
+    list.i = 0;
+    ft_memset(list.buff, 0, BUFF_SIZE);
     while (*str)
     {
   //      printf("\n\n1 %s\n", buff.buff);
         if (*str == '%')
         {
-            str += parser(&str, &list, &buff);
+            str += parser(&str, &list);
    //         printf("\n\n2 %s\n", buff.buff);
   //           str++;
             continue;
         }
        
         
-        addbuff(&buff, &str);
+        addbuff(&list, *str);
         str++;
   //      printf("\n\nchar %d\n", *str);
     }
  //   printf("\n\nEND %s\n", buff.buff);
-    rrmaining(&buff);
+    rrmaining(list);
     va_end(list.ap);
     return (0);        
 }
@@ -138,7 +137,7 @@ int             ft_printf(char *str, ...)
 
 int     main(void)
 {
-    ft_printf("yelp%-3c", 'x');
+    ft_printf("yelp%-5c", 'x');
 
     return(0);
 }

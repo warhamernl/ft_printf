@@ -6,7 +6,7 @@
 /*   By: mark <mark@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/08/21 18:46:30 by mark           #+#    #+#                */
-/*   Updated: 2019/08/23 09:20:23 by mark          ########   odam.nl         */
+/*   Updated: 2019/08/23 13:38:16 by mlokhors      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,74 +29,74 @@ static int	num__len(int nb)
 }
 
 
-void            check_lenthmod(char ***str, t_container *list)
+void            check_lenthmod(char **str, t_container *list)
 {
-    if (***str == 'h')
+    if (**str == 'h')
     {
-        if (***str + 1 == 'h')
+        if (**str + 1 == 'h')
         {
             list->lengthmod = LEN_H;
-            (**str)++;
+            (*str)++;
         }
         else
             list->lengthmod = LEN_HH;
     }
-    else if (***str == 'l')
+    else if (**str == 'l')
     {
-        if ( ***str + 1 == 'l')
+        if ( **str + 1 == 'l')
         {
             list->lengthmod = LEN_L;
-            (**str)++;
+            (*str)++;
         }
         else
             list->lengthmod = LEN_LL;
     }
-    else if (***str == 'L')
+    else if (**str == 'L')
     {
             list->lengthmod = LEN_FL;
     }
-    (**str)++;
+    (*str)++;
 }
 
-void            check_widthprecision(char ***str, t_container *list)
+void            check_widthprecision(char **str, t_container *list)
 {
-    while(***str == '*' ||( ***str >= '0' && ***str <= '9' )|| ***str == '.')
+    while(**str == '*' ||( **str >= '0' && **str <= '9' )|| **str == '.')
     {
-        if (***str == '*')
+        if (**str == '*')
             list->width = va_arg(list->ap, int);
-        if (***str >= '0' && ***str <= '9')
+        if (**str >= '0' && **str <= '9')
         {
-            list->width = ft_atoi(**str);
-            (**str) += num__len(list->width);
+            list->width = ft_atoi(*str);
+            (*str) += num__len(list->width);
             continue;
         }
-        if (***str == '.')
+        if (**str == '.')
         {
-            (**str)++;
-            if (***str == '*')
+            (*str)++;
+            if (**str == '*')
                 list->precision = va_arg(list->ap, int);
-            if (***str >= '0' && ***str <= '9')
-                list->precision = ft_atoi(**str);
+            if (**str >= '0' && **str <= '9')
+                list->precision = ft_atoi(*str);
         }
-        (**str)++;
+        (*str)++;
     }
 }
 
-void            check_flag(char ***str, t_container *list)
+void            check_flag(char **str, t_container *list)
 {
-    while (***str == '#' || ***str == '0' || ***str == '-' || ***str == ' ' || ***str == '+')
+    while (**str == '#' || **str == '0' || **str == '-' || **str == ' ' || **str == '+')
     {   
-        if (***str == '#')
+        if (**str == '#')
             list->flags |= HASH;
-        if (***str == '0')
+        if (**str == '0')
             list->flags |= NUL;
-        if (***str == '-')
+        if (**str == '-')
             list->flags |= MIN;
-        if (***str == ' ')
+        if (**str == ' ')
             list->flags |= SPACE;
-        if (***str == '+')
+        if (**str == '+')
             list->flags |= PLUS;
-        (**str)++;
+        (*str)++;
     }   
 
 }

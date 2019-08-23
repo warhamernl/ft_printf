@@ -6,13 +6,13 @@
 /*   By: mlokhors <mlokhors@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/08/22 17:56:34 by mlokhors       #+#    #+#                */
-/*   Updated: 2019/08/23 11:37:23 by mlokhors      ########   odam.nl         */
+/*   Updated: 2019/08/23 13:46:55 by mlokhors      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void     add_zero(t_buff *buff, t_container *list, int amount)
+void     add_zero(t_container *list, int amount)
 {
     int i;
 
@@ -20,14 +20,14 @@ void     add_zero(t_buff *buff, t_container *list, int amount)
     list->width -= amount;
     while (i < list->width)
     {
-        buff->buff[buff->i] = '0';
+        list->buff[list->i] = '0';
         i++;
-        buff->i++;
+        list->i++;
     }
  //   printf("\nadd_zero%d\n", buff->i);
 }
 
-void     add_space(t_buff *buff, t_container *list, int amount)
+void     add_space(t_container *list, int amount)
 {
     int i;
 
@@ -35,14 +35,14 @@ void     add_space(t_buff *buff, t_container *list, int amount)
     list->width -= amount;
     while (i < list->width)
     {
-        buff->buff[buff->i] = ' ';
+        list->buff[list->i] = ' ';
         i++;
-        buff->i++;
+        list->i++;
     }
  //   printf("\nadd_space%d\n", buff->i);
 }
 
-void    left_padding(t_buff *buff, char *str, t_container *list, int check)
+void    left_padding(char *str, t_container *list, int check)
 {
     int amount;
 
@@ -51,15 +51,35 @@ void    left_padding(t_buff *buff, char *str, t_container *list, int check)
     {
         while(*str)
         {
-            buff->buff[buff->i] = *str;
+            list->buff[list->i] = *str;
             str++;
-            buff->i++;
+            list->i++;
             amount++;
         }
         if (list->flags & NUL)
-            add_zero(buff, list, amount);
+            add_zero(list, amount);
         else
-            add_space(buff, list, amount);
+            add_space(list, amount);
     }
 
+}
+
+void    right_padding(char *str, t_container *list, int check)
+{
+    int amount;
+
+    amount = ft_strlen(str);
+    if (check == 0)
+    {        
+        if (list->flags & NUL)
+            add_zero(list, amount);
+        else
+            add_space(list, amount);
+        while(*str)
+        {
+            list->buff[list->i] = *str;
+            list->i++;
+            str++;
+        }        
+    }
 }

@@ -6,13 +6,13 @@
 /*   By: mlokhors <mlokhors@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/08/22 13:23:49 by mlokhors       #+#    #+#                */
-/*   Updated: 2019/08/22 20:17:45 by mlokhors      ########   odam.nl         */
+/*   Updated: 2019/08/23 13:31:13 by mlokhors      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void         f_octal(t_container *list, t_buff *buff)
+void         f_octal(t_container *list)
 {
     /*
     int i;
@@ -24,5 +24,5 @@ void         f_octal(t_container *list, t_buff *buff)
     return;
     */
        printf("%d\n", list->width);
-    printf("%d\n", buff->i);
+    printf("%d\n", list->i);
 }
