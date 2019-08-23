@@ -6,7 +6,7 @@
 /*   By: mark <mark@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/08/21 18:46:30 by mark           #+#    #+#                */
-/*   Updated: 2019/08/22 21:52:23 by mlokhors      ########   odam.nl         */
+/*   Updated: 2019/08/23 02:14:30 by mark          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void            check_lenthmod(char ***str, t_container *list)
         else
             list->lengthmod = LEN_HH;
     }
-    if (***str == 'l')
+    else if (***str == 'l')
     {
         if ( ***str + 1 == 'l')
         {
@@ -34,11 +34,11 @@ void            check_lenthmod(char ***str, t_container *list)
         else
             list->lengthmod = LEN_LL;
     }
-    if (***str == 'L')
+    else if (***str == 'L')
     {
             list->lengthmod = LEN_FL;
     }
-    (**str)++;;
+    (**str)++;
 }
 
 void            check_widthprecision(char ***str, t_container *list)

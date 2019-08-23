@@ -6,7 +6,7 @@
 /*   By: mark <mark@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/08/21 14:57:22 by mark           #+#    #+#                */
-/*   Updated: 2019/08/22 20:38:31 by mlokhors      ########   odam.nl         */
+/*   Updated: 2019/08/23 02:21:18 by mark          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,10 @@ void         f_char(t_container *list, t_buff *buff)
     printf("\n%s\n", buff->buff);
     c = va_arg(list->ap, int);
     if (list->width == -1)
+    {
         buff->buff[buff->i] = c;
+        buff->i++;
+    }   
     else
     {
         if(list->flags & MIN)
