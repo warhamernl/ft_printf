@@ -6,7 +6,7 @@
 /*   By: mlokhors <mlokhors@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/08/02 14:06:17 by mlokhors       #+#    #+#                */
-/*   Updated: 2019/08/23 09:10:47 by mark          ########   odam.nl         */
+/*   Updated: 2019/08/23 11:43:33 by mlokhors      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ int             parser(char **str, t_container *list, t_buff *buff)
        (*str)++;
         return(0);
     }
-    return (-1);
+    return (0);
 }
 
 void            empty(t_container *list)
@@ -120,7 +120,8 @@ int             ft_printf(char *str, ...)
         {
             str += parser(&str, &list, &buff);
    //         printf("\n\n2 %s\n", buff.buff);
-   //         str++;
+  //           str++;
+            continue;
         }
        
         
@@ -137,7 +138,7 @@ int             ft_printf(char *str, ...)
 
 int     main(void)
 {
-    ft_printf("yelp%-2c", 'x');
+    ft_printf("yelp%-3c", 'x');
 
     return(0);
 }

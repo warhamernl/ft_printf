@@ -4,8 +4,12 @@
 
 int main (void)
 {   
-    printf("yelp%3.0d", 3);
-    return (0);
+    char strink[]="strink is best cool";
+    while (strink)
+    {
+
+        strink++;
+    }
 }
 
 /*  CHARS

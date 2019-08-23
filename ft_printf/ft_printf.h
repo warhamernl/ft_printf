@@ -6,7 +6,7 @@
 /*   By: mark <mark@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/08/21 14:35:36 by mark           #+#    #+#                */
-/*   Updated: 2019/08/22 21:49:20 by mlokhors      ########   odam.nl         */
+/*   Updated: 2019/08/23 11:48:16 by mlokhors      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,14 @@ typedef struct s_number
 		int					base;
 
 }				t_number;
+
+typedef struct s_writer
+{
+		(*t_write)(t_writer self,char str, int len);
+		int			count;
+		void        *pointer;
+}				t_writer;
+
 
 void    left_padding(t_buff *buff, char *str, t_container *list, int check);
 void         f_char(t_container *list, t_buff *buff);
