@@ -6,7 +6,7 @@
 /*   By: mark <mark@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/08/21 14:57:22 by mark           #+#    #+#                */
-/*   Updated: 2019/08/23 13:30:07 by mlokhors      ########   odam.nl         */
+/*   Updated: 2019/08/25 18:47:55 by mlokhors      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,23 +14,17 @@
 
 void         f_char(t_container *list)
 {
-    char c[2];
-    char *pointer;
+    char c;
  //   printf("\n%s\n", buff->buff);
-    c[0] = va_arg(list->ap, int);
-    c[1] = '\0';
-    pointer = c;
+    c = va_arg(list->ap, int);
     if (list->width == -1)
-    {
-        list->buff[list->i] = c[0];
-        list->i++;
-    }   
+        addbuff(list, c);  
     else
     {
         if(list->flags & MIN)
-            left_padding(&c[0], list, 0);
+            left_padding(&c, list, 0);
         else
-            right_padding(&c[0], list, 0);
+            right_padding(&c, list, 0);
     }
  //    printf("\n%s\n", buff->buff);
 }

@@ -1,9 +1,10 @@
 #include <stdio.h>
+#include <limits.h>
 
 int main (void)
-{   
-    char strink[]="bla\0bla";
-    printf("\0%s", strink);
+{
+
+    printf("%d", INT_MAX);
 }
 
 /*  CHARS

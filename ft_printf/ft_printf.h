@@ -6,7 +6,7 @@
 /*   By: mark <mark@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/08/21 14:35:36 by mark           #+#    #+#                */
-/*   Updated: 2019/08/23 13:35:58 by mlokhors      ########   odam.nl         */
+/*   Updated: 2019/08/25 16:38:17 by mlokhors      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 # include <stdarg.h>
 # include "libft.h"
 # include <stdio.h>//
+# include <limits.h>
 
 # define HASH (1 << 0)
 # define NUL (1 << 1)
@@ -57,7 +58,8 @@ typedef struct	s_container
 	int			flags;
 	int			lengthmod;
 	char 		buff[BUFF_SIZE];
-	int			i;	
+	int			i;
+	int			con;	
 }				t_container;
 
 

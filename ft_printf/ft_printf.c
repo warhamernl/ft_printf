@@ -6,7 +6,7 @@
 /*   By: mlokhors <mlokhors@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/08/02 14:06:17 by mlokhors       #+#    #+#                */
-/*   Updated: 2019/08/23 13:48:19 by mlokhors      ########   odam.nl         */
+/*   Updated: 2019/08/25 17:54:46 by mlokhors      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ int             parser(char **str, t_container *list)
         number = find_descriptor(**str);
         if (number == -1)
             return(-1);
+        list->con = number;
         var_list[number](list);
        (*str)++;
         return(0);
@@ -114,21 +115,14 @@ int             ft_printf(char *str, ...)
     ft_memset(list.buff, 0, BUFF_SIZE);
     while (*str)
     {
-  //      printf("\n\n1 %s\n", buff.buff);
         if (*str == '%')
         {
             str += parser(&str, &list);
-   //         printf("\n\n2 %s\n", buff.buff);
-  //           str++;
             continue;
-        }
-       
-        
+        }      
         addbuff(&list, *str);
         str++;
-  //      printf("\n\nchar %d\n", *str);
     }
- //   printf("\n\nEND %s\n", buff.buff);
     rrmaining(list);
     va_end(list.ap);
     return (0);        
