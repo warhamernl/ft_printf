@@ -6,7 +6,7 @@
 /*   By: mlokhors <mlokhors@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/08/02 14:06:17 by mlokhors       #+#    #+#                */
-/*   Updated: 2019/08/25 17:54:46 by mlokhors      ########   odam.nl         */
+/*   Updated: 2019/08/27 00:28:55 by mark          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,7 +131,7 @@ int             ft_printf(char *str, ...)
 
 int     main(void)
 {
-    ft_printf("yelp%-5c", 'x');
+    ft_printf("yelp%5.2s", "yelp");
 
     return(0);
 }
