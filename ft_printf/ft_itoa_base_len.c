@@ -6,13 +6,12 @@
 /*   By: mark <mark@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/08/17 18:23:42 by mark           #+#    #+#                */
-/*   Updated: 2019/08/22 19:10:43 by mlokhors      ########   odam.nl         */
+/*   Updated: 2019/08/27 23:56:55 by mark          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include <stdio.h>
-/* 
+
 static int	ft_numlen(int nb, int base)
 {
 	int i;
@@ -46,12 +45,7 @@ static char	ft_base(int *n, int base, int *b)
 	return (con);
 }
 
-// size_t		ft_itoa_base_len(char buf_out[128], t_number *number);
-
-
-
-
-size_t		*ft_itoa_base_len(t_buff buff, t_number *number, int *i)
+size_t		*ft_itoa_base_len(t_container *list, int base, int nega)
 {
 	int	length;
 	int b;

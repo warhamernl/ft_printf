@@ -4,7 +4,7 @@
 int main (void)
 {
 
-    printf("%2.1d", 1015);
+    printf("AA% dAA", 1015);
 }
 
 /*  CHARS
