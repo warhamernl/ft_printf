@@ -6,7 +6,7 @@
 /*   By: mlokhors <mlokhors@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/08/22 17:56:34 by mlokhors       #+#    #+#                */
-/*   Updated: 2019/08/27 01:30:41 by mark          ########   odam.nl         */
+/*   Updated: 2019/08/25 16:46:08 by mlokhors      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,11 @@ void     add_zero(t_container *list, int amount)
     int i;
 
     i = 0;
-    if (amount <= 0)
-        return;
-    while (i < amount)
+    if (list->width != -1)
+        list->width -= amount;
+    else
+        list->width = amount;
+    while (i < list->width)
     {
         addbuff(list, '0');
         i++;
@@ -31,24 +33,22 @@ void     add_space(t_container *list, int amount)
     int i;
 
     i = 0;
-    if (amount <= 0)
-        return;
-    while (i < amount)
+    list->width -= amount;
+    while (i < list->width)
     {
         addbuff(list, ' ');
         i++;
     }
 }
 
-void    left_padding(char *str, t_container *list)
+void    left_padding(char *str, t_container *list, int check)
 {
     int amount;
     int max;
 
     max = INT_MAX;
-    if (list->precision != -1 && list->con == 1)
+    if (list->precision != -1 && list->con == 2)
         max = list->precision;
-    printf("\nmax %d\n", max);
     amount = 0;
     while(*str && amount < max)
     {
@@ -63,27 +63,21 @@ void    left_padding(char *str, t_container *list)
 
 }
 
-void    right_padding(char *str, t_container *list)
+void    right_padding(char *str, t_container *list, int check)
 {
     int amount;
-    int max;
 
-    amount = 0;
-    max = INT_MAX;
-    if (list->width != -1)
-        amount = list->width - ft_strlen(str) + 1;
-    if (list->precision != -1 && list->con == 1)
-        max = list->precision;
-       printf("\nmax %d\n %d conversion \n amount %d\n", max, list->con, amount);
-    if (list->flags & NUL && list->width != -1)
-        add_zero(list, amount);
-    if (list->width != -1)
-        add_space(list, amount);
-    amount = 0;
-    while(*str && amount < max)
-    {
-        addbuff(list, *str);
-        str++;
-        amount++;
+    amount = ft_strlen(str);
+    if (check == 0)
+    {        
+        if (list->flags & NUL)
+            add_zero(list, amount);
+        else
+            add_space(list, amount);
+        while(*str)
+        {
+            addbuff(list, *str);
+            str++;
+        }        
     }
 }

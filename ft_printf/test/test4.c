@@ -4,7 +4,7 @@
 int main (void)
 {
 
-    printf("AA% dAA", 1015);
+    printf("%d", INT_MAX);
 }
 
 /*  CHARS

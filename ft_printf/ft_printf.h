@@ -6,7 +6,7 @@
 /*   By: mark <mark@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/08/21 14:35:36 by mark           #+#    #+#                */
-/*   Updated: 2019/08/27 01:41:26 by mark          ########   odam.nl         */
+/*   Updated: 2019/08/25 16:38:17 by mlokhors      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,13 +71,12 @@ typedef struct s_number
 
 }				t_number;
 
-void     add_space(t_container *list, int amount);
-void     add_zero(t_container *list, int amount);
-void            addbuff(t_container *list, char c);
-void    right_padding(char *str, t_container *list);
-void    left_padding(char *str, t_container *list);
+
+void    right_padding(char *str, t_container *list, int check);
+void    left_padding(char *str, t_container *list, int check);
 void         f_char(t_container *list);
 void         f_float(t_container *list);
+void         f_iint(t_container *list);
 void         f_int(t_container *list);
 void         f_void_pointer(t_container *list);
 void         f_octal(t_container *list);

@@ -6,7 +6,7 @@
 /*   By: mlokhors <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/03/22 15:34:42 by mlokhors       #+#    #+#                */
-/*   Updated: 2019/08/27 22:45:56 by mark          ########   odam.nl         */
+/*   Updated: 2019/08/28 18:14:04 by mlokhors      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@ char			*ft_strrev(char *str);
 char			*ft_itoa_base(int n, int base);
 int				ft_iswhitespace(int c);
 unsigned long long ft_power(int x, int power);
-int	ft_numlen_ull(unsigned long long nb, int base, int nega);
+int	ft_numlen_ull(unsigned long long nb, int base);
 /* 
 ** printf
 */

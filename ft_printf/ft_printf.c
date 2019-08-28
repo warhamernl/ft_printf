@@ -6,7 +6,7 @@
 /*   By: mlokhors <mlokhors@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/08/02 14:06:17 by mlokhors       #+#    #+#                */
-/*   Updated: 2019/08/27 01:41:16 by mark          ########   odam.nl         */
+/*   Updated: 2019/08/25 17:54:46 by mlokhors      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static     const t_print_var var_list[] = {
  { 'c', E_CHAR },
  { 's', E_STRING },
  { 'p', E_VOID_POINTER },
- { 'i', E_INT },
+ { 'i', E_IINT },
  { 'd', E_INT },
  { 'o', E_OCTAL },
  { 'x', E_HEX },
@@ -131,8 +131,7 @@ int             ft_printf(char *str, ...)
 
 int     main(void)
 {
-    ft_printf("\nyelp%+7.3s\n", "strink");
-    printf("\nyelp% 7.3s\n", "strink");
+    ft_printf("yelp%-5c", 'x');
 
     return(0);
 }
