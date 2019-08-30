@@ -6,7 +6,7 @@
 /*   By: mlokhors <mlokhors@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/08/02 14:06:17 by mlokhors       #+#    #+#                */
-/*   Updated: 2019/08/30 03:51:24 by mark          ########   odam.nl         */
+/*   Updated: 2019/08/30 15:03:20 by mark          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,20 +144,20 @@ int     main(void)
     b = 255;
    c = 256;
   d  = 256;
-   ft_printf("i %-+5.2lld\n", i);
-    printf("i %-+5.2lld\n", i);
+   ft_printf("i %+5.2lld\n", i);
+    printf("i %+5.2lld\n", i);
 
-   ft_printf("a %-+5.2d\n", a);
-    printf("a %-+5.2d\n", a);
+   ft_printf("a %+5.2d\n", a);
+    printf("a %+5.2d\n", a);
 
-    ft_printf("b %-+5.2hhd\n", b);
-    printf("b %-+5.2hhd\n", b);
+    ft_printf("b %+5.2hhd\n", b);
+    printf("b %+5.2hhd\n", b);
 
-       ft_printf("c %-+5.2hd\n", c);
-    printf("c %-+5.2hd\n", c);
+       ft_printf("c %+5.2hd\n", c);
+    printf("c %+5.2hd\n", c);
 
-       ft_printf("d %-+5.2ld\n", d);
-   printf("d %-+5.2ld\n", d);
+       ft_printf("d %+5.2ld\n", d);
+   printf("d %+5.2ld\n", d);
 
     return(0);
 }

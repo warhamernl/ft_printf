@@ -6,7 +6,7 @@
 /*   By: mark <mark@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/08/21 14:35:36 by mark           #+#    #+#                */
-/*   Updated: 2019/08/29 22:02:41 by mark          ########   odam.nl         */
+/*   Updated: 2019/08/30 15:15:19 by mark          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ void            check_flag(char **str, t_container *list);
 void            check_widthprecision(char **str, t_container *list);
 void            check_lenthmod(char **str, t_container *list);
 void            empty(t_container *list);
-void		ft_itoa_base_len(t_container *list, t_number number, int length);
+void		ft_itoa_base_len(t_container *list, t_number number, int length, int case);
 unsigned long long ft_power(int x, int power);
 typedef	void	(*t_print_var)(t_container *list);
 
