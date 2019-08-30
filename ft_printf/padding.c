@@ -6,7 +6,7 @@
 /*   By: mlokhors <mlokhors@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/08/22 17:56:34 by mlokhors       #+#    #+#                */
-/*   Updated: 2019/08/25 16:46:08 by mlokhors      ########   odam.nl         */
+/*   Updated: 2019/08/29 21:58:03 by mark          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void     add_space(t_container *list, int amount)
         i++;
     }
 }
-
+/*
 void    left_padding(char *str, t_container *list, int check)
 {
     int amount;
@@ -81,3 +81,5 @@ void    right_padding(char *str, t_container *list, int check)
         }        
     }
 }
+
+*/

@@ -6,7 +6,7 @@
 /*   By: mlokhors <mlokhors@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/08/02 14:06:17 by mlokhors       #+#    #+#                */
-/*   Updated: 2019/08/25 17:54:46 by mlokhors      ########   odam.nl         */
+/*   Updated: 2019/08/30 03:51:24 by mark          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,13 +91,15 @@ void            empty(t_container *list)
 
 void            addbuff(t_container *list, char c)
 {
-    list->buff[list->i] = c;
-    list->i++;
-    if (list->i == BUFF_SIZE)
-    {
-        write(1, list->buff, BUFF_SIZE -1);
-        list->i = 0;
-    }
+
+        list->buff[list->i] = c;
+        list->i++;
+        if (list->i == BUFF_SIZE)
+        {
+            write(1, list->buff, BUFF_SIZE -1);
+            list->i = 0;
+        }
+
 }
 
 void            rrmaining(t_container list)
@@ -131,7 +133,31 @@ int             ft_printf(char *str, ...)
 
 int     main(void)
 {
-    ft_printf("yelp%-5c", 'x');
+    long long i;
+    int     a;
+    char    b;
+    short   c;
+    long    d;
+
+    i = 256;
+    a = 256;
+    b = 255;
+   c = 256;
+  d  = 256;
+   ft_printf("i %-+5.2lld\n", i);
+    printf("i %-+5.2lld\n", i);
+
+   ft_printf("a %-+5.2d\n", a);
+    printf("a %-+5.2d\n", a);
+
+    ft_printf("b %-+5.2hhd\n", b);
+    printf("b %-+5.2hhd\n", b);
+
+       ft_printf("c %-+5.2hd\n", c);
+    printf("c %-+5.2hd\n", c);
+
+       ft_printf("d %-+5.2ld\n", d);
+   printf("d %-+5.2ld\n", d);
 
     return(0);
 }

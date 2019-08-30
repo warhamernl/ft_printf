@@ -3,8 +3,10 @@
 
 int main (void)
 {
+     int i;
 
-    printf("%d", INT_MAX);
+    i = 2;
+    printf("%+05d", i);
 }
 
 /*  CHARS
