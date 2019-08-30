@@ -6,7 +6,7 @@
 /*   By: mark <mark@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/08/21 14:35:36 by mark           #+#    #+#                */
-/*   Updated: 2019/08/30 15:15:19 by mark          ########   odam.nl         */
+/*   Updated: 2019/08/31 00:37:29 by mark          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ typedef enum    e_desc {
  E_STRING           = 1,
  E_VOID_POINTER     = 2,
  E_INT              = 3,
- E_IINT             = 4,
  E_OCTAL            = 5,
  E_HEX              = 6,
  E_UHEX             = 7,
@@ -71,6 +70,11 @@ typedef struct s_number
 
 }				t_number;
 
+void            add_str(t_container *list,const char *str);
+void        cast_itoa_pf_base(t_container *list, t_number *number);
+void          right_padding_pf_base(t_container *list, t_number number, int length, int letter_case);
+void          left_padding_pf_base(t_container *list, t_number number, int length, int letter_case);
+void          check_flags(t_container *list, t_number number);
 void     add_space(t_container *list, int amount);
 void     add_zero(t_container *list, int amount);
 void            addbuff(t_container *list, char c);
@@ -89,7 +93,7 @@ void            check_flag(char **str, t_container *list);
 void            check_widthprecision(char **str, t_container *list);
 void            check_lenthmod(char **str, t_container *list);
 void            empty(t_container *list);
-void		ft_itoa_base_len(t_container *list, t_number number, int length, int case);
+void		ft_itoa_base_len(t_container *list, t_number number, int length, int letter_case);
 unsigned long long ft_power(int x, int power);
 typedef	void	(*t_print_var)(t_container *list);
 

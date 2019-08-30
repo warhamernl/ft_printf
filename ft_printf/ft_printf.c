@@ -6,7 +6,7 @@
 /*   By: mlokhors <mlokhors@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/08/02 14:06:17 by mlokhors       #+#    #+#                */
-/*   Updated: 2019/08/30 15:03:20 by mark          ########   odam.nl         */
+/*   Updated: 2019/08/31 00:30:55 by mark          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static     const t_print_var var_list[] = {
  { 'c', E_CHAR },
  { 's', E_STRING },
  { 'p', E_VOID_POINTER },
- { 'i', E_IINT },
+ { 'i', E_INT },
  { 'd', E_INT },
  { 'o', E_OCTAL },
  { 'x', E_HEX },
@@ -133,31 +133,34 @@ int             ft_printf(char *str, ...)
 
 int     main(void)
 {
-    long long i;
-    int     a;
-    char    b;
-    short   c;
-    long    d;
+ //   long long i;
+//    int     a;
+ //   char    b;
+ //   short   c;
+ //  unsigned int    d;
+ int i;
+int *number;
+ i =6;
+number = &i;
+ //   i = 256;
+ //   a = 256;
+ //   b = 255;
+ //  c = 256;
+//  d  = 256;
+ /* ft_printf("i %5.2llo\n", i);
+    printf("i %5.2llo\n", i);
 
-    i = 256;
-    a = 256;
-    b = 255;
-   c = 256;
-  d  = 256;
-   ft_printf("i %+5.2lld\n", i);
-    printf("i %+5.2lld\n", i);
+   ft_printf("a %5.2o\n", a);
+    printf("a %5.2o\n", a);
 
-   ft_printf("a %+5.2d\n", a);
-    printf("a %+5.2d\n", a);
+    ft_printf("b %5.2hho\n", b);
+    printf("b %5.2hho\n", b);
 
-    ft_printf("b %+5.2hhd\n", b);
-    printf("b %+5.2hhd\n", b);
-
-       ft_printf("c %+5.2hd\n", c);
-    printf("c %+5.2hd\n", c);
-
-       ft_printf("d %+5.2ld\n", d);
-   printf("d %+5.2ld\n", d);
+       ft_printf("c %5.2ho\n", c);
+    printf("c %5.2ho\n", c);
+*/
+    ft_printf("d %p\n", number);
+   printf("d %p\n", number);
 
     return(0);
 }

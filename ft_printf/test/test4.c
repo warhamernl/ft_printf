@@ -5,8 +5,8 @@ int main (void)
 {
      int i;
 
-    i = 2;
-    printf("%+05d", i);
+    i = 9;
+    printf("%5.4o", i);
 }
 
 /*  CHARS

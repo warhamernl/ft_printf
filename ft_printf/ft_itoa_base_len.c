@@ -6,13 +6,13 @@
 /*   By: mark <mark@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/08/17 18:23:42 by mark           #+#    #+#                */
-/*   Updated: 2019/08/30 15:14:23 by mark          ########   odam.nl         */
+/*   Updated: 2019/08/30 22:05:36 by mark          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static char	ft_base(unsigned long long *n, int base, int *b, int case)
+static char	ft_base(unsigned long long *n, int base, int *b, int letter_case)
 {
 	int store;
 	int temp;
@@ -23,12 +23,12 @@ static char	ft_base(unsigned long long *n, int base, int *b, int case)
 
 	store = *n / ft_power(base, (*b - 1));
 	temp = store % base;
-	con = base_number[case][temp];
+	con = base_number[letter_case][temp];
 	*n -= ft_power(base, *b - 1) * temp;
 	return (con);
 }
 
-void		ft_itoa_base_len(t_container *list, t_number number, int len, int case)
+void		ft_itoa_base_len(t_container *list, t_number number, int len, int letter_case)
 {
 	int b;
 
@@ -38,7 +38,7 @@ void		ft_itoa_base_len(t_container *list, t_number number, int len, int case)
 	len += number.sign;
 	while (number.sign != len)
 	{
-		addbuff(list, ft_base(&(number.number), number.base, &b, case));
+		addbuff(list, ft_base(&(number.number), number.base, &b, letter_case));
 		len--;
 		b--;
 	}

@@ -6,7 +6,7 @@
 /*   By: mlokhors <mlokhors@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/08/22 13:24:33 by mlokhors       #+#    #+#                */
-/*   Updated: 2019/08/23 13:31:23 by mlokhors      ########   odam.nl         */
+/*   Updated: 2019/08/31 00:25:47 by mark          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,19 @@
 
 void         f_hex(t_container *list)
 {
-    /*
-    int i;
-    char *str;
+    unsigned int i;
+    int length;
+    t_number number;
 
     i = va_arg(list->ap, int);
-    str = ft_itoa_base_len(i, 16, 0);
-    write(1, str, ft_strlen(str));
+    number.sign = 0;
+    number.base = 16;
+    number.number = (unsigned long long)i;
+    cast_itoa_pf_base(list, &number);
+    length = ft_numlen_ull(number.number, number.base);
+    if (list->flags & MIN)
+        left_padding_pf_base(list, number, length, 0);
+    else
+        right_padding_pf_base(list, number, length, 0);
     return;
-    */
-       printf("%d\n", list->width);
-    printf("%d\n", list->i);
 }

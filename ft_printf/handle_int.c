@@ -6,31 +6,11 @@
 /*   By: mark <mark@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/08/21 14:57:56 by mark           #+#    #+#                */
-/*   Updated: 2019/08/30 15:15:02 by mark          ########   odam.nl         */
+/*   Updated: 2019/08/30 23:18:43 by mark          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-
-void          check_flags(t_container *list, t_number number)
-{
-    if (number.sign == 1)
-    {
-        addbuff(list, '-');
- //       return (1);
-    }
-    else if (list->flags & PLUS)
-    {
-        addbuff(list, '+');
- //       return(1);
-    }
-    else if (list->flags & SPACE)
-    {
-        addbuff(list, ' ');
-  //      return (1);
-    }
- //   return (0);
-}
 
 void        cast_itoa(t_container *list, t_number *number)
 {
@@ -82,7 +62,7 @@ void          left_padding_int(t_container *list, t_number number, int length)
         addbuff(list, '0');
         list->precision--;
     }
-    ft_itoa_base_len(list, number, length);
+    ft_itoa_base_len(list, number, length, 0);
     if (number.sign == 1 || list->flags & PLUS|| list->flags & SPACE)
         list->width--;
     while(list->width > amount)
