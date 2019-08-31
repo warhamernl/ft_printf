@@ -6,7 +6,7 @@
 /*   By: mlokhors <mlokhors@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/08/02 14:06:17 by mlokhors       #+#    #+#                */
-/*   Updated: 2019/08/31 00:30:55 by mark          ########   odam.nl         */
+/*   Updated: 2019/08/31 22:39:44 by mark          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,7 @@ void            addbuff(t_container *list, char c)
         if (list->i == BUFF_SIZE)
         {
             write(1, list->buff, BUFF_SIZE -1);
+            ft_memset(list->buff, 0, BUFF_SIZE);
             list->i = 0;
         }
 
@@ -133,34 +134,36 @@ int             ft_printf(char *str, ...)
 
 int     main(void)
 {
- //   long long i;
-//    int     a;
- //   char    b;
- //   short   c;
- //  unsigned int    d;
- int i;
-int *number;
- i =6;
-number = &i;
- //   i = 256;
- //   a = 256;
- //   b = 255;
- //  c = 256;
-//  d  = 256;
- /* ft_printf("i %5.2llo\n", i);
-    printf("i %5.2llo\n", i);
+    long long i;
+    int     a;
+    char    b;
+    short   c;
+    unsigned int    d;
+    i = 256;
+    a = 256;
+    b = 255;
+    c = 256;
+    d  = 256;
+    ft_printf("is%5.2llo\n", i);
+    printf("i%5.2llo\n", i);
+    printf("\n");
 
-   ft_printf("a %5.2o\n", a);
-    printf("a %5.2o\n", a);
+    ft_printf("as%5.2o\n", a);
+    printf("a%5.2o\n", a);
+    printf("\n");
 
-    ft_printf("b %5.2hho\n", b);
-    printf("b %5.2hho\n", b);
+    ft_printf("bs%5.2hho\n", b);
+    printf("b%5.2hho\n", b);
+    printf("\n");
 
-       ft_printf("c %5.2ho\n", c);
-    printf("c %5.2ho\n", c);
-*/
-    ft_printf("d %p\n", number);
-   printf("d %p\n", number);
+    ft_printf("cs%5.2ho\n", c);
+    printf("c%5.2ho\n", c);
+    printf("\n");
+
+    ft_printf("ds%5.2o\n", d);
+    printf("d%5.2o\n", d);
+    printf("\n");
+
 
     return(0);
 }

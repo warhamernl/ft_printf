@@ -6,7 +6,7 @@
 /*   By: mlokhors <mlokhors@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/08/22 13:23:49 by mlokhors       #+#    #+#                */
-/*   Updated: 2019/08/31 00:22:16 by mark          ########   odam.nl         */
+/*   Updated: 2019/08/31 22:32:10 by mark          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,6 @@ void         f_octal(t_container *list)
     cast_itoa_pf_base(list, &number);
 
     length = ft_numlen_ull(number.number, number.base);
-        printf("number.number %lld\n number.base %d\n length %d\n", number.number, number.base, length);
     if (list->flags & MIN)
         left_padding_pf_base(list, number, length, 0);
     else
