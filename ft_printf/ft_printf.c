@@ -6,7 +6,7 @@
 /*   By: mlokhors <mlokhors@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/08/02 14:06:17 by mlokhors       #+#    #+#                */
-/*   Updated: 2019/08/31 22:39:44 by mark          ########   odam.nl         */
+/*   Updated: 2019/09/01 00:05:24 by mark          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,27 +141,27 @@ int     main(void)
     unsigned int    d;
     i = 256;
     a = 256;
-    b = 255;
+    b = 254;
     c = 256;
     d  = 256;
-    ft_printf("is%5.2llo\n", i);
-    printf("i%5.2llo\n", i);
+    ft_printf("i%#5.2llx\n", i);
+    printf("i%#5.2llx\n", i);
     printf("\n");
 
-    ft_printf("as%5.2o\n", a);
-    printf("a%5.2o\n", a);
+    ft_printf("a%#5.2x\n", a);
+    printf("a%#5.2x\n", a);
     printf("\n");
 
-    ft_printf("bs%5.2hho\n", b);
-    printf("b%5.2hho\n", b);
+    ft_printf("b%#5.2hhx\n", b);
+    printf("b%#5.2hhx\n", b);
     printf("\n");
 
-    ft_printf("cs%5.2ho\n", c);
-    printf("c%5.2ho\n", c);
+    ft_printf("c%#5.2hx\n", c);
+    printf("c%#5.2hx\n", c);
     printf("\n");
 
-    ft_printf("ds%5.2o\n", d);
-    printf("d%5.2o\n", d);
+    ft_printf("d%#5.2x\n", d);
+    printf("d%#5.2x\n", d);
     printf("\n");
 
 
