@@ -6,7 +6,7 @@
 /*   By: mlokhors <mlokhors@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/08/22 13:25:47 by mlokhors       #+#    #+#                */
-/*   Updated: 2019/08/23 13:30:48 by mlokhors      ########   odam.nl         */
+/*   Updated: 2019/09/02 22:51:24 by mark          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,25 @@
 
 void         f_float(t_container *list)
 {
-    printf("%d\n", list->width);
-    printf("%d\n", list->i);
+    long double i;
+    int length;
+    t_number number;
+
+    length = 0;
+    i = va_arg(list->ap, long double);
+    number.sign = 0;
+        if (i < 0)
+    {
+        i = -i;
+        number.sign = 1;
+    }
+    number.base = 10;
+
+    cast_itoa(list, &number);
+    length = ft_numlen_ull(number.number, number.base);
+    if (list->flags & MIN)
+        left_padding_int(list, number, length);
+    else
+        right_padding_int(list, number, length);
     return;
 }

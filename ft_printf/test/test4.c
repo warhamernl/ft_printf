@@ -3,10 +3,9 @@
 
 int main (void)
 {
-     int i;
+    double i = 0.245000000000000001;
 
-    i = 9;
-    printf("%5.4o", i);
+    printf("%.2f", i);
 }
 
 /*  CHARS
