@@ -3,9 +3,9 @@
 
 int main (void)
 {
-    double i = 0.245000000000000001;
+    double i = 0.0000000099500004;
 
-    printf("%.2f", i);
+    printf("%.1f", i);
 }
 
 /*  CHARS
