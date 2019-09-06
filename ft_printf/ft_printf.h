@@ -6,7 +6,7 @@
 /*   By: mark <mark@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/08/21 14:35:36 by mark           #+#    #+#                */
-/*   Updated: 2019/09/01 00:35:54 by mark          ########   odam.nl         */
+/*   Updated: 2019/09/04 13:58:08 by mlokhors      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,9 @@ typedef struct s_number
 
 }				t_number;
 
+void        cast_itoa(t_container *list, t_number *number);
+void          right_padding_int(t_container *list, t_number number, int length);
+void          left_padding_int(t_container *list, t_number number, int length);
 void            add_str(t_container *list,const char *str);
 void        cast_itoa_pf_base(t_container *list, t_number *number);
 void          right_padding_pf_base(t_container *list, t_number number, int length, int letter_case);

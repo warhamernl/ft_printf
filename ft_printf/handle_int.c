@@ -6,7 +6,7 @@
 /*   By: mark <mark@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/08/21 14:57:56 by mark           #+#    #+#                */
-/*   Updated: 2019/08/30 23:18:43 by mark          ########   odam.nl         */
+/*   Updated: 2019/09/06 13:50:58 by mlokhors      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,8 @@ void         f_int(t_container *list)
         i = -i;
         number.sign = 1;
     }
+    if (list->lengthmod & NUL && list->precision != -1)
+        list->lengthmod |= ~(NUL);
     number.base = 10;
     number.number = (unsigned long long)i;
     cast_itoa(list, &number);

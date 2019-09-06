@@ -6,7 +6,7 @@
 /*   By: mlokhors <mlokhors@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/08/02 14:06:17 by mlokhors       #+#    #+#                */
-/*   Updated: 2019/09/01 00:35:54 by mark          ########   odam.nl         */
+/*   Updated: 2019/09/04 13:55:30 by mlokhors      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,35 +134,11 @@ int             ft_printf(char *str, ...)
 
 int     main(void)
 {
-    long long i;
-    int     a;
-    char    b;
-    short   c;
-    unsigned int    d;
-    i = 256;
-    a = 256;
-    b = 254;
-    c = 256;
-    d  = 256;
-    ft_printf("i%#5.2llX\n", i);
-    printf("i%#5.2llX\n", i);
-    printf("\n");
+    int d;
+    d  = -256;
+    ft_printf("d%x\n", d);
+    printf("d%x\n", d);
 
-    ft_printf("a%#5.2X\n", a);
-    printf("a%#5.2X\n", a);
-    printf("\n");
-
-    ft_printf("b%#5.2hhX\n", b);
-    printf("b%#5.2hhX\n", b);
-    printf("\n");
-
-    ft_printf("c%#5.2hX\n", c);
-    printf("c%#5.2hX\n", c);
-    printf("\n");
-
-    ft_printf("d%#5.2X\n", d);
-    printf("d%#5.2X\n", d);
-    printf("\n");
 
 
     return(0);
