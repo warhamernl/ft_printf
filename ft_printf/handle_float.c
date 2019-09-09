@@ -6,7 +6,7 @@
 /*   By: mlokhors <mlokhors@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/08/22 13:25:47 by mlokhors       #+#    #+#                */
-/*   Updated: 2019/09/09 02:07:44 by mark          ########   odam.nl         */
+/*   Updated: 2019/09/09 17:54:00 by mlokhors      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,29 +14,26 @@
 #include <stdlib.h>
 #include <string.h>
 
-char		*ft_itoa_base_float(t_number number)
+char	ft_base_f(int n, int base)
 {
-	int store;
-    char *str;
+	int temp;
+	int con;
+	char	*base_number;
 
-    str = ft_strnew(number.length);
-	store = number.length;
-	if (number.number == 0)
-    {
-        number.length = 1 + number.sign;
-    }
-	number.length += number.sign;
-    if (number.sign == 1)
-    {
-        str[0] = '-';
-    }
-	while (number.sign != number.length)
-	{
-		str[number.sign] = ft_base(&(number.number), number.base, &store, 0);
-		number.sign++;
-//		store--;      
-	}
-	return (str);
+	base_number ="0123456789";
+	temp = n % base;
+	con = base_number[temp];
+
+	return (con);
+}
+
+char		ft_itoa_base_float(int number)
+{
+
+    char c;
+
+    c = ft_base_f(number, 10);     
+	return (c);
 }
 
 
@@ -78,74 +75,108 @@ long double      decimal(long double remaining)
     return (remaining);
 }
 
-void        left_padding_float(t_container *list, t_number number, double long i, int total_len)
+void        left_padding_float(t_container *list, char *str, double long number, double long remaining, int length)
 {
-    char *str;
-    int  count;
-    int d;
+    double remaning;
+    int     i;
 
-    d = 0;
-    printf("%d\n", total_len);
-    count = 0;
-    str = ft_itoa_base_float(number);
-    printf("%s\n", str);
-    number.length++;
-    str[number.length - 1] = '.';
-    if (number.sign == 1)
-        i = -i;
-    while (count < list->precision)
+    i = 0;
+    remaning = number;
+    if (number < 0)
     {
-        d = 0;
-        while (d < list->precision && d < 9)
-        {
-            count++;
-            d++;
-        }
-        i *= ft_power(10, count);
-        number.number = (unsigned long long)i;
-        number.length = ft_numlen_ull(number.number, 10);
-        str = ft_strjoin(str, ft_itoa_base_float(number));
-        i = decimal(i);
+        str[i] = '-';
+        i++;
+    }
+    if (length == 0)
+    {
+        str[i] = '0';
+        i++;
+    }
+    while (i < length)
+    {
+        number *= 10;
+        
+        str[i] = ft_itoa_base_float((int)number);
+        decimal(number);
+        i++;
+    }
+    str[i] = '.';
+    i++;
+    while (list->precision > 0)
+    {
+        remaining *= 10;
+        str[i] = ft_itoa_base_float((int)remaining);
+        decimal(remaining);
+        i++;
+        list->precision--;
     }
     add_str(list, str);
-    free (str);
-    if  (list->width > (number.sign + number.length + 1 + list->precision))
-        add_space(list, (list->width - (number.sign + number.length + 1 + list->precision)));
+    if (list->width > (list->precision + 1 + length))
+        add_space(list, (list->width - (list->precision + 1 + length)));
+
+
+
 
 }
 
+/* 
 void        right_padding_float(t_container *list, t_number number, double long i, int total_len)
 {
     printf("%d %d %LF %d", list->precision, number.length, i, total_len);
 }
 
+char  strack_str(t_container *list, int length)
+{
+
+}
+*/
+int         check_whole_number_double(long double *i)
+{
+    int count;
+
+    count = 0;
+    if (i < (long double*)1 && i > (long double *)0)
+        count = 1;
+    if (*i < 0.0L)
+        count = 1;
+    while (*i > (long double)1)
+    {
+        *i /= (long double)10;
+        count++;
+    }
+    return (count);
+}
+/*
+char *get_string(t_container *list, int length)
+{
+    char str[length + list->precision + 2];
+    ft_memset(str, 0, length + list->precision + 2);
+    return (str);
+}
+*/
+
 void         f_float(t_container *list)
 { 
-    long double i;
-    long double  remaining;
-    t_number number;
-    int total_length;
-    i = 0;
-    remaining = 0.0;
-    i = va_arg(list->ap, long double);
-    printf("test %Lf\n",i); 
-    printf("test %d\n",(int)i); 
-  //  number.sign = check_sign_LD(&number, &i);
-    number.base = 10 ;
-    number.sign = 0;
+    long double remaining;
+    long double number;
+    char        *str;
+    int length_wholenum;
+
+    if (list->lengthmod & LEN_FL)
+        number = va_arg(list->ap, long double);
+    else
+        number = (long double)va_arg(list->ap, double);
     if (list->precision == -1)
         list->precision = 6;
-    number.number = (unsigned long long)(int)i;
-    if (list->lengthmod & LEN_FL)
-        number.number = (unsigned long long)(int)(double)i;
-    printf("%llu\n", number.number);
-    number.length = ft_numlen_ull(number.number, number.base);
-    total_length = look_max_len(*list, number);
+    remaining = number;
     remaining = decimal(remaining);
+    length_wholenum = check_whole_number_double(&number);
+    str = ft_strnew(length_wholenum + 1 + list->precision);
     if (list->flags & MIN)
-        left_padding_float(list, number, remaining, total_length);
+        left_padding_float(list, str, number, remaining, length_wholenum);
    else
-        right_padding_float(list, number, remaining, total_length);
+//        right_padding_float(list, str, number, remaining);
+    free(str);
     return;
 
 
