@@ -5,8 +5,8 @@
 /*                                                     +:+                    */
 /*   By: mlokhors <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/03/27 22:11:16 by mlokhors      #+#    #+#                 */
-/*   Updated: 2019/04/06 21:39:27 by mlokhors      ########   odam.nl         */
+/*   Created: 2019/03/27 22:11:16 by mlokhors       #+#    #+#                */
+/*   Updated: 2019/09/08 21:47:50 by mark          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,9 @@ char	*ft_strjoin(char const *s1, char const *s2)
 
 	i = 0;
 	j = 0;
-	if (!s1 || !s2)
-		return (NULL);
 	new_strink = (char *)malloc(sizeof(char) *
 		(ft_strlen(s1) + ft_strlen(s2) + 1));
-	if (!new_strink)
+	if (!new_strink && (!s1 || !s2))
 		return (NULL);
 	while (s1[i])
 	{

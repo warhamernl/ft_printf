@@ -6,11 +6,23 @@
 /*   By: mark <mark@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/08/21 14:57:56 by mark           #+#    #+#                */
-/*   Updated: 2019/09/06 13:50:58 by mlokhors      ########   odam.nl         */
+/*   Updated: 2019/09/08 15:09:43 by mark          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+
+int         check_sign(t_number *number, int *i)
+{
+    if (*i < 0)
+    {
+        *i = -*i;
+        number->sign = 1;
+        return (1);
+    }
+    return (0);
+}
 
 void        cast_itoa(t_container *list, t_number *number)
 {
@@ -25,12 +37,12 @@ void        cast_itoa(t_container *list, t_number *number)
     else if(list->lengthmod & LEN_LL)
         number->number = (unsigned long long)(long long int)number->number;
 }
-void          right_padding_int(t_container *list, t_number number, int length)
+void          right_padding_int(t_container *list, t_number number)
 {
     int amount;
 
-    if (length > list->precision)
-        amount = length;
+    if (number.length > list->precision)
+        amount = number.length;
     else
         amount = list->precision;
     if (number.sign == 1 || list->flags & PLUS|| list->flags & SPACE)
@@ -41,28 +53,28 @@ void          right_padding_int(t_container *list, t_number number, int length)
         amount++;
     }
     check_flags(list, number);
-    while (list->precision > length)
+    while (list->precision > number.length)
     {
         addbuff(list, '0');
         list->precision--;
     }
-    ft_itoa_base_len(list, number, length, 0);
+    ft_itoa_base_len(list, number, 0);
 }
-void          left_padding_int(t_container *list, t_number number, int length)
+void          left_padding_int(t_container *list, t_number number)
 {
     int amount;
 
-    if (length > list->precision)
-        amount = length;
+    if (number.length > list->precision)
+        amount = number.length;
     else
         amount = list->precision;
     check_flags(list, number);
-    while (list->precision > length)
+    while (list->precision > number.length)
     {
         addbuff(list, '0');
         list->precision--;
     }
-    ft_itoa_base_len(list, number, length, 0);
+    ft_itoa_base_len(list, number, 0);
     if (number.sign == 1 || list->flags & PLUS|| list->flags & SPACE)
         list->width--;
     while(list->width > amount)
@@ -75,27 +87,20 @@ void          left_padding_int(t_container *list, t_number number, int length)
 void         f_int(t_container *list)
 {
     int i;
-    int length;
     t_number number;
 
-    length = 0;
     i = va_arg(list->ap, int);
-    number.sign = 0;
-        if (i < 0)
-    {
-        i = -i;
-        number.sign = 1;
-    }
+    number.sign = check_sign(&number, &i);
     if (list->lengthmod & NUL && list->precision != -1)
         list->lengthmod |= ~(NUL);
     number.base = 10;
     number.number = (unsigned long long)i;
     cast_itoa(list, &number);
-    length = ft_numlen_ull(number.number, number.base);
+    number.length = ft_numlen_ull(number.number, number.base);
     if (list->flags & MIN)
-        left_padding_int(list, number, length);
+        left_padding_int(list, number);
     else
-        right_padding_int(list, number, length);
+        right_padding_int(list, number);
     return;
 }
 

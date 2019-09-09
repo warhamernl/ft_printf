@@ -6,7 +6,7 @@
 /*   By: mark <mark@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/08/21 14:35:36 by mark           #+#    #+#                */
-/*   Updated: 2019/09/04 13:58:08 by mlokhors      ########   odam.nl         */
+/*   Updated: 2019/09/09 00:51:30 by mark          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,18 +65,21 @@ typedef struct	s_container
 typedef struct s_number
 {
 		unsigned long long number;
+		int					length;
 		int					sign;
 		int					base;
 
 }				t_number;
 
+char	ft_base(unsigned long long *n, int base, int *stored, int letter_case);
+int         check_sign(t_number *number, int *i);
 void        cast_itoa(t_container *list, t_number *number);
-void          right_padding_int(t_container *list, t_number number, int length);
-void          left_padding_int(t_container *list, t_number number, int length);
+void          right_padding_int(t_container *list, t_number number);
+void          left_padding_int(t_container *list, t_number number);
 void            add_str(t_container *list,const char *str);
 void        cast_itoa_pf_base(t_container *list, t_number *number);
-void          right_padding_pf_base(t_container *list, t_number number, int length, int letter_case);
-void          left_padding_pf_base(t_container *list, t_number number, int length, int letter_case);
+void          right_padding_pf_base(t_container *list, t_number number, int letter_case);
+void          left_padding_pf_base(t_container *list, t_number number, int letter_case);
 void          check_flags(t_container *list, t_number number);
 void     add_space(t_container *list, int amount);
 void     add_zero(t_container *list, int amount);
@@ -96,7 +99,7 @@ void            check_flag(char **str, t_container *list);
 void            check_widthprecision(char **str, t_container *list);
 void            check_lenthmod(char **str, t_container *list);
 void            empty(t_container *list);
-void		ft_itoa_base_len(t_container *list, t_number number, int length, int letter_case);
+void		ft_itoa_base_len(t_container *list, t_number number, int letter_case);
 unsigned long long ft_power(int x, int power);
 typedef	void	(*t_print_var)(t_container *list);
 

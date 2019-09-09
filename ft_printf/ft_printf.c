@@ -6,7 +6,7 @@
 /*   By: mlokhors <mlokhors@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/08/02 14:06:17 by mlokhors       #+#    #+#                */
-/*   Updated: 2019/09/04 13:55:30 by mlokhors      ########   odam.nl         */
+/*   Updated: 2019/09/09 01:40:40 by mark          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,10 +134,10 @@ int             ft_printf(char *str, ...)
 
 int     main(void)
 {
-    int d;
-    d  = -256;
-    ft_printf("d%x\n", d);
-    printf("d%x\n", d);
+    double i;
+    i  = 0.12;
+    ft_printf("d%-f", i);
+    printf("d%-f\n", i);
 
 
 
