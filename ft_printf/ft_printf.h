@@ -6,7 +6,7 @@
 /*   By: mark <mark@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/08/21 14:35:36 by mark           #+#    #+#                */
-/*   Updated: 2019/09/09 17:32:00 by mlokhors      ########   odam.nl         */
+/*   Updated: 2019/09/11 20:34:14 by mark          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,18 @@ typedef struct	s_container
 	int			i;
 	int			con;	
 }				t_container;
+
+typedef struct	s_float_str
+{
+	char		*str;
+	int			length;
+}				t_float_str;
+
+typedef struct	s_whole_float
+{
+	long double number;
+	long double remaining;
+}				t_whole_float;
 
 
 typedef struct s_number
