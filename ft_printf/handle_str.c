@@ -6,7 +6,7 @@
 /*   By: mlokhors <mlokhors@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/08/22 13:21:56 by mlokhors       #+#    #+#                */
-/*   Updated: 2019/08/29 03:11:26 by mark          ########   odam.nl         */
+/*   Updated: 2019/09/11 23:05:50 by mark          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,9 @@ void    left_padding_str(char *str, t_container *list)
         amount++;
     }
     if (list->flags & NUL && list->width != -1)
-        add_zero(list, list->width - amount);
-    if (list->width != -1)
-        add_space(list, list->width - amount);
+        add_zero(list, amount);
+    if (amount < list->width)
+        add_space(list, amount);
 
 }
 
@@ -40,14 +40,14 @@ void    right_padding_str(char *str, t_container *list)
     int max;
 
     amount = 0;
-    max = INT_MAX;
+    max = ft_strlen(str);
     if (list->width != -1)
         amount = list->width - ft_strlen(str) + 1;
     if (list->precision != -1)
         max = list->precision;
     if (list->flags & NUL && list->width != -1)
         add_zero(list, list->width - max);
-    if (list->width != -1)
+    if (max < list->width)
         add_space(list, list->width - max);
     amount = 0;
     while(*str && amount < max)

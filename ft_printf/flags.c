@@ -6,7 +6,7 @@
 /*   By: mark <mark@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/08/21 18:46:30 by mark           #+#    #+#                */
-/*   Updated: 2019/08/30 03:47:25 by mark          ########   odam.nl         */
+/*   Updated: 2019/09/11 23:07:23 by mark          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,10 @@ void            check_widthprecision(char **str, t_container *list)
     while(**str == '*' ||( **str >= '0' && **str <= '9' )|| **str == '.')
     {
         if (**str == '*')
+        {
             list->width = va_arg(list->ap, int);
+            (*str)++;
+        }
         if (**str >= '0' && **str <= '9')
         {
             list->width = ft_atoi(*str);

@@ -6,7 +6,7 @@
 /*   By: mlokhors <mlokhors@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/08/22 17:56:34 by mlokhors       #+#    #+#                */
-/*   Updated: 2019/08/31 22:26:06 by mark          ########   odam.nl         */
+/*   Updated: 2019/09/11 23:16:56 by mark          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,11 +50,7 @@ void     add_zero(t_container *list, int amount)
     int i;
 
     i = 0;
-    if (list->width != -1)
-        list->width -= amount;
-    else
-        list->width = amount;
-    while (i < list->width)
+    while (i < amount)
     {
         addbuff(list, '0');
         i++;
@@ -66,8 +62,7 @@ void     add_space(t_container *list, int amount)
     int i;
 
     i = 0;
-    list->width -= amount;
-    while (i < list->width)
+    while (i < amount)
     {
         addbuff(list, ' ');
         i++;
