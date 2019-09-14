@@ -6,7 +6,7 @@
 /*   By: mlokhors <mlokhors@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/08/02 14:06:17 by mlokhors       #+#    #+#                */
-/*   Updated: 2019/09/11 23:43:39 by mark          ########   odam.nl         */
+/*   Updated: 2019/09/14 15:48:30 by mark          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,206 +132,119 @@ int             ft_printf(char *str, ...)
 }
 
 
-int			examples(void)
+int main(void)
 {
-	int		a;
-//	float	b;
+	/*
+    ft_printf("TESTING PRINTF...\n(Note: the \"$\" serves to denote the end of output and is merely part of the test-file.)\n");
+    // MISC
+    ft_printf("\n---MISC---\n");
+    ft_printf("Giving ft_printf two successive percentage signs(should output one):\n%%\n");
+    // CHARS INTEGERS
+    ft_printf("\n---CHAR INTEGERS---\n");
+    ft_printf("ft_printf char:\n%hhd$\n", (char)123);
+    printf("printf char:\n%hhd$\n", (char)123);
+    ft_printf("ft_printf char with a space in front:\n% hhi$\n", (char)123);
+    printf("printf char with a space in front:\n% hhi$\n", (char)123);
+    ft_printf("ft_printf char with a + in front, if it's positive:\n%+hhi$\n", (char)123);
+    printf("printf char with a + in front, if it's positive:\n%+hhi$\n", (char)123);
+    ft_printf("ft_printf char with a + in front, if it's positive, with a space in front(should ignore space):\n%+hhi$\n", (char)123);
+    printf("printf char with a + in front, if it's positive, with a space in front(should ignore space):\n%+hhi$\n", (char)123);
+    ft_printf("ft_printf char with a precision of 2:\n%.2hhi$\n", (char)123);
+    printf("printf char with a precision of 2:\n%.2hhi$\n", (char)123);
+    ft_printf("ft_printf char with a minimum field width of 4:\n%4hhi$\n", (char)123);
+    printf("printf char with a minimum field width of 4:\n%4hhi$\n", (char)123);
+    ft_printf("ft_printf char with a minimum field width of 4, padded with zeroes:\n%04hhi$\n", (char)123);
+    printf("printf char with a minimum field width of 4, padded with zeroes:\n%04hhi$\n", (char)123);
+   // ft_printf("ft_printf char with a minimum field width of 4, padded with zeroes, with a precision of 2:\n%04.2hhi$\n", (char)123);
+  //  printf("printf char with a minimum field width of 4, padded with zeroes, with a precision of 2:\n%04.2hhi$\n", (char)123);
+    // INTEGERS
+    ft_printf("\n---INTEGERS---\n");
+    ft_printf("ft_printf int:\n%d$\n", 1435475);
+    printf("printf int:\n%d$\n", 1435475);
+    ft_printf("ft_printf int with a space in front:\n% i$\n", 1435475);
+    printf("printf int with a space in front:\n% i$\n", 1435475);
+    ft_printf("ft_printf int with a + in front, if it's positive:\n%+i$\n", 1435475);
+    printf("printf int with a + in front, if it's positive:\n%+i$\n", 1435475);
+    ft_printf("ft_printf int with a + in front, if it's positive, with a space in front(should ignore space):\n%+i$\n", 1435475);
+    printf("printf int with a + in front, if it's positive, with a space in front(should ignore space):\n%+i$\n", 1435475);
+    ft_printf("ft_printf int with a precision of 3:\n%.3i$\n", 1435475);
+    printf("printf int with a precision of 3:\n%.3i$\n", 1435475);
+    ft_printf("ft_printf int with a minimum field width of 20:\n%20i$\n", 1435475);
+    printf("printf int with a minimum field width of 20:\n%20i$\n", 1435475);
+    ft_printf("ft_printf int with a minimum field width of 20, padded with zeroes:\n%020i$\n", 1435475);
+    printf("printf int with a minimum field width of 20, padded with zeroes:\n%020i$\n", 1435475);
+  //  ft_printf("ft_printf int with a minimum field width of 20, padded with zeroes, with a precision of 3:\n%020.3i$\n", 1435475);
+  //  printf("printf int with a minimum field width of 20, padded with zeroes, with a precision of 3:\n%020.3i$\n", 1435475);
+	// LONG INTEGERS
+    ft_printf("\n---LONG INTEGERS---\n");
+    ft_printf("ft_printf long:\n%ld$\n", (long)LONG_MAX - 42);
+    printf("printf long:\n%ld$\n", (long)LONG_MAX - 42);
+    ft_printf("ft_printf long with a space in front:\n% li$\n", (long)LONG_MAX - 42);
+    printf("printf long with a space in front:\n% li$\n", (long)LONG_MAX - 42);
+    ft_printf("ft_printf long with a + in front, if it's positive:\n%+li$\n", (long)LONG_MAX - 42);
+    printf("printf long with a + in front, if it's positive:\n%+li$\n", (long)LONG_MAX - 42);
+    ft_printf("ft_printf long with a + in front, if it's positive, with a space in front(should ignore space):\n%+li$\n", (long)LONG_MAX - 42);
+    printf("printf long with a + in front, if it's positive, with a space in front(should ignore space):\n%+li$\n", (long)LONG_MAX - 42);
+    ft_printf("ft_printf long with a precision of 6:\n%.6li$\n", (long)LONG_MAX - 42);
+    printf("printf long with a precision of 6:\n%.6li$\n", (long)LONG_MAX - 42);
+    ft_printf("ft_printf long with a minimum field width of 30:\n%30li$\n", (long)LONG_MAX - 42);
+    printf("printf long with a minimum field width of 30:\n%30li$\n", (long)LONG_MAX - 42);
+    ft_printf("ft_printf long with a minimum field width of 30, padded with zeroes:\n%030li$\n", (long)LONG_MAX - 42);
+    printf("printf long with a minimum field width of 30, padded with zeroes:\n%030li$\n", (long)LONG_MAX - 42);
+  //  ft_printf("ft_printf long with a minimum field width of 30, padded with zeroes, with a precision of 6:\n%030.6li$\n", (long)LONG_MAX - 42);
+   // printf("printf long with a minimum field width of 30, padded with zeroes, with a precision of 6:\n%030.6li$\n", (long)LONG_MAX - 42);
+	// LONG LONG INTEGERS
+    ft_printf("\n---LONG LONG INTEGERS---\n");
+    ft_printf("ft_printf long long:\n%lld$\n", (long long)LLONG_MAX - 42);
+    printf("printf long long:\n%lld$\n", (long long)LLONG_MAX - 42);
+    ft_printf("ft_printf long long with a space in front:\n% lli$\n", (long long)LLONG_MAX - 42);
+    printf("printf long long with a space in front:\n% lli$\n", (long long)LLONG_MAX - 42);
+    ft_printf("ft_printf long long with a + in front, if it's positive:\n%+lli$\n", (long long)LLONG_MAX - 42);
+    printf("printf long long with a + in front, if it's positive:\n%+lli$\n", (long long)LLONG_MAX - 42);
+    ft_printf("ft_printf long long with a + in front, if it's positive, with a space in front(should ignore space):\n%+lli$\n", (long long)LLONG_MAX - 42);
+    printf("printf long long with a + in front, if it's positive, with a space in front(should ignore space):\n%+lli$\n", (long long)LLONG_MAX - 42);
+    ft_printf("ft_printf long long with a precision of 6:\n%.6lli$\n", (long long)LLONG_MAX - 42);
+    printf("printf long long with a precision of 6:\n%.6lli$\n", (long long)LLONG_MAX - 42);
+    ft_printf("ft_printf long long with a minimum field width of 40:\n%40lli$\n", (long long)LLONG_MAX - 42);
+    printf("printf long long with a minimum field width of 40:\n%40lli$\n", (long long)LLONG_MAX - 42);
+    ft_printf("ft_printf long long with a minimum field width of 40, padded with zeroes:\n%040lli$\n", (long long)LLONG_MAX - 42);
+    printf("printf long long with a minimum field width of 40, padded with zeroes:\n%040lli$\n", (long long)LLONG_MAX - 42);
+  //  ft_printf("ft_printf long long with a minimum field width of 40, padded with zeroes, with a precision of 6:\n%040.6lli$\n", (long long)LLONG_MAX - 42);
+   // printf("printf long long with a minimum field width of 40, padded with zeroes, with a precision of 6:\n%040.6lli$\n", (long long)LLONG_MAX - 42);
+	// SHORT INTEGERS
+    ft_printf("\n---SHORT INTEGERS---\n");
+    ft_printf("ft_printf short:\n%hd$\n", (short int)1023);
+    printf("printf short:\n%hd$\n", (short int)1023);
+    ft_printf("ft_printf short with a space in front:\n% hi$\n", (short int)1023);
+    printf("printf short with a space in front:\n% hi$\n", (short int)1023);
+    ft_printf("ft_printf short with a + in front, if it's positive:\n%+hi$\n", (short int)1023);
+    printf("printf short with a + in front, if it's positive:\n%+hi$\n", (short int)1023);
+    ft_printf("ft_printf short with a + in front, if it's positive, with a space in front(should ignore space):\n%+hi$\n", (short int)1023);
+    printf("printf short with a + in front, if it's positive, with a space in front(should ignore space):\n%+hi$\n", (short int)1023);
+    ft_printf("ft_printf short with a precision of 2:\n%.2hi$\n", (short int)1023);
+    printf("printf short with a precision of 2:\n%.2hi$\n", (short int)1023);
+    ft_printf("ft_printf short with a minimum field width of 8:\n%8hi$\n", (short int)1023);
+    printf("printf short with a minimum field width of 8:\n%8hi$\n", (short int)1023);
+    ft_printf("ft_printf short with a minimum field width of 8, padded with zeroes:\n%08hi$\n", (short int)1023);
+    printf("printf short with a minimum field width of 8, padded with zeroes:\n%08hi$\n", (short int)1023);
+  //  ft_printf("ft_printf short with a minimum field width of 8, padded with zeroes, with a precision of 2:\n%08.2hi$\n", (short int)1023);
+  //  printf("printf short with a minimum field width of 8, padded with zeroes, with a precision of 2:\n%08.2hi$\n", (short int)1023);
+    // STRINGS
+    ft_printf("\n---STRINGS---\n");
+    ft_printf("ft_printf string:\n%s$\n", "For the people!");
+    printf("printf string:\n%s$\n", "For the people!");
+    ft_printf("ft_printf string with a minimum field width of 20:\n%20s$\n", "For the people!");
+    printf("printf string with a minimum field width of 20:\n%20s$\n", "For the people!");
+    ft_printf("ft_printf string with a minimum field width of 20, padded on the right:\n%-20s$\n", "For the people!");
+    printf("printf string with a minimum field width of 20, padded on the right:\n%-20s$\n", "For the people!");
+    ft_printf("ft_printf string with a minimum field width of 20 to the right, with a precision of 10:\n%-20.10s$\n", "For the people!");
+    printf("printf string with a minimum field width of 20 to the right, with a precision of 10:\n%-20.10s$\n", "For the people!");
+    // FLOATS */
+    ft_printf("\n---FLOATS---\n");
+    ft_printf("ft_printf float:\n%f\n", 1.67);
+    printf("printf float:\n%f\n", 1.67);
+    ft_printf("ft_printf float:\n%f\n", 1.5);
+    printf("printf float:\n%f\n", 1.5);
 
-	a = 255;
-	//b = 2.718281828;
- /* 	printf("\nFlag summary: \n");
-	printf("flag: none \neffect: print normally(right justify, space fill)\n");
-	printf("flag: - \neffect: align left\n");
-	printf("flag: + \neffect: print plus on positive numbers\n");
-	printf("flag: 0 \neffect: zero fill\n");
-	printf("flag: ' ' \neffect: space fill\n");
-	printf("\nMinus padding: \n");
-	printf("%-5d\n", a);
-	printf("%-5d\n", -a);
-	printf("%-5d\n", a * a);
-	printf("%-5d\n", -a * a);
- 	printf("\nPlus padding: \n");
-	printf("%+5d\n", a);
-	printf("%+5d\n", -a);
-	printf("%+5d\n", a * a);
-	printf("%+5d\n", -a * a);
-	printf("\nPlus-Minus padding: \n");
-	printf("%+-5d\n", a);
-	printf("%+-5d\n", -a);
-	printf("%+-5d\n", a * a);
-	printf("%+-5d\n", -a * a);*/
-	printf("\nZero padding: \n");
-	printf("%05d\n", a);
-	printf("%05d\n", -a);
-	printf("%05d\n", a * a);
-	printf("%05d\n", -a * a);
-	printf("\nSpace padding: \n");
-	printf("% 5d\n", a);
-	printf("% 5d\n", -a);
-	printf("% 5d\n", a * a);
-	printf("% 5d\n", -a * a);
-	printf("\nSpace-Zero padding: \n");
-	printf("% 05d\n", a);
-	printf("% 05d\n", -a);
-	printf("% 05d\n", a * a);
-	printf("% 05d\n", -a * a);
-	printf("\nPlus-Zero padding: \n");
-	printf("%+05d\n", a);
-	printf("%+05d\n", -a);
-	printf("%+05d\n", a * a);
-	printf("%+05d\n", -a * a); 
- /*	printf("\nString padding:\n");
-	printf("\nNo padding:\n");
-	printf("%5s\n", "");
-	printf("%5s\n", "a");
-	printf("%5s\n", "ab");
-	printf("%5s\n", "abcde");
-	printf("\nMinus padding:\n");
-	printf("b%-5s\n", "");
-	printf("b%-5s\n", "a");
-	printf("b%-5s\n", "ab");
-	printf("b%-5s\n", "abcde");
-	printf("\nFloat precision:\n");*/
-/* 	printf("base %f\n", b);
-	printf("(prec = 0) %.0f\n", b);
-	printf("(prec = 1) %.1f\n", b);
-	printf("(prec = 2) %.2f\n", b);
-	printf("(prec = 6) %.6f\n", b);
-	printf("(prec = 7) %.7f\n", b);
-	printf("\nFloat width & precision:\n");
-	printf("(prec = 0) %5.0f\n", b);
-	printf("(prec = 1) %5.1f\n", b);
-	printf("(prec = 2) %5.2f\n", b);
-	printf("(prec = 6) %5.6f\n", b);
-	printf("(prec = 7) %5.7f\n", b);
-	printf("\nSeperate combineds:\n");
-	printf("Float width, precision & minus:\n");
-	printf("%-5.1f\n", b);
-	printf("\nFloat width, precision & plus:\n");
-	printf("%+5.1f\n", b);
-	printf("\nFloat width, precision & zero:\n");
-	printf("%05.1f\n", b);
-	printf("\nFloat width, precision & plus-minus:\n");
-	printf("%+-5.1f\n", b);
-	printf("\nFloat width, precision & plus-zero:\n");
-	printf("%+05.1f\n", b);
-	printf("\nFloat width, precision & space-zero:\n");
-	printf("% 05.1f\n", b);
-	printf("\nFloat width, precision & minus-space:\n");
-	printf("%- 5.1f\n", b);
-	printf("\nHashtag padding:\n");
-	printf("%#o\n", a);
-//	printf("%#O\n", a);
-	printf("%#x\n", a);
-	printf("%#X\n", a);
-	printf("\nHashtag float padding:\n");
-	printf("%#f\n", b);
-	printf("\nStd-Fin\n");*/
-	return (0);
-}
-
-int			ft_examples(void)
-{
-	int		a;
-//	float	b;
-
-	a = 255;
-//	b = 2.718281828;
-/* 	ft_printf("\nFlag summary: \n");
-	ft_printf("flag: none \neffect: print normally(right justify, space fill)\n");
-	ft_printf("flag: - \neffect: align left\n");
-	ft_printf("flag: + \neffect: print plus on positive numbers\n");
-	ft_printf("flag: 0 \neffect: zero fill\n");
-	ft_printf("flag: ' ' \neffect: space fill\n");
-	ft_printf("\nMinus padding: \n");
-	ft_printf("%-5d\n", a);
-	ft_printf("%-5d\n", -a);
-	ft_printf("%-5d\n", a * a);
-	ft_printf("%-5d\n", -a * a);
- 	ft_printf("\nPlus padding: \n");
-	ft_printf("%+5d\n", a);
-	ft_printf("%+5d\n", -a);
-	ft_printf("%+5d\n", a * a);
-	ft_printf("%+5d\n", -a * a);
-	ft_printf("\nPlus-Minus padding: \n");
-	ft_printf("%+-5d\n", a);
-	ft_printf("%+-5d\n", -a);
-	ft_printf("%+-5d\n", a * a);
-	ft_printf("%+-5d\n", -a * a);*/
-	ft_printf("\nZero padding: \n");
-	ft_printf("%05d\n", a);
-	ft_printf("%05d\n", -a);
-	ft_printf("%05d\n", a * a);
-	ft_printf("%05d\n", -a * a);
-	ft_printf("\nSpace padding: \n");
-	ft_printf("% 5d\n", a);
-	ft_printf("% 5d\n", -a);
-	ft_printf("% 5d\n", a * a);
-	ft_printf("% 5d\n", -a * a);
-	ft_printf("\nSpace-Zero padding: \n");
-	ft_printf("% 05d\n", a);
-	ft_printf("% 05d\n", -a);
-	ft_printf("% 05d\n", a * a);
-	ft_printf("% 05d\n", -a * a);
-	ft_printf("\nPlus-Zero padding: \n");
-	ft_printf("%+05d\n", a);
-	ft_printf("%+05d\n", -a);
-	ft_printf("%+05d\n", a * a);
-	ft_printf("%+05d\n", -a * a);
-/* 	ft_printf("\nString padding:\n");
-	ft_printf("\nNo padding:\n");
-	ft_printf("t%5s\n", "");
-	ft_printf("t%5s\n", "a");
-	ft_printf("t%5s\n", "ab");
-	ft_printf("t%5s\n", "abcde");
-	ft_printf("\nMinus padding:\n");
-	ft_printf("t%-5s\n", "");//
-	ft_printf("t%-5s\n", "a");//
-	ft_printf("t%-5s\n", "ab");//
-	ft_printf("t%-5s\n", "abcde");//*/
-/* 	ft_printf("\nFloat precision:\n");
- 	ft_printf("base %f\n", b);
-	ft_printf("(prec = 0) %.0f\n", b);
-	ft_printf("(prec = 1) %.1f\n", b);
-	ft_printf("(prec = 2) %.2f\n", b);
-	ft_printf("(prec = 6) %.6f\n", b);
-	ft_printf("(prec = 7) %.7f\n", b);
-	ft_printf("\nFloat width & precision:\n");
-	ft_printf("(prec = 0) %5.0f\n", b);
-	ft_printf("(prec = 1) %5.1f\n", b);
-	ft_printf("(prec = 2) %5.2f\n", b);
-	ft_printf("(prec = 6) %5.6f\n", b);
-	ft_printf("(prec = 7) %5.7f\n", b);
-	ft_printf("\nSeperate combineds:\n");
-	ft_printf("Float width, precision & minus:\n");
-	ft_printf("%-5.1f\n", b);
-	ft_printf("\nFloat width, precision & plus:\n");
-	ft_printf("%+5.1f\n", b);
-	ft_printf("\nFloat width, precision & zero:\n");
-	ft_printf("%05.1f\n", b);
-	ft_printf("\nFloat width, precision & plus-minus:\n");
-	ft_printf("%+-5.1f\n", b);
-	ft_printf("\nFloat width, precision & plus-zero:\n");
-	ft_printf("%+05.1f\n", b);
-	ft_printf("\nFloat width, precision & space-zero:\n");
-	ft_printf("% 05.1f\n", b);
-	ft_printf("\nFloat width, precision & minus-space:\n");
-	ft_printf("%- 5.1f\n", b);
-	ft_printf("\nHashtag padding:\n"); //shift return down when ready
-	ft_printf("%#o\n", a);
-	ft_printf("%#x\n", a);
-	ft_printf("%#X\n", a);
-	ft_printf("\nHashtag float padding:\n");
-	ft_printf("%#f\n", b); */
-	ft_printf("\nft_Fin\n");
     return (0);
-}
-
-int		main(void)
-{
-	int x;
-
-	x = examples();
-	x = ft_examples();
-	return (x);
 }

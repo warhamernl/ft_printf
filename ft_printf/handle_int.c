@@ -6,14 +6,14 @@
 /*   By: mark <mark@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/08/21 14:57:56 by mark           #+#    #+#                */
-/*   Updated: 2019/09/11 23:55:51 by mark          ########   odam.nl         */
+/*   Updated: 2019/09/14 15:46:22 by mark          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
 
-int         check_sign(t_number *number, int *i)
+int         check_sign(t_number *number, long long *i)
 {
     if (*i < 0)
     {
@@ -81,10 +81,10 @@ void          left_padding_int(t_container *list, t_number number)
 
 void         f_int(t_container *list)
 {
-    int i;
+    long long i;
     t_number number;
 
-    i = va_arg(list->ap, int);
+    i = va_arg(list->ap, long long);
     number.sign = check_sign(&number, &i);
     if (list->lengthmod & NUL && list->precision != -1)
         list->lengthmod |= ~(NUL);

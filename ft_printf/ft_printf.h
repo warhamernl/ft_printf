@@ -6,7 +6,7 @@
 /*   By: mark <mark@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/08/21 14:35:36 by mark           #+#    #+#                */
-/*   Updated: 2019/09/11 20:34:14 by mark          ########   odam.nl         */
+/*   Updated: 2019/09/14 15:46:45 by mark          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ typedef struct s_number
 
 }				t_number;
 
-int         check_sign(t_number *number, int *i);
+int         check_sign(t_number *number, long long *i);
 void        cast_itoa(t_container *list, t_number *number);
 void          right_padding_int(t_container *list, t_number number);
 void          left_padding_int(t_container *list, t_number number);

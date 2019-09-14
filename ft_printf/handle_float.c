@@ -6,7 +6,7 @@
 /*   By: mlokhors <mlokhors@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/08/22 13:25:47 by mlokhors       #+#    #+#                */
-/*   Updated: 2019/09/11 20:45:47 by mark          ########   odam.nl         */
+/*   Updated: 2019/09/14 17:37:47 by mark          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,25 +14,46 @@
 #include <stdlib.h>
 #include <string.h>
 
-char	ft_base_f(int n, int base)
+
+void        rounding(t_float_str *line, long double remaining)
 {
-	int temp;
-	int con;
-	char	*base_number;
+    int last_number;
+    char *tmp;
 
-	base_number ="0123456789";
-	temp = n % base;
-	con = base_number[temp];
-
-	return (con);
+    tmp = 0;
+    last_number = ft_atoi(&line->str[line->length]);
+       if (remaining > 0.5L && last_number % 2 == 0)
+    {
+        if (line->str[line->length] == '9')
+        {
+            while (line->str[line->length] == '9')
+            {
+                line->str[line->length] = '0';
+                line->length--;
+                if (line->str[line->length] == '.')
+                    line->length--;
+            }
+            if (line->str[0] != '-' && line->str[0] != '+')
+                line->str = ft_strjoin("1", line->str);
+            else
+            {
+                tmp = ft_strjoin(&line->str[line->length], "1");
+                line->str = ft_strjoin(tmp, line->str);
+            }
+        }
+        else
+            line->str[line->length] += 1;
+    }
 }
+
 
 char		ft_itoa_base_float(int number)
 {
-
+    char	*base_number;
     char c;
 
-    c = ft_base_f(number, 10);     
+    base_number ="0123456789";
+    c = base_number[number];     
 	return (c);
 }
 
@@ -97,11 +118,12 @@ void    float_decimal(t_container *list, t_float_str *line, int length, long dou
     {
         remaining *= 10;
         line->str[line->length] = ft_itoa_base_float((int)remaining);
-        decimal(remaining);
+        remaining = decimal(remaining);
         line->length++;
         list->precision--;
     }
-
+    printf("\n test %0.20Lf\n ", remaining);
+    rounding(line, remaining);
 }
 
 
@@ -118,7 +140,7 @@ void        left_padding_float(t_container *list, char *str, t_whole_float *numb
     add_str(list, str);
     if (list->width > (store + 1 + length))
         add_space(list, (list->width - (store + 1 + length)));
-
+    free(str);
 
 
 
@@ -136,6 +158,7 @@ void        right_padding_float(t_container *list, char *str, t_whole_float *num
     float_number(&line, length, number->number);
     float_decimal(list, &line, length, number->number);
     add_str(list, str);
+    free(str);
 }
 
 
@@ -172,12 +195,12 @@ void         f_float(t_container *list)
         list->precision = 6;
     number.remaining = decimal(number.remaining);
     length_wholenum = check_whole_number_double(&number.number);
-    str = ft_strnew(length_wholenum + 1 + list->precision);
+    str = ft_strnew(length_wholenum + 2 + list->precision);
     if (list->flags & MIN)
         left_padding_float(list, str, &number, length_wholenum);
- //  else
- //       right_padding_float(list, str, &number, length_wholenum);
-    free(str);
+   else
+        right_padding_float(list, str, &number, length_wholenum);
+    
     return;
 
 
