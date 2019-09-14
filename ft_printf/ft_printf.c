@@ -6,7 +6,7 @@
 /*   By: mlokhors <mlokhors@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/08/02 14:06:17 by mlokhors       #+#    #+#                */
-/*   Updated: 2019/09/14 15:48:30 by mark          ########   odam.nl         */
+/*   Updated: 2019/09/14 20:46:35 by mark          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -241,10 +241,10 @@ int main(void)
     printf("printf string with a minimum field width of 20 to the right, with a precision of 10:\n%-20.10s$\n", "For the people!");
     // FLOATS */
     ft_printf("\n---FLOATS---\n");
-    ft_printf("ft_printf float:\n%f\n", 1.67);
-    printf("printf float:\n%f\n", 1.67);
-    ft_printf("ft_printf float:\n%f\n", 1.5);
-    printf("printf float:\n%f\n", 1.5);
+    ft_printf("ft_printf float:\n%.2f\n", 1.67);
+    printf("printf float:\n%.2f\n", 1.67);
+    ft_printf("ft_printf float:\n%.0f\n", 1.5);
+    printf("printf float:\n%.0f\n", 1.5);
 
     return (0);
 }
