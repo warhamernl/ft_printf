@@ -6,15 +6,14 @@
 #    By: mlokhors <mlokhors@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2019/08/02 12:58:17 by mlokhors       #+#    #+#                 #
-#    Updated: 2019/08/21 14:45:36 by mark          ########   odam.nl          #
+#    Updated: 2019/09/16 14:18:03 by mlokhors      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = libftprint.a
+NAME = libftprintf.a
 
 SRC_DIR = ./
 OBJ_DIR = ./.obj/
-PRT_DIR = ./ft_printf
 FLAGS = -Wall -Werror -Wextra -I./includes
 
 OBJ_NAMES =  ft_memcpy \
@@ -80,9 +79,20 @@ OBJ_NAMES =  ft_memcpy \
 			 ft_strrev \
 			 ft_itoa_base \
 			 ft_iswhitespace \
-			 ft_printf \
 			 ft_power \
+			 ft_numlen_ull \
+			 flags \
 			 ft_itoa_base_len \
+			 ft_printf \
+			 handle_char \
+			 handle_float \
+			 handle_int \
+			 handle_memory \
+			 handle_octal \
+			 handle_shex \
+			 handle_str \
+			 handle_uhex \
+			 padding \
 
 
 OBJS = $(patsubst %, $(OBJ_DIR)/%.o, $(OBJ_NAMES))
@@ -93,7 +103,7 @@ all: $(NAME)
 $(NAME) : $(OBJS) 
 		ar crs $(NAME) $(OBJS)
 
-$(OBJ_DIR)/%.o : $(SRC_DIR)/%.c $(PRT_DIR)/%.c
+$(OBJ_DIR)/%.o : $(SRC_DIR)/%.c
 		mkdir -p $(OBJ_DIR)
 		$(CC) -c -o $@ $< $(FLAGS)
 clean:
@@ -102,9 +112,4 @@ clean:
 fclean: clean
 		rm -f $(NAME)
 
-re:
-		$(MAKE) -j10 _re
-
-_re: 
-	$(MAKE) fclean
-	$(MAKE) all
+re: fclean all

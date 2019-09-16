@@ -6,7 +6,7 @@
 /*   By: mark <mark@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/08/21 14:35:36 by mark           #+#    #+#                */
-/*   Updated: 2019/09/16 15:24:38 by mlokhors      ########   odam.nl         */
+/*   Updated: 2019/09/14 15:46:45 by mark          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ typedef enum    e_desc {
  E_HEX              = 6,
  E_UHEX             = 7,
  E_FLOAT            = 8,
-// E_PERCENT			= 9,
  E_INVALID          = -1
  }				t_desc;
 
@@ -52,6 +51,7 @@ typedef enum    e_desc {
 typedef struct	s_container
 {
 	va_list		ap;
+	va_list		cpy;
 	int			width;
 	int			precision;
 	int			flags;
