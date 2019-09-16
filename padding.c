@@ -6,7 +6,7 @@
 /*   By: mlokhors <mlokhors@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/08/22 17:56:34 by mlokhors       #+#    #+#                */
-/*   Updated: 2019/09/11 23:16:56 by mark          ########   odam.nl         */
+/*   Updated: 2019/09/16 20:01:43 by mlokhors      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,13 @@ void            add_str(t_container *list,const char *str)
 
 void         check_flags(t_container *list, t_number number)
 {
-const char *str[] = {
+const char *str[3] = {
   [0] = "0",
   [1] = "0x",
   [2] = "0X",
 };
+        if (number.number == 0 && list->flags & HASH)
+            return;
         if (number.sign == 1)
             addbuff(list, '-');
         else if (list->flags & PLUS && list->con == 3)

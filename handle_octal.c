@@ -6,7 +6,7 @@
 /*   By: mlokhors <mlokhors@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/08/22 13:23:49 by mlokhors       #+#    #+#                */
-/*   Updated: 2019/09/16 16:20:18 by mlokhors      ########   odam.nl         */
+/*   Updated: 2019/09/16 20:06:10 by mlokhors      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,25 +34,35 @@ void          right_padding_pf_base(t_container *list, t_number number, int lett
         amount = number.length;
     else
         amount = list->precision;
-    if (number.sign == 1 || list->flags & PLUS|| list->flags & SPACE || list->flags & HASH)
+    if (number.sign == 1 || list->flags & PLUS|| list->flags & SPACE || (list->flags & HASH && number.number != 0))
     {
         if (list->con == 6 || list->con == 7)
             list->width--;
         list->width--;
     }
-    while (list->width > number.length && list->flags & NUL)
+    if (list->flags & NUL )
     {
-        addbuff(list, '0');
-        list->width--;
+        check_flags(list, number);
+        while (list->width > number.length && list->flags & NUL)
+        {
+            addbuff(list, '0');
+            list->width--;
+        }
     }
-    while(list->width > amount && !(list->flags & NUL))
+    else
     {
-        addbuff(list, ' ');
-        amount++;
+        while(list->width > amount && !(list->flags & NUL))
+        {
+            addbuff(list, ' ');
+            amount++;
+        }
+        check_flags(list, number);
     }
-    check_flags(list, number);
-    ft_itoa_base_len(list, number, letter_case);
+    if (!(list->flags & HASH && number.number == 0 && (list->precision != -1 || list->width != -1)))
+        ft_itoa_base_len(list, number, letter_case);
 }
+
+
 void          left_padding_pf_base(t_container *list, t_number number, int letter_case)
 {
     int amount;
@@ -62,28 +72,27 @@ void          left_padding_pf_base(t_container *list, t_number number, int lette
     else
         amount = list->precision;
     check_flags(list, number);
-    while (list->width > number.length && list->flags & NUL)
-    {
-        addbuff(list, '0');
-        list->width--;
-    }
-    while(list->width > amount && !(list->flags & NUL))
-    {
-        addbuff(list, ' ');
-        amount++;
-    }
-    ft_itoa_base_len(list, number, letter_case);
     if (number.sign == 1 || list->flags & PLUS|| list->flags & SPACE || list->flags & HASH)
     {
         if (list->con == 6 || list->con == 7)
             list->width--;
         list->width--;
     }
+    if (!(number.number == 0 && (list->precision != -1 || list->width != -1)))
+        ft_itoa_base_len(list, number, letter_case);
+
+    while(list->width > amount)
+    {
+        addbuff(list, ' ');
+        amount++;
+    }
+
+
 }
 
 void         f_octal(t_container *list)
 {
-    unsigned int i;
+    unsigned long long i;
     t_number number;
 
     i = va_arg(list->ap, unsigned long long);

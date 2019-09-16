@@ -6,7 +6,7 @@
 /*   By: mlokhors <mlokhors@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/08/02 14:06:17 by mlokhors       #+#    #+#                */
-/*   Updated: 2019/09/16 16:16:09 by mlokhors      ########   odam.nl         */
+/*   Updated: 2019/09/16 19:27:13 by mlokhors      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,6 +145,6 @@ int             ft_printf(char *str, ...)
 
 int     main(void)
 {
-     ft_printf("%010x", 542);
+    ft_printf("%#x", 0);
     return (0);
 }

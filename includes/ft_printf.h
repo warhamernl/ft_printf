@@ -6,7 +6,7 @@
 /*   By: mark <mark@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/08/21 14:35:36 by mark           #+#    #+#                */
-/*   Updated: 2019/09/14 15:46:45 by mark          ########   odam.nl         */
+/*   Updated: 2019/09/16 19:37:12 by mlokhors      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,16 +17,16 @@
 # include <stdio.h>
 # include <limits.h>
 
-# define HASH (1 << 0)
-# define NUL (1 << 1)
-# define MIN (1 << 2)
-# define PLUS (1 << 3)
-# define SPACE (1 << 4)
-# define LEN_H (1 << 0)
-# define LEN_HH (1 << 1)
-# define LEN_L	(1 << 2)
-# define LEN_LL (1 << 3)
-# define LEN_FL (1 << 4)
+# define HASH (1U << 0)
+# define NUL (1U << 1)
+# define MIN (1U << 2)
+# define PLUS (1U << 3)
+# define SPACE (1U << 4)
+# define LEN_H (1U << 0)
+# define LEN_HH (1U << 1)
+# define LEN_L	(1U << 2)
+# define LEN_LL (1U << 3)
+# define LEN_FL (1U << 4)
 # define BUFF_SIZE 1024
 
 typedef enum    e_desc {
@@ -38,6 +38,7 @@ typedef enum    e_desc {
  E_HEX              = 6,
  E_UHEX             = 7,
  E_FLOAT            = 8,
+// E_PERCENT			= 9,
  E_INVALID          = -1
  }				t_desc;
 
@@ -51,11 +52,10 @@ typedef enum    e_desc {
 typedef struct	s_container
 {
 	va_list		ap;
-	va_list		cpy;
 	int			width;
 	int			precision;
-	int			flags;
-	int			lengthmod;
+	unsigned int			flags;
+	unsigned int			lengthmod;
 	char 		buff[BUFF_SIZE];
 	int			i;
 	int			con;	
