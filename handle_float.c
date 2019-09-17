@@ -6,7 +6,7 @@
 /*   By: mlokhors <mlokhors@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/08/22 13:25:47 by mlokhors       #+#    #+#                */
-/*   Updated: 2019/09/16 14:19:14 by mlokhors      ########   odam.nl         */
+/*   Updated: 2019/09/17 13:30:46 by mlokhors      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,7 @@ void        rounding(t_float_str *line,int remaining)
     {
         if (line->str[line->length] == '9')
         {
+            printf("test2\n");
             while (line->str[line->length] == '9')
             {
                 line->str[line->length] = '0';
@@ -132,6 +133,10 @@ int look_max_len(t_container list, t_number number)
 
 long double      decimal(long double remaining)
 {
+    while (remaining > 1.00L)
+        remaining /= (long double)10;
+    return (remaining);    
+    /* 
     while (remaining >= (long double)1000000.00)
         remaining -= (long double)1000000.00;    
     while (remaining >= (long double)10000.00)
@@ -144,7 +149,7 @@ long double      decimal(long double remaining)
         remaining -= (long double)10.00;
     while (remaining >= (long double)1.00)
         remaining -= (long double)1.00;
-    return (remaining);
+    return (remaining);*/
 }
 
 void        float_number(t_float_str *line, int length, long double number)
@@ -255,7 +260,7 @@ void         f_float(t_container *list)
         return;
     number.remaining = decimal(number.number);
     length_wholenum = check_whole_number_double(&number.number);
-    str = ft_strnew(length_wholenum + 2 + list->precision);
+    str = ft_strnew(length_wholenum + 1 + list->precision);
     if (list->flags & MIN)
         left_padding_float(list, str, &number, length_wholenum);
    else

@@ -6,7 +6,7 @@
 /*   By: mlokhors <mlokhors@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/08/22 17:56:34 by mlokhors       #+#    #+#                */
-/*   Updated: 2019/09/16 20:01:43 by mlokhors      ########   odam.nl         */
+/*   Updated: 2019/09/17 19:27:22 by mlokhors      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ const char *str[3] = {
   [1] = "0x",
   [2] = "0X",
 };
-        if (number.number == 0 && list->flags & HASH)
+        if (number.number == 0 && (list->flags & HASH || list->precision == 0))
             return;
         if (number.sign == 1)
             addbuff(list, '-');

@@ -6,7 +6,7 @@
 /*   By: mlokhors <mlokhors@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/08/22 13:26:13 by mlokhors       #+#    #+#                */
-/*   Updated: 2019/09/16 16:03:47 by mlokhors      ########   odam.nl         */
+/*   Updated: 2019/09/17 17:47:57 by mlokhors      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ void         f_uhex(t_container *list)
     unsigned long long i;
     t_number number;
 
+    if (list->flags & NUL && list->flags & MIN)
+        list->flags &= ~(NUL);
     i = va_arg(list->ap, unsigned long long);
     number.sign = 0;
     number.base = 16;

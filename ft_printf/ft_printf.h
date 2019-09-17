@@ -6,7 +6,7 @@
 /*   By: mark <mark@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/08/21 14:35:36 by mark           #+#    #+#                */
-/*   Updated: 2019/09/16 15:24:38 by mlokhors      ########   odam.nl         */
+/*   Updated: 2019/09/17 18:48:05 by mlokhors      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,8 @@ typedef enum    e_desc {
  E_HEX              = 6,
  E_UHEX             = 7,
  E_FLOAT            = 8,
-// E_PERCENT			= 9,
+ E_UINT				= 9,
+ E_PERCENT			= 10,
  E_INVALID          = -1
  }				t_desc;
 
@@ -83,8 +84,10 @@ typedef struct s_number
 
 }				t_number;
 
+void         f_percent(t_container *list);
+void         f_uint(t_container *list);
 int         check_sign(t_number *number, long long *i);
-void        cast_itoa(t_container *list, t_number *number);
+long long        cast_itoa(t_container *list);
 void          right_padding_int(t_container *list, t_number number);
 void          left_padding_int(t_container *list, t_number number);
 void            add_str(t_container *list,const char *str);
@@ -105,6 +108,7 @@ void         f_void_pointer(t_container *list);
 void         f_octal(t_container *list);
 void         f_hex(t_container *list);
 void         f_string(t_container *list);
+void		 f_uint(t_container *list);
 void         f_uhex(t_container *list);
 void            check_flag(char **str, t_container *list);
 void            check_widthprecision(char **str, t_container *list);
