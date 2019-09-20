@@ -6,7 +6,7 @@
 /*   By: mlokhors <mlokhors@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/09/17 16:55:58 by mlokhors       #+#    #+#                */
-/*   Updated: 2019/09/17 17:05:21 by mlokhors      ########   odam.nl         */
+/*   Updated: 2019/09/20 11:45:23 by mlokhors      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,16 +37,17 @@ void         f_uint(t_container *list)
     long long i;
     t_number number;
 
+    if ((list->flags & NUL && list->flags & MIN) || (list->precision != -1 && list->flags & NUL))
+        list->flags &= ~(NUL);
+    if (list->flags & SPACE)
+        list->flags &= ~(SPACE);
     i = cast_itoa_u(list);
     number.sign = 0;
     if (list->lengthmod & NUL && list->precision != -1)
         list->lengthmod |= ~(NUL);
     number.base = 10;
     number.number = (unsigned long long)i;
-    if (list->precision != -1 && list->flags & NUL)
-        list->flags |= ~(NUL);
     number.length = ft_numlen_ull(number.number, number.base);
-
     if (list->flags & MIN)
         left_padding_int(list, number);
     else

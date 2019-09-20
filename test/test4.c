@@ -4,8 +4,7 @@
 
 int     main(void)
 {
-    long double i;
-    i = 0.0;
 
-    printf("blabla%#6.2Lf", 1 / i);
+
+    printf(" %.1p", NULL, NULL);
 }

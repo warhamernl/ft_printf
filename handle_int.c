@@ -6,7 +6,7 @@
 /*   By: mark <mark@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/08/21 14:57:56 by mark           #+#    #+#                */
-/*   Updated: 2019/09/17 16:49:57 by mlokhors      ########   odam.nl         */
+/*   Updated: 2019/09/20 12:53:47 by mlokhors      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,9 @@ void          right_padding_int(t_container *list, t_number number)
 {
     int amount;
 
-    if (number.length > list->precision)
+    if (number.number == 0 && list->precision == 0)
+        amount = 0;
+    else if (number.length > list->precision)
         amount = number.length;
     else
         amount = list->precision;
@@ -61,24 +63,30 @@ void          right_padding_int(t_container *list, t_number number)
         add_space(list, list->width - amount);
         check_flags(list, number);
     }
-    else if (list->width < amount)
+    else if (list->width <= amount)
         check_flags(list, number);
     if (number.length < list->precision)
         add_zero(list, list->precision - number.length);
-    ft_itoa_base_len(list, number, 0);
+    if (!( number.number == 0 && list->precision == 0 ))
+    {
+        ft_itoa_base_len(list, number, 0);
+    }
 }
 void          left_padding_int(t_container *list, t_number number)
 {
     int amount;
 
-    if (number.length > list->precision)
+    if (number.number == 0 && list->precision == 0)
+        amount = 0;
+    else if (number.length > list->precision)
         amount = number.length;
     else
         amount = list->precision;
     check_flags(list, number);
     if (number.length < list->precision)
         add_zero(list, list->precision - number.length);
-    ft_itoa_base_len(list, number, 0);
+     if (!( number.number == 0 && list->precision == 0 ))
+        ft_itoa_base_len(list, number, 0);
     if (number.sign == 1 || list->flags & PLUS|| list->flags & SPACE)
         list->width--;
     if (list->width > amount && list->flags & NUL)
@@ -95,15 +103,12 @@ void         f_int(t_container *list)
     t_number number;
 
     i = cast_itoa(list);
+    if ((list->flags & NUL && list->flags & MIN) || (list->precision != -1 && list->flags & NUL))
+        list->flags &= ~(NUL);
     number.sign = check_sign(&number, &i);
-    if (list->lengthmod & NUL && list->precision != -1)
-        list->lengthmod |= ~(NUL);
     number.base = 10;
     number.number = (unsigned long long)i;
-    if (list->precision != -1 && list->flags & NUL)
-        list->flags |= ~(NUL);
     number.length = ft_numlen_ull(number.number, number.base);
-
     if (list->flags & MIN)
         left_padding_int(list, number);
     else
