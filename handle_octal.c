@@ -6,7 +6,7 @@
 /*   By: mlokhors <mlokhors@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/08/22 13:23:49 by mlokhors       #+#    #+#                */
-/*   Updated: 2019/09/20 11:05:14 by mlokhors      ########   odam.nl         */
+/*   Updated: 2019/09/20 14:44:05 by mlokhors      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,8 @@ void          right_padding_pf_base(t_container *list, t_number number, int lett
     }
     if (!(number.number == 0 && list->precision == 0) || (list->con == 5 && list->flags & HASH && number.number == 0 && list->precision == 0 ))
     {
+        if (list->flags & HASH && list->con == 5)
+            list->precision--;
         if (number.length < list->precision)
             add_zero(list, list->precision - number.length);
         ft_itoa_base_len(list, number, letter_case);
@@ -85,7 +87,6 @@ void          left_padding_pf_base(t_container *list, t_number number, int lette
         list->width--;
     }
     check_flags(list, number);
-
     if (!( number.number == 0 && list->precision == 0 ))
     {
         if (number.length < list->precision)

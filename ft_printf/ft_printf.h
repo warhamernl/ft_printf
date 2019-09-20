@@ -6,7 +6,7 @@
 /*   By: mark <mark@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/08/21 14:35:36 by mark           #+#    #+#                */
-/*   Updated: 2019/09/17 18:48:05 by mlokhors      ########   odam.nl         */
+/*   Updated: 2019/09/20 15:27:33 by mlokhors      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ typedef struct	s_whole_float
 {
 	long double number;
 	long double remaining;
+	int			sign;
 }				t_whole_float;
 
 

@@ -6,7 +6,7 @@
 /*   By: mlokhors <mlokhors@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/08/22 13:25:47 by mlokhors       #+#    #+#                */
-/*   Updated: 2019/09/17 13:30:46 by mlokhors      ########   odam.nl         */
+/*   Updated: 2019/09/20 16:43:42 by mlokhors      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ int        nanfin(t_container *list, long double number)
     return (0);
 }
 
-void        rounding(t_float_str *line,int remaining)
+void        rounding(t_float_str *line)
 {
     int last_number;
     char *tmp;
@@ -79,11 +79,10 @@ void        rounding(t_float_str *line,int remaining)
     line->length--;
     tmp = 0;
     last_number = ft_atoi(&line->str[line->length]);
-    if (remaining > 0.5L && last_number % 2 == 0)
+    if (last_number % 2 ==  1 )
     {
         if (line->str[line->length] == '9')
         {
-            printf("test2\n");
             while (line->str[line->length] == '9')
             {
                 line->str[line->length] = '0';
@@ -91,12 +90,11 @@ void        rounding(t_float_str *line,int remaining)
                 if (line->str[line->length] == '.')
                     line->length--;
             }
-            if (line->str[0] != '-' && line->str[0] != '+')
+            if (line->str[line->length] == '-' && line->str[line->length] == '+')
                 line->str = ft_strjoin("1", line->str);
             else
             {
-                tmp = ft_strjoin(&line->str[line->length], "1");
-                line->str = ft_strjoin(tmp, line->str);
+                line->str[line->length]++;
             }
         }
         else
@@ -134,32 +132,24 @@ int look_max_len(t_container list, t_number number)
 long double      decimal(long double remaining)
 {
     while (remaining > 1.00L)
-        remaining /= (long double)10;
+    {
+        remaining -= 1.00L;
+    }
     return (remaining);    
-    /* 
-    while (remaining >= (long double)1000000.00)
-        remaining -= (long double)1000000.00;    
-    while (remaining >= (long double)10000.00)
-        remaining -= (long double)10000.00;
-    while (remaining >= (long double)1000.00)
-        remaining -= (long double)1000.00;
-    while (remaining >= (long double)100.00)
-        remaining -= (long double)100.00;
-    while (remaining >= (long double)10.00)
-        remaining -= (long double)10.00;
-    while (remaining >= (long double)1.00)
-        remaining -= (long double)1.00;
-    return (remaining);*/
+     
 }
 
-void        float_number(t_float_str *line, int length, long double number)
+void        float_number(t_float_str *line, int *length, t_whole_float *number)
 {
-    if (number < 0)
+    if (number->number < 0)
     {
         line->str[line->length] = '-';
+        number->number = -number->number;
+        number->remaining = -number->remaining;
         line->length++;
+        length--;
     }
-    if (length == 0)
+    if (*length == 1 && (int)number->number == 0)
     {
         line->str[line->length] = '0';
         line->length++;
@@ -167,12 +157,12 @@ void        float_number(t_float_str *line, int length, long double number)
 }
 
 void    float_decimal(t_container *list, t_float_str *line, int length, t_whole_float *number)
-{
+{   
     while (line->length < length)
     {
-        number->number *= 10;     
         line->str[line->length] = ft_itoa_base_float((int)number->number);
         decimal(number->number);
+        number->number *= 10;  
         line->length++;
     }
     line->str[line->length] = '.';
@@ -180,13 +170,14 @@ void    float_decimal(t_container *list, t_float_str *line, int length, t_whole_
     while (list->precision > 0)
     {
         number->remaining *= 10;
-        line->str[line->length] = ft_itoa_base_float((int)number->remaining);
         number->remaining = decimal(number->remaining);
+        line->str[line->length] = ft_itoa_base_float((int)number->remaining);
+        
         line->length++;
         list->precision--;
     }
     number->remaining *= 10;
-    rounding(line, (int)number->remaining);
+    rounding(line);
 }
 
 
@@ -198,7 +189,7 @@ void        left_padding_float(t_container *list, char *str, t_whole_float *numb
     store = list->precision;
     line.length = 0;
     line.str = str;
-    float_number(&line, length, number->number);
+    float_number(&line, &length, number);
     float_decimal(list, &line, length, number);
     add_str(list, str);
     if (list->width > (store + 1 + length))
@@ -218,7 +209,7 @@ void        right_padding_float(t_container *list, char *str, t_whole_float *num
     line.length = 0;
     if (list->width > (list->precision + 1 + length))
         add_space(list, (list->width - (list->precision + 1 + length)));
-    float_number(&line, length, number->number);
+    float_number(&line, &length, number);
     float_decimal(list, &line, length, number);
     add_str(list, str);
     free(str);
@@ -226,18 +217,22 @@ void        right_padding_float(t_container *list, char *str, t_whole_float *num
 
 
 
-int         check_whole_number_double(long double *i)
+int         check_whole_number_double(t_whole_float number)
 {
     int count;
 
+    number.sign = 0;
     count = 0;
-    if (i < (long double*)1 && i > (long double *)0)
-        count = 1;
-    if (*i < 0.0L)
-        count = 1;
-    while (*i > (long double)1)
+    if (number.number < (long double)1 && number.number > (long double )0)
     {
-        *i /= (long double)10;
+        count = 1;
+        number.sign = 1;
+    }
+    if (number.number < 0.0L)
+        count = 1;
+    while (number.number > (long double)1)
+    {
+        number.number/= (long double)10;
         count++;
     }
     return (count);
@@ -250,6 +245,7 @@ void         f_float(t_container *list)
     char        *str;
     int length_wholenum;
 
+    number.sign = 0;
     if (list->lengthmod & LEN_FL)
         number.number = va_arg(list->ap, long double);
     else
@@ -259,7 +255,7 @@ void         f_float(t_container *list)
     if (nanfin(list, number.number) == 1)
         return;
     number.remaining = decimal(number.number);
-    length_wholenum = check_whole_number_double(&number.number);
+    length_wholenum = check_whole_number_double(number);
     str = ft_strnew(length_wholenum + 1 + list->precision);
     if (list->flags & MIN)
         left_padding_float(list, str, &number, length_wholenum);

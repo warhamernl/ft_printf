@@ -6,7 +6,7 @@
 /*   By: mark <mark@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/08/21 14:35:36 by mark           #+#    #+#                */
-/*   Updated: 2019/09/17 17:09:43 by mlokhors      ########   odam.nl         */
+/*   Updated: 2019/09/20 15:27:33 by mlokhors      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ typedef struct	s_whole_float
 {
 	long double number;
 	long double remaining;
+	int			sign;
 }				t_whole_float;
 
 
@@ -84,6 +85,7 @@ typedef struct s_number
 
 }				t_number;
 
+void         f_percent(t_container *list);
 void         f_uint(t_container *list);
 int         check_sign(t_number *number, long long *i);
 long long        cast_itoa(t_container *list);
