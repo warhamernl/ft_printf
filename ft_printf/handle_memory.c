@@ -25,7 +25,8 @@ void  right_padding_pointer(t_container *list, t_number number, char *str)
 void  left_padding_pointer(t_container *list, t_number number, char *str)
 {
     add_str(list, str);
-    if (list->precision != 0)
+    q
+    yif (list->precision != 0)
         ft_itoa_base_len(list, number, 0);
     if (list->width > number.length + 2)
         add_space(list, list->width - number.length - 2);
