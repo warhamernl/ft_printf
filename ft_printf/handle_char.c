@@ -6,7 +6,7 @@
 /*   By: mark <mark@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/08/21 14:57:22 by mark           #+#    #+#                */
-/*   Updated: 2019/08/29 15:53:17 by mark          ########   odam.nl         */
+/*   Updated: 2019/09/21 20:34:55 by mark          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,6 @@ static void    right_padding_c(char c, t_container *list)
         add_space(list, list->width - 1);
     addbuff(list, c);
 }
-
-
 
 static void    left_padding_c(char c, t_container *list)
 {

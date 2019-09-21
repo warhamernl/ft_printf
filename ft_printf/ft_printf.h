@@ -6,7 +6,7 @@
 /*   By: mark <mark@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/08/21 14:35:36 by mark           #+#    #+#                */
-/*   Updated: 2019/09/20 15:27:33 by mlokhors      ########   odam.nl         */
+/*   Updated: 2019/09/21 20:33:50 by mark          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,8 @@ typedef struct	s_container
 	int			lengthmod;
 	char 		buff[BUFF_SIZE];
 	int			i;
-	int			con;	
+	int			con;
+	int			dot;	
 }				t_container;
 
 typedef struct	s_float_str
@@ -111,6 +112,7 @@ void         f_hex(t_container *list);
 void         f_string(t_container *list);
 void		 f_uint(t_container *list);
 void         f_uhex(t_container *list);
+void            rrmaining(t_container list);
 void            check_flag(char **str, t_container *list);
 void            check_widthprecision(char **str, t_container *list);
 void            check_lenthmod(char **str, t_container *list);

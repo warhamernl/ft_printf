@@ -6,52 +6,48 @@
 /*   By: mark <mark@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/08/21 18:46:30 by mark           #+#    #+#                */
-/*   Updated: 2019/09/17 19:39:15 by mlokhors      ########   odam.nl         */
+/*   Updated: 2019/09/21 20:19:39 by mark          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
 
-static int	num__len(int nb)
-{
-	int i;
 
-	i = 0;
-	if (nb < 0 || nb == 0)
-		i = 1;
-	while (nb > 0)
-	{
-		nb /= 10;
-		i++;
-	}
-	return (i);
+void            check_l(char **str, t_container *list)
+{
+    if ( **str  == 'l')
+    {
+        list->lengthmod |= LEN_LL;
+        (*str)++;
+    }
+    else
+        list->lengthmod |= LEN_L;
 }
 
+void            check_h(char **str, t_container *list)
+{
+    if (**str == 'h')
+    {
+        list->lengthmod |= LEN_HH;
+        (*str)++;
+    }
+    else
+        list->lengthmod |= LEN_H;
+}
 
 void            check_lenthmod(char **str, t_container *list)
 {
     if (**str == 'h')
     {
         (*str)++;
-        if (**str == 'h')
-        {
-            list->lengthmod |= LEN_HH;
-            (*str)++;
-        }
-        else
-            list->lengthmod |= LEN_H;
+        check_h(str, list);
     }
     else if (**str == 'l')
     {
         (*str)++;
-        if ( **str  == 'l')
-        {
-            list->lengthmod |= LEN_LL;
-            (*str)++;
-        }
-        else
-            list->lengthmod |= LEN_L;
+        check_l(str, list);
+
     }
     else if (**str == 'L')
     {
@@ -60,41 +56,7 @@ void            check_lenthmod(char **str, t_container *list)
     }
 }
 
-void            check_widthprecision(char **str, t_container *list)
-{
-    while(**str == '*' ||( **str >= '0' && **str <= '9' )|| **str == '.')
-    {
-        if (**str == '*')
-        {
-            list->width = va_arg(list->ap, int);
-            (*str)++;
-        }
-        if (**str >= '0' && **str <= '9')
-        {
-            list->width = ft_atoi(*str);
-            (*str) += num__len(list->width);
-            continue;
-        }
-        if (**str == '.')
-        {
-            (*str)++;
-            if (**str == '*')
-                list->precision = va_arg(list->ap, int);
-            if (**str >= '0' && **str <= '9')
-                list->precision = ft_atoi(*str);
-            if (list->precision != -1)
-            {
-               (*str) += num__len(list->precision);
-                continue;
-            }
-            if (list->precision == -1)
-                list->precision = 0;
-            if (**str == 'c' || **str == 's' || **str == 'p' || **str == 'd'|| **str == 'i'|| **str == 'o' || **str == 'x'|| **str == 'X' || **str == 'f' || **str == '%' || **str == 'u')
-                return;
-        }
-        (*str)++;
-    }
-}
+
 
 void            check_flag(char **str, t_container *list)
 {

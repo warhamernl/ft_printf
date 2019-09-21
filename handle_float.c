@@ -6,7 +6,7 @@
 /*   By: mlokhors <mlokhors@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/08/22 13:25:47 by mlokhors       #+#    #+#                */
-/*   Updated: 2019/09/20 16:11:11 by mlokhors      ########   odam.nl         */
+/*   Updated: 2019/09/21 20:13:34 by mark          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,12 +74,12 @@ int        nanfin(t_container *list, long double number)
 void        rounding(t_float_str *line)
 {
     int last_number;
-    char *tmp;
+ //   char *tmp;
 
     line->length--;
-    tmp = 0;
+  //  tmp = 0;
     last_number = ft_atoi(&line->str[line->length]);
-    if (last_number % 2 ==  1)
+    if (last_number % 2 ==  1 )
     {
         if (line->str[line->length] == '9')
         {
@@ -144,6 +144,8 @@ void        float_number(t_float_str *line, int *length, t_whole_float *number)
     if (number->number < 0)
     {
         line->str[line->length] = '-';
+        number->number = -number->number;
+        number->remaining = -number->remaining;
         line->length++;
         length--;
     }
@@ -168,8 +170,9 @@ void    float_decimal(t_container *list, t_float_str *line, int length, t_whole_
     while (list->precision > 0)
     {
         number->remaining *= 10;
-        line->str[line->length] = ft_itoa_base_float((int)number->remaining);
         number->remaining = decimal(number->remaining);
+        line->str[line->length] = ft_itoa_base_float((int)number->remaining);
+        
         line->length++;
         list->precision--;
     }

@@ -6,7 +6,7 @@
 /*   By: mlokhors <mlokhors@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/08/22 13:23:49 by mlokhors       #+#    #+#                */
-/*   Updated: 2019/09/20 14:44:58 by mlokhors      ########   odam.nl         */
+/*   Updated: 2019/09/21 21:15:46 by mark          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ void        cast_itoa_pf_base(t_container *list, t_number *number)
     else if(list->lengthmod & LEN_LL)
         number->number = (unsigned long long)number->number;
 }
+
 void          right_padding_pf_base(t_container *list, t_number number, int letter_case)
 {
     int amount;

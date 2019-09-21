@@ -6,7 +6,7 @@
 /*   By: mlokhors <mlokhors@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/08/22 17:56:34 by mlokhors       #+#    #+#                */
-/*   Updated: 2019/09/17 19:27:22 by mlokhors      ########   odam.nl         */
+/*   Updated: 2019/09/21 21:11:26 by mark          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,4 +69,15 @@ void     add_space(t_container *list, int amount)
         addbuff(list, ' ');
         i++;
     }
+}
+
+int         check_sign(t_number *number, long long *i)
+{
+    if (*i < 0)
+    {
+        *i = -*i;
+        number->sign = 1;
+        return (1);
+    }
+    return (0);
 }

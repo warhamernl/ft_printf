@@ -6,7 +6,7 @@
 #    By: mlokhors <mlokhors@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2019/08/02 12:58:17 by mlokhors       #+#    #+#                 #
-#    Updated: 2019/09/17 17:10:41 by mlokhors      ########   odam.nl          #
+#    Updated: 2019/09/21 20:32:18 by mark          ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -93,7 +93,10 @@ OBJ_NAMES =  ft_memcpy \
 			 handle_str \
 			 handle_uhex \
 			 handle_uint \
+			 handle_percent \
 			 padding \
+			 widthprecision \
+			 listbuff \
 
 
 OBJS = $(patsubst %, $(OBJ_DIR)/%.o, $(OBJ_NAMES))

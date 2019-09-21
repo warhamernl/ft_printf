@@ -6,7 +6,7 @@
 /*   By: mlokhors <mlokhors@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/08/22 13:25:47 by mlokhors       #+#    #+#                */
-/*   Updated: 2019/09/20 16:43:42 by mlokhors      ########   odam.nl         */
+/*   Updated: 2019/09/21 20:13:34 by mark          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,10 +74,10 @@ int        nanfin(t_container *list, long double number)
 void        rounding(t_float_str *line)
 {
     int last_number;
-    char *tmp;
+ //   char *tmp;
 
     line->length--;
-    tmp = 0;
+  //  tmp = 0;
     last_number = ft_atoi(&line->str[line->length]);
     if (last_number % 2 ==  1 )
     {
