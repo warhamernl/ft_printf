@@ -6,7 +6,7 @@
 /*   By: mark <mark@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/08/21 14:35:36 by mark           #+#    #+#                */
-/*   Updated: 2019/09/21 20:32:04 by mark          ########   odam.nl         */
+/*   Updated: 2019/09/22 15:55:21 by mark          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,19 @@
 # define LEN_LL (1 << 3)
 # define LEN_FL (1 << 4)
 # define BUFF_SIZE 1024
+# define RED "\033[0;31m"
+# define BRED "\033[1;31m"
+# define GREEN "\033[0;32m"
+# define BGREEN "\033[1;32m"
+# define YELLOW "\033[0;33m"
+# define BYELLOW "\033[1;33m"
+# define BLUE "\033[0;34m"
+# define BBLUE "\033[1;34m"
+# define MAGENTA "\033[0;35m"
+# define BMAGENTA "\033[1;35m"
+# define CYAN "\033[0;36m"
+# define BCYAN "\033[1;36m"
+# define RESET "\033[0m"
 
 typedef enum    e_desc {
  E_CHAR             = 0,
@@ -86,6 +99,11 @@ typedef struct s_number
 
 }				t_number;
 
+int     handle_color(t_container *list, char *str);
+void           pre_itoa_pf_padding(t_container *list, t_number number, int letter_case);
+void           right_padding_pre_zero(t_container *list, t_number number);
+void        check_width_pf(t_container *list, t_number number);
+int            get_amount_pf(t_container *list, t_number number);
 void         f_percent(t_container *list);
 void         f_uint(t_container *list);
 int         check_sign(t_number *number, long long *i);

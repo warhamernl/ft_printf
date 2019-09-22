@@ -6,7 +6,7 @@
 /*   By: mark <mark@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/08/21 14:35:36 by mark           #+#    #+#                */
-/*   Updated: 2019/09/21 20:33:50 by mark          ########   odam.nl         */
+/*   Updated: 2019/09/22 19:49:06 by mark          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,20 @@
 # define LEN_LL (1 << 3)
 # define LEN_FL (1 << 4)
 # define BUFF_SIZE 1024
+# define RED "\033[0;31m"
+# define BRED "\033[1;31m"
+# define GREEN "\033[0;32m"
+# define BGREEN "\033[1;32m"
+# define YELLOW "\033[0;33m"
+# define BYELLOW "\033[1;33m"
+# define BLUE "\033[0;34m"
+# define BBLUE "\033[1;34m"
+# define MAGENTA "\033[0;35m"
+# define BMAGENTA "\033[1;35m"
+# define CYAN "\033[0;36m"
+# define BCYAN "\033[1;36m"
+# define RESET "\033[0m"
+# define SL	'x'
 
 typedef enum    e_desc {
  E_CHAR             = 0,
@@ -40,6 +54,7 @@ typedef enum    e_desc {
  E_FLOAT            = 8,
  E_UINT				= 9,
  E_PERCENT			= 10,
+ E_BITS				= 11,
  E_INVALID          = -1
  }				t_desc;
 
@@ -48,6 +63,12 @@ typedef enum    e_desc {
  t_desc  desc;
  }               t_pair;
 
+typedef union u_bits
+{
+
+	int					a;
+	unsigned int		b;
+}      t_bits;
 
  
 typedef struct	s_container
@@ -60,7 +81,8 @@ typedef struct	s_container
 	char 		buff[BUFF_SIZE];
 	int			i;
 	int			con;
-	int			dot;	
+	int			dot;
+	int			bit;	
 }				t_container;
 
 typedef struct	s_float_str
@@ -86,6 +108,11 @@ typedef struct s_number
 
 }				t_number;
 
+int     handle_color(t_container *list, char *str);
+void           pre_itoa_pf_padding(t_container *list, t_number number, int letter_case);
+void           right_padding_pre_zero(t_container *list, t_number number);
+void        check_width_pf(t_container *list, t_number number);
+int            get_amount_pf(t_container *list, t_number number);
 void         f_percent(t_container *list);
 void         f_uint(t_container *list);
 int         check_sign(t_number *number, long long *i);
@@ -102,6 +129,7 @@ void     add_zero(t_container *list, int amount);
 void            addbuff(t_container *list, char c);
 void    right_padding(char *str, t_container *list, int check);
 void    left_padding(char *str, t_container *list, int check);
+void      	 f_bits(t_container *list);
 void         f_char(t_container *list);
 void         f_float(t_container *list);
 void         f_iint(t_container *list);

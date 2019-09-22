@@ -6,7 +6,7 @@
 /*   By: mark <mark@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/09/21 20:30:38 by mark           #+#    #+#                */
-/*   Updated: 2019/09/21 20:34:02 by mark          ########   odam.nl         */
+/*   Updated: 2019/09/22 16:46:16 by mark          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ void            empty(t_container *list)
     list->flags = 0;
     list->precision = -1;
     list->width = -1;
+    list->bit = 0;
 }
 
 void            addbuff(t_container *list, char c)

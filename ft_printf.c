@@ -6,42 +6,17 @@
 /*   By: mlokhors <mlokhors@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/08/02 14:06:17 by mlokhors       #+#    #+#                */
-/*   Updated: 2019/09/17 18:40:36 by mlokhors      ########   odam.nl         */
+/*   Updated: 2019/09/22 16:09:00 by mark          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include "libft.h"
-#include "./ft_printf.h"
+#include "ft_printf.h"
 #include <unistd.h>
 
  
-void         f_percent(t_container *list)
-{
-    if (list->flags & MIN)
-    {
-        if (list->width != -1)
-        {
-            addbuff(list, '%');
-            add_space(list, list->width - 1);
-        }
-        else
-            addbuff(list, '%');
-    }
-    else
-    {
-        if (list->width != -1)
-        {
-            add_space(list, list->width - 1);
-            addbuff(list, '%');
-        }
-        else
-            addbuff(list, '%');
-    }
-}
-
-
-static     const t_print_var var_list[11] = {
+static const t_print_var var_list[11] = {
         f_char,
         f_string,
         f_void_pointer,
@@ -65,18 +40,19 @@ const t_pair  g_lookup_array[11] = {
  { 'x', E_HEX },
  { 'X', E_UHEX },
  { 'f', E_FLOAT },
- { 'u', E_UINT },
+ { 'u', E_UINT},
  { '%', E_PERCENT },
  };
 
  t_desc find_descriptor(char c)
  {
+    t_pair pair;
     size_t i; 
     i = 0;
     size_t length = sizeof(g_lookup_array) / sizeof(t_pair);
     while (i < length)
     {
-        t_pair pair = g_lookup_array[i];
+        pair = g_lookup_array[i];
         if (c == pair.key)
         {
             return (pair.desc);
@@ -91,13 +67,13 @@ int             parser(char **str, t_container *list)
     t_desc  number;
     empty(list);
     (*str)++;
-   if (**str == '#' || **str == '0' || **str == '-' || **str == ' ' || **str == '+')
+   if (ft_strchr("#0- +", (int)**str) != NULL)
        check_flag(str, list);
-   if  ((**str >= '0' && **str <= '9') || **str == '.' || **str == '*')
+   if  (ft_strchr("0123456789.*", (int)**str) != NULL)
       check_widthprecision(str, list);
-   if (**str ==  'h' || **str == 'l' || **str == 'L')
+   if (ft_strchr("hlL", (int)**str) != NULL)
         check_lenthmod(str, list);   
-    if (**str == 'c' || **str == 's' || **str == 'p' || **str == 'd'|| **str == 'i'|| **str == 'o' || **str == 'x'|| **str == 'X' || **str == 'f' || **str == '%' || **str == 'u')
+    if (ft_strchr("cspdioxXf%u", (int)**str) != NULL)
     {
         number = find_descriptor(**str);
         if (number == -1)
@@ -110,32 +86,7 @@ int             parser(char **str, t_container *list)
     return (0);
 }
 
-void            empty(t_container *list)
-{
-    list->lengthmod = 0;
-    list->flags = 0;
-    list->precision = -1;
-    list->width = -1;
-}
 
-void            addbuff(t_container *list, char c)
-{
-
-        list->buff[list->i] = c;
-        list->i++;
-        if (list->i == BUFF_SIZE)
-        {
-            write(1, list->buff, BUFF_SIZE -1);
-            ft_memset(list->buff, 0, BUFF_SIZE);
-            list->i = 0;
-        }
-
-}
-
-void            rrmaining(t_container list)
-{
-    write(1, list.buff, list.i);
-}
 
 int             ft_printf(char *str, ...)
 {
@@ -146,6 +97,8 @@ int             ft_printf(char *str, ...)
     ft_memset(list.buff, 0, BUFF_SIZE);
     while (*str)
     {
+        if (*str == '{')
+            str += handle_color(ft_strdup(str));
         if (*str == '%')
         {
             str += parser(&str, &list);
@@ -159,10 +112,10 @@ int             ft_printf(char *str, ...)
     return (list.i);        
 }
 
-/* 
+
 int     main(void)
 {
-    ft_printf("1234");
+    ft_printf("lala {RED} poepe {RESET] {BLUE} yelp");
+
     return (0);
 }
-*/

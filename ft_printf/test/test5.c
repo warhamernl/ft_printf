@@ -1,26 +1,22 @@
 #include <stdio.h>
 #include <limits.h>
 #include <float.h>
+#include <unistd.h>
+#include <stdlib.h>
 
+union test { 
+	unsigned int x : 3; 
+	unsigned int y : 3; 
+	int z; 
+}; 
 
-int     main(void)
-{
-    long double i = 0.5L;
-    long double d = 0.05L;
-    
-    
-
-    if (d * 10.00L > i)
-    {
-        printf("ja\n");
-        printf("%.1Lf\n", i);
-        printf("%.1Lf\n", d);
-    }
-    else
-    {
-        printf("nee\n");
-        printf("%.1Lf\n", i );
-        printf("%.1Lf\n", d);
-    }
-    return (0);
-}
+int main() 
+{ 
+	union test t; 
+	t.x = 5; 
+	t.y = 4; 
+	t.z = 1; 
+	printf("t.x = %d, t.y = %d, t.z = %d", 
+		t.x, t.y, t.z); 
+	return 0; 
+} 
