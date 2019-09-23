@@ -2,5 +2,5 @@
 #include <unistd.h>
 int main(void)
 {
-     printf("{%#x}", 1);
+     printf("%cbla \0 \0", 'c');
 }

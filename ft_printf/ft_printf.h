@@ -6,7 +6,7 @@
 /*   By: mark <mark@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/08/21 14:35:36 by mark           #+#    #+#                */
-/*   Updated: 2019/09/22 19:49:06 by mark          ########   odam.nl         */
+/*   Updated: 2019/09/23 15:14:23 by mlokhors      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@
 # define BCYAN "\033[1;36m"
 # define RESET "\033[0m"
 # define SL	'x'
+# define LL 'z'
 
 typedef enum    e_desc {
  E_CHAR             = 0,
@@ -66,8 +67,8 @@ typedef enum    e_desc {
 typedef union u_bits
 {
 
-	int					a;
-	unsigned int		b;
+	long long			sign;
+	unsigned long long 	notsign;
 }      t_bits;
 
  
@@ -93,9 +94,10 @@ typedef struct	s_float_str
 
 typedef struct	s_whole_float
 {
-	long double number;
+	unsigned long long whole_num;
 	long double remaining;
 	int			sign;
+	int			lefttimes;
 }				t_whole_float;
 
 
@@ -108,6 +110,8 @@ typedef struct s_number
 
 }				t_number;
 
+void    print_bits_str(t_container *list, t_bits sort);
+void            rrmaining(t_container list);
 int     handle_color(t_container *list, char *str);
 void           pre_itoa_pf_padding(t_container *list, t_number number, int letter_case);
 void           right_padding_pre_zero(t_container *list, t_number number);

@@ -6,7 +6,7 @@
 /*   By: mark <mark@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/08/21 14:57:56 by mark           #+#    #+#                */
-/*   Updated: 2019/09/21 21:11:26 by mark          ########   odam.nl         */
+/*   Updated: 2019/09/23 20:49:42 by mlokhors      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,8 @@ void         f_int(t_container *list)
     t_number number;
 
     i = cast_itoa(list);
+	if (list->precision < -1)
+		list->precision = -1;
     if ((list->flags & NUL && list->flags & MIN) || (list->precision != -1 && list->flags & NUL))
         list->flags &= ~(NUL);
     number.sign = check_sign(&number, &i);

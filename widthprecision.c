@@ -6,7 +6,7 @@
 /*   By: mark <mark@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/09/21 20:18:02 by mark           #+#    #+#                */
-/*   Updated: 2019/09/21 20:19:39 by mark          ########   odam.nl         */
+/*   Updated: 2019/09/23 20:44:48 by mlokhors      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,13 @@ int            get_width(char **str, t_container *list)
     if (**str == '*')
     {
         list->width = va_arg(list->ap, int);
+		if (list->width < 0)
+		{
+			list->flags |= MIN;
+			list->width = -list->width;
+		}
         (*str)++;
+		return (1);
     }
     if (**str >= '0' && **str <= '9')
     {

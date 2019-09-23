@@ -6,7 +6,7 @@
 #    By: mlokhors <mlokhors@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2019/08/02 12:58:17 by mlokhors       #+#    #+#                 #
-#    Updated: 2019/09/22 15:29:09 by mark          ########   odam.nl          #
+#    Updated: 2019/09/23 16:09:23 by mlokhors      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -96,6 +96,8 @@ OBJ_NAMES =  ft_memcpy \
 			 handle_uint \
 			 handle_percent \
 			 handle_color \
+			 handle_bits \
+			 handle_bits2 \
 			 padding \
 			 widthprecision \
 			 listbuff \

@@ -6,7 +6,7 @@
 /*   By: mark <mark@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/08/21 14:35:36 by mark           #+#    #+#                */
-/*   Updated: 2019/09/22 15:55:21 by mark          ########   odam.nl         */
+/*   Updated: 2019/09/23 15:14:23 by mlokhors      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@
 # define CYAN "\033[0;36m"
 # define BCYAN "\033[1;36m"
 # define RESET "\033[0m"
+# define SL	'x'
+# define LL 'z'
 
 typedef enum    e_desc {
  E_CHAR             = 0,
@@ -53,6 +55,7 @@ typedef enum    e_desc {
  E_FLOAT            = 8,
  E_UINT				= 9,
  E_PERCENT			= 10,
+ E_BITS				= 11,
  E_INVALID          = -1
  }				t_desc;
 
@@ -61,6 +64,12 @@ typedef enum    e_desc {
  t_desc  desc;
  }               t_pair;
 
+typedef union u_bits
+{
+
+	long long			sign;
+	unsigned long long 	notsign;
+}      t_bits;
 
  
 typedef struct	s_container
@@ -73,7 +82,8 @@ typedef struct	s_container
 	char 		buff[BUFF_SIZE];
 	int			i;
 	int			con;
-	int			dot;	
+	int			dot;
+	int			bit;	
 }				t_container;
 
 typedef struct	s_float_str
@@ -84,9 +94,10 @@ typedef struct	s_float_str
 
 typedef struct	s_whole_float
 {
-	long double number;
+	unsigned long long whole_num;
 	long double remaining;
 	int			sign;
+	int			lefttimes;
 }				t_whole_float;
 
 
@@ -99,6 +110,8 @@ typedef struct s_number
 
 }				t_number;
 
+void    print_bits_str(t_container *list, t_bits sort);
+void            rrmaining(t_container list);
 int     handle_color(t_container *list, char *str);
 void           pre_itoa_pf_padding(t_container *list, t_number number, int letter_case);
 void           right_padding_pre_zero(t_container *list, t_number number);
@@ -120,6 +133,7 @@ void     add_zero(t_container *list, int amount);
 void            addbuff(t_container *list, char c);
 void    right_padding(char *str, t_container *list, int check);
 void    left_padding(char *str, t_container *list, int check);
+void      	 f_bits(t_container *list);
 void         f_char(t_container *list);
 void         f_float(t_container *list);
 void         f_iint(t_container *list);

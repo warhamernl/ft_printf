@@ -6,7 +6,7 @@
 /*   By: mlokhors <mlokhors@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/08/22 13:21:14 by mlokhors       #+#    #+#                */
-/*   Updated: 2019/09/20 14:21:52 by mlokhors      ########   odam.nl         */
+/*   Updated: 2019/09/23 21:10:41 by mlokhors      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ void         f_void_pointer(t_container *list)
     char *str;
 
     str ="0x";
+
     pointer = va_arg(list->ap, void *);
     number.number = (unsigned long long)pointer;
     number.sign = 0;
