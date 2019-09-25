@@ -6,7 +6,7 @@
 /*   By: mark <mark@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/08/21 14:35:36 by mark           #+#    #+#                */
-/*   Updated: 2019/09/23 15:14:23 by mlokhors      ########   odam.nl         */
+/*   Updated: 2019/09/25 06:29:05 by mark          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,6 @@ typedef union u_bits
 	unsigned long long 	notsign;
 }      t_bits;
 
- 
 typedef struct	s_container
 {
 	va_list		ap;
@@ -83,7 +82,11 @@ typedef struct	s_container
 	int			i;
 	int			con;
 	int			dot;
-	int			bit;	
+	int			bit;
+	int			fd;
+	void		*str;
+	int			total;
+	void 		(*writer)(struct s_container *list);
 }				t_container;
 
 typedef struct	s_float_str
@@ -110,6 +113,9 @@ typedef struct s_number
 
 }				t_number;
 
+void 			(*writer)(t_container *list);
+void            writer_str(t_container *list);
+void           writer_fd(t_container *list);
 void    print_bits_str(t_container *list, t_bits sort);
 void            rrmaining(t_container list);
 int     handle_color(t_container *list, char *str);

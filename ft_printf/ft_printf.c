@@ -6,7 +6,7 @@
 /*   By: mlokhors <mlokhors@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/08/02 14:06:17 by mlokhors       #+#    #+#                */
-/*   Updated: 2019/09/23 21:10:41 by mlokhors      ########   odam.nl         */
+/*   Updated: 2019/09/25 06:36:21 by mark          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include "libft.h"
 #include "ft_printf.h"
 #include <unistd.h>
+#include <stdlib.h>
 
  
 static const t_print_var var_list[12] = {
@@ -31,7 +32,7 @@ static const t_print_var var_list[12] = {
         f_bits
                                     };
 
-const t_pair  g_lookup_array[12] = {
+static const t_pair  g_lookup_array[12] = {
  { 'c', E_CHAR },
  { 's', E_STRING },
  { 'p', E_VOID_POINTER },
@@ -143,34 +144,80 @@ int             parser(char **str, t_container *list)
 
 
 
-int             ft_printf(char *str, ...)
+int             make_print(t_container *list, char *str)
 {
-    t_container list;
-    va_start(list.ap, str);
 
-    list.i = 0;
-    ft_memset(list.buff, 0, BUFF_SIZE);
+    list->i = 0;
+    ft_memset(list->buff, 0, BUFF_SIZE);
     while (*str)
     {
         if (*str == '{')
-            str += handle_color(&list, ft_strdup(str));
+            str += handle_color(list, ft_strdup(str));
         if (*str == '%')
         {
-            if (parser(&str, &list) == -1)
+            if (parser(&str, list) == -1)
 				return (-1);
             continue;
         }      
-        addbuff(&list, *str);
+        addbuff(list, *str);
         str++;
     }
-    rrmaining(list);
-    va_end(list.ap);
-    return (list.i);        
+    list->writer(list);
+    return (list->total);        
 }
 
-/*
+int         ft_printf(char *format, ...)
+{
+    t_container list;
+    int         ret;
+
+    list.i = 0;
+    list.total = 0;
+    list.fd = 1;
+    list.writer = &writer_fd;
+    va_start(list.ap, format);
+    ret = make_print(&list, format);
+    va_end(list.ap);
+    return (ret);
+}
+
+int         ft_dprintf(int fd, char *format, ...)
+{
+    t_container list;
+    int         ret;
+
+    list.i = 0;
+    list.total = 0;
+    list.fd = fd;
+    list.writer = &writer_fd;
+    va_start(list.ap, format);
+    ret = make_print(&list, format);
+    va_end(list.ap);
+    return (ret);
+}
+
+int         ft_sprintf(char *str, char *format, ...)
+{
+    t_container list;
+    int         ret;
+
+
+    list.i = 0;
+    list.total = 0;
+    list.fd = 0;
+    list.writer = &writer_str;
+    va_start(list.ap, format);
+    ret = make_print(&list, format);
+    str = list.str;
+    free(list.str);
+    va_end(list.ap);
+    return (ret);
+}
+
+
+
 int     main(void)
 {
-	printf("%.p", NULL);
+    ft_printf("kaaskoek");
+    return (0);
 }
-*/
