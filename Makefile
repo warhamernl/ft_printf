@@ -6,12 +6,11 @@
 #    By: mlokhors <mlokhors@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2019/08/02 12:58:17 by mlokhors       #+#    #+#                 #
-#    Updated: 2019/09/23 16:09:23 by mlokhors      ########   odam.nl          #
+#    Updated: 2019/09/26 11:18:12 by mlokhors      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libftprintf.a
-
 SRC_DIR = ./
 OBJ_DIR = ./.obj/
 FLAGS = -Wall -Werror -Wextra -I./includes
@@ -81,11 +80,12 @@ OBJ_NAMES =  ft_memcpy \
 			 ft_iswhitespace \
 			 ft_power \
 			 ft_numlen_ull \
-			 flags \
-			 ft_itoa_base_len \
-			 ft_printf \
+			 get_next_line \
 			 handle_char \
 			 handle_float \
+			 handle_float2 \
+			 handle_float3 \
+			 handle_float4 \
 			 handle_int \
 			 handle_memory \
 			 handle_octal \
@@ -101,6 +101,10 @@ OBJ_NAMES =  ft_memcpy \
 			 padding \
 			 widthprecision \
 			 listbuff \
+			 ft_itoa_base_len \
+			 flags \
+			 print_version \
+			 make_print \
 
 
 OBJS = $(patsubst %, $(OBJ_DIR)/%.o, $(OBJ_NAMES))
@@ -121,3 +125,6 @@ fclean: clean
 		rm -f $(NAME)
 
 re: fclean all
+
+test:
+	gcc $(FLAGS) test.c -L. -lftprintf

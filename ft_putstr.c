@@ -6,7 +6,7 @@
 /*   By: mlokhors <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/03/28 12:59:58 by mlokhors       #+#    #+#                */
-/*   Updated: 2019/08/21 13:55:03 by mark          ########   odam.nl         */
+/*   Updated: 2019/09/25 23:17:16 by mlokhors      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,17 +25,3 @@ void	ft_putstr(char const *s)
 		i++;
 	}
 }
-//
-/*
-
-//
-write(1, s, ft_strlen(s));
-
-while (1)
-{
-	gewrapt object;
-	count++;
-}
-
-custom_write( char *mem, size_t size, *struct)
-*/

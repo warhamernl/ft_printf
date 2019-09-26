@@ -6,7 +6,7 @@
 /*   By: mark <mark@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/08/21 14:35:36 by mark           #+#    #+#                */
-/*   Updated: 2019/09/26 13:36:52 by mlokhors      ########   odam.nl         */
+/*   Updated: 2019/09/26 21:24:43 by mlokhors      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,8 +99,9 @@ typedef struct			s_whole_float
 {
 	unsigned long long	whole_num;
 	long double			remaining;
-	int					sign;
+	int					posi;
 	int					nega;
+	int					sign;
 	int					lefttimes;
 }						t_whole_float;
 

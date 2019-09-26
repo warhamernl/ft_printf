@@ -6,7 +6,7 @@
 /*   By: mlokhors <mlokhors@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/08/22 13:25:47 by mlokhors       #+#    #+#                */
-/*   Updated: 2019/09/26 09:27:28 by mlokhors      ########   odam.nl         */
+/*   Updated: 2019/09/26 22:02:23 by mlokhors      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,12 @@ void				add_sign(t_whole_float *number, t_container *list)
 		addbuff(list, ' ');
 		list->width--;
 	}
-	else if (number->sign == 1 && number->nega == 0)
+	else if (number->posi == 1 && number->nega == 0)
 	{
 		addbuff(list, '+');
 		list->width--;
 	}
-	else if (number->sign == 1 && number->nega == 1)
+	else if (number->posi == 1 && number->nega == 1)
 	{
 		addbuff(list, '-');
 		list->width--;
@@ -64,9 +64,9 @@ static void			left_padding_float(t_container *list, char *str,
 	line.str = str;
 	add_sign(number, list);
 	float_decimal(list, &line, length_wholenum, number);
-	add_str(list, str);
+	add_str(list, line.str);
 	if (list->width > (store + 1 + length_wholenum))
-		add_space(list, (list->width - (store + 1 + length_wholenum)));
+		add_space(list, list->width - (store + 1 + length_wholenum));
 	free(str);
 }
 
@@ -77,6 +77,7 @@ static void			right_padding_float(t_container *list, char *str,
 
 	line.str = str;
 	line.length = 0;
+
 	if (list->width > (list->precision + 1 +
 		length_wholenum) && list->flags & NUL)
 	{
@@ -87,13 +88,13 @@ static void			right_padding_float(t_container *list, char *str,
 	else if (list->width > (list->precision + 1 + length_wholenum))
 	{
 		add_space(list, (list->width -
-			(list->precision + 1 + length_wholenum)));
+			(list->precision + 1 + length_wholenum + number->sign)));
 		add_sign(number, list);
 	}
 	else
 		add_sign(number, list);
 	float_decimal(list, &line, length_wholenum, number);
-	add_str(list, str);
+	add_str(list, line.str);
 	free(str);
 }
 
@@ -105,6 +106,7 @@ void				f_float(t_container *list)
 	long double		decinum;
 
 	number.sign = 0;
+	number.posi = 0;
 	if (list->lengthmod & LEN_FL)
 		decinum = va_arg(list->ap, long double);
 	else
@@ -114,7 +116,7 @@ void				f_float(t_container *list)
 	if (nanfin(list, decinum) == 1)
 		return ;
 	into_def(&number, decinum, &length_wholenum, list);
-	str = ft_strnew(length_wholenum + 1 + list->precision);
+	str = ft_strnew(length_wholenum + 1 + list->precision + number.sign);
 	if (list->flags & MIN)
 		left_padding_float(list, str, &number, length_wholenum);
 	else

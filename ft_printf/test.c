@@ -4,7 +4,7 @@
 
 int 		main(void)
 {
-    printf("printf:		[%-#*.*o]\n", 0, 5, 0);
-	ft_printf("ft_printf:	[%-#*.*o]\n", 0, 5, 0);
-	return (0);
+    printf("printf:		[%-20.10f]\n", (double)-((double)10 / 3));
+	ft_printf("ft_printf:	[%-20.10f]\n", (double)-((double)10 / 3));
+
 }
