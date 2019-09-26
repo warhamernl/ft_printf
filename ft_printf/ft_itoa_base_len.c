@@ -6,7 +6,7 @@
 /*   By: mark <mark@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/08/17 18:23:42 by mark           #+#    #+#                */
-/*   Updated: 2019/09/09 01:03:43 by mark          ########   odam.nl         */
+/*   Updated: 2019/09/25 21:12:47 by mlokhors      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 
 char	ft_base(unsigned long long *n, int base, int *stored, int letter_case)
 {
-	int store;
-	int temp;
-	int con;
+	int		store;
+	int		temp;
+	int		con;
 	char	*base_number[2];
-	base_number[0]="0123456789abcdefghijklmnopqrstuvwxyz";
-	base_number[1]="0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
+	base_number[0] = "0123456789abcdefghijklmnopqrstuvwxyz";
+	base_number[1] = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 	store = *n / ft_power(base, (*stored - 1));
 	temp = store % base;
 	con = base_number[letter_case][temp];
@@ -28,7 +28,7 @@ char	ft_base(unsigned long long *n, int base, int *stored, int letter_case)
 	return (con);
 }
 
-void		ft_itoa_base_len(t_container *list, t_number number, int letter_case)
+void	ft_itoa_base_len(t_container *list, t_number number, int letter_case)
 {
 	int store;
 
@@ -38,10 +38,10 @@ void		ft_itoa_base_len(t_container *list, t_number number, int letter_case)
 	number.length += number.sign;
 	while (number.sign != number.length)
 	{
-		addbuff(list, ft_base(&(number.number), number.base, &store, letter_case));
+		addbuff(list, ft_base(&(number.number),
+			number.base, &store, letter_case));
 		number.length--;
 		store--;
 	}
 	return ;
 }
-

@@ -6,13 +6,13 @@
 /*   By: mark <mark@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/09/21 20:18:02 by mark           #+#    #+#                */
-/*   Updated: 2019/09/23 20:44:48 by mlokhors      ########   odam.nl         */
+/*   Updated: 2019/09/26 14:24:52 by mlokhors      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static int	num__len(int nb)
+static int		num__len(int nb)
 {
 	int i;
 
@@ -27,58 +27,62 @@ static int	num__len(int nb)
 	return (i);
 }
 
-int            get_width(char **str, t_container *list)
+int			get_width(char **str, t_container *list)
 {
-    if (**str == '*')
-    {
-        list->width = va_arg(list->ap, int);
+	if (**str == '*')
+	{
+		list->width = va_arg(list->ap, int);
 		if (list->width < 0)
 		{
 			list->flags |= MIN;
 			list->width = -list->width;
 		}
-        (*str)++;
+		(*str)++;
 		return (1);
-    }
-    if (**str >= '0' && **str <= '9')
-    {
-        list->width = ft_atoi(*str);
-        (*str) += num__len(list->width);
-        return (1);
-    }
-    return (0);
+	}
+	if (**str >= '0' && **str <= '9')
+	{
+		list->width = ft_atoi(*str);
+		(*str) += num__len(list->width);
+		return (1);
+	}
+	return (0);
 }
 
-int            get_precision(char **str, t_container *list)
+int			get_precision(char **str, t_container *list)
 {
-    if (**str == '*')
-        list->precision = va_arg(list->ap, int);
-    if (**str >= '0' && **str <= '9')
-        list->precision = ft_atoi(*str);
-    if (list->precision != -1)
-    {
-        (*str) += num__len(list->precision);
-        return (1);
-    }
-    if (list->precision == -1)
-        list->precision = 0;
-    return (0);
+	if (**str == '*')
+	{
+		list->precision = va_arg(list->ap, int);
+		(*str)++;
+		return (1);
+	}
+	if (**str >= '0' && **str <= '9')
+		list->precision = ft_atoi(*str);
+	if (list->precision != -1)
+	{
+		(*str) += num__len(list->precision);
+		return (1);
+	}
+	if (list->precision == -1)
+		list->precision = 0;
+	return (0);
 }
 
-void            check_widthprecision(char **str, t_container *list)
+void			check_widthprecision(char **str, t_container *list)
 {
-    while(**str == '*' ||( **str >= '0' && **str <= '9' )|| **str == '.')
-    {
-        if (get_width(str, list) == 1)
-            continue;
-        if (**str == '.')
-        {
-            (*str)++;
-            if (get_precision(str, list) == 1)
-                continue;
-            if (ft_strchr("cspdioxXf%u", (int)**str) != NULL)
-                return;
-        }
-        (*str)++;
-    }
+	while (**str == '*' || (**str >= '0' && **str <= '9') || **str == '.')
+	{
+		if (get_width(str, list) == 1)
+			continue;
+		if (**str == '.')
+		{
+			(*str)++;
+			if (get_precision(str, list) == 1)
+				continue;
+		}
+		if (ft_strchr("cspdioxXf%u", (int)**str) != NULL)
+			return ;
+		(*str)++;
+	}
 }

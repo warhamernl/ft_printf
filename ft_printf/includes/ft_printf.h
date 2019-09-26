@@ -6,7 +6,7 @@
 /*   By: mark <mark@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/08/21 14:35:36 by mark           #+#    #+#                */
-/*   Updated: 2019/09/26 13:36:52 by mlokhors      ########   odam.nl         */
+/*   Updated: 2019/09/25 22:24:05 by mlokhors      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,6 @@ typedef struct			s_whole_float
 	unsigned long long	whole_num;
 	long double			remaining;
 	int					sign;
-	int					nega;
 	int					lefttimes;
 }						t_whole_float;
 
@@ -113,7 +112,6 @@ typedef struct			s_number
 
 }						t_number;
 
-int						nanfin(t_container *list, long double number);
 void					pre_check_binary(char **str, t_container *list);
 typedef	void			(*t_print_var)(t_container *list);
 int						make_print(t_container *list, char *str);
@@ -123,8 +121,7 @@ void					ft_itoa_base_len_float(t_float_str *line,
 						t_whole_float *wholenum, int length_wholenum, int side);
 int						nanfin(t_container *list, long double number);
 void					into_def(t_whole_float *number,
-						long double decinum, int *length_wholenum,
-						t_container *list);
+						long double decinum, int *length_wholenum);
 void					writer_str(t_container *list);
 void					writer_fd(t_container *list);
 void					print_bits_str(t_container *list, t_bits sort);
