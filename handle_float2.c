@@ -6,11 +6,28 @@
 /*   By: mlokhors <mlokhors@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/09/25 19:29:58 by mlokhors       #+#    #+#                */
-/*   Updated: 2019/09/26 21:27:11 by mlokhors      ########   odam.nl         */
+/*   Updated: 2019/09/29 06:12:54 by mlokhors      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+void			right_float_flags(t_container *list,
+					int length_wholenum, t_whole_float *number)
+{
+	if (list->flags & NUL)
+	{
+		add_sign(number, list);
+		add_zero(list, (list->width -
+			(list->precision + 1 + length_wholenum)));
+	}
+	else
+	{
+		add_space(list, (list->width -
+			(list->precision + 1 + length_wholenum + number->sign)));
+		add_sign(number, list);
+	}
+}
 
 static int		check_whole_number_double(long double decinum)
 {
@@ -29,11 +46,10 @@ static int		check_whole_number_double(long double decinum)
 	return (count);
 }
 
-int			search_nega(long double decinum, t_whole_float *number)
+int				search_nega(long double decinum, t_whole_float *number)
 {
 	if ((long double)1 / decinum == (-1.0 / 0.0))
 	{
-		number->posi = 1;
 		number->nega = 1;
 		number->sign = 1;
 		return (1);

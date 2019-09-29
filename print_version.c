@@ -6,7 +6,7 @@
 /*   By: mlokhors <mlokhors@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/09/25 20:25:48 by mlokhors       #+#    #+#                */
-/*   Updated: 2019/09/25 21:17:59 by mlokhors      ########   odam.nl         */
+/*   Updated: 2019/09/29 08:42:51 by mlokhors      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ int		ft_sprintf(char *str, char *format, ...)
 	list.writer = &writer_str;
 	va_start(list.ap, format);
 	ret = make_print(&list, format);
-	str = list.str;
+	str = ft_strcpy(str, list.str);
 	free(list.str);
 	va_end(list.ap);
 	return (ret);

@@ -6,7 +6,7 @@
 /*   By: mark <mark@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/09/22 13:36:58 by mark           #+#    #+#                */
-/*   Updated: 2019/09/26 15:45:23 by mlokhors      ########   odam.nl         */
+/*   Updated: 2019/09/29 04:10:43 by mlokhors      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,15 @@
 
 int			get_amount_pf(t_container *list, t_number number)
 {
-	if ((number.number == 0 && list->precision == 0 && list->con != 5) ||
-			(list->con != 5 && list->flags & HASH && number.number == 0 &&
+	if ((number.number == 0 && list->precision == 0 && list->con != 4) ||
+			(list->con != 4 && list->flags & HASH && number.number == 0 &&
 				list->precision == 0))
 		return (0);
 	else if (number.length > list->precision)
 		return (number.length);
 	else
 	{
-		if (list->con == 5 && list->flags & HASH && number.number != 0)
+		if (list->con == 4 && list->flags & HASH && number.number != 0)
 			list->precision--;
 		return (list->precision);
 	}
@@ -33,7 +33,7 @@ void		check_width_pf(t_container *list, t_number number)
 	if (number.sign == 1 || list->flags & PLUS || list->flags & SPACE ||
 			(list->flags & HASH && number.number != 0))
 	{
-		if (list->con == 6 || list->con == 7)
+		if (list->con != 4)
 			list->width--;
 		list->width--;
 	}

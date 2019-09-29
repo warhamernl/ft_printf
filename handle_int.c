@@ -6,13 +6,13 @@
 /*   By: mark <mark@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/08/21 14:57:56 by mark           #+#    #+#                */
-/*   Updated: 2019/09/25 21:13:18 by mlokhors      ########   odam.nl         */
+/*   Updated: 2019/09/29 05:28:26 by mlokhors      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-long long			cast_itoa(t_container *list)
+static long long	cast_itoa(t_container *list)
 {
 	long long save;
 
@@ -30,7 +30,7 @@ long long			cast_itoa(t_container *list)
 	return (save);
 }
 
-int					get_amount(t_container *list, t_number number)
+static int			get_amount(t_container *list, t_number number)
 {
 	if (number.number == 0 && list->precision == 0)
 		return (0);

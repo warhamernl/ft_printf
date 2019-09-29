@@ -1,59 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_printf.c                                        :+:    :+:            */
+/*   make_print.c                                       :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: mlokhors <mlokhors@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/08/02 14:06:17 by mlokhors       #+#    #+#                */
-/*   Updated: 2019/09/26 00:35:03 by mlokhors      ########   odam.nl         */
+/*   Updated: 2019/09/29 07:26:46 by mlokhors      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include <stdlib.h>
 
-static const t_print_var g_var_list[12] = {
-	f_char,
-	f_string,
-	f_void_pointer,
-	f_int,
-	f_int,
-	f_octal,
-	f_hex,
-	f_uhex,
-	f_float,
-	f_uint,
-	f_percent,
-	f_bits
-};
-
-static const t_pair g_lookup_array[12] = {
-	{ 'c', E_CHAR },
-	{ 's', E_STRING },
-	{ 'p', E_VOID_POINTER },
-	{ 'i', E_INT },
-	{ 'd', E_INT },
-	{ 'o', E_OCTAL },
-	{ 'x', E_HEX },
-	{ 'X', E_UHEX },
-	{ 'f', E_FLOAT },
-	{ 'u', E_UINT},
-	{ '%', E_PERCENT },
-	{ 'b', E_BITS },
-};
-
-t_desc		find_descriptor(char c)
+static void		f_list(t_desc number, t_container *list)
 {
-	t_pair	pair;
-	size_t	i;
-	size_t	length;
+	const t_print_var var_list[11] = {
+	f_char, f_string, f_void_pointer,
+	f_int, f_octal, f_hex, f_hex,
+	f_float, f_uint, f_percent, f_bits
+	};
+
+	var_list[number](list);
+}
+
+static t_desc	find_descriptor(char c)
+{
+	size_t			i;
+	t_pair			pair;
+	const t_pair	lookup_array[12] = {
+	{ 'c', E_CHAR }, { 's', E_STRING }, { 'p', E_VOID_POINTER },
+	{ 'i', E_INT }, { 'd', E_INT }, { 'o', E_OCTAL },
+	{ 'x', E_HEX }, { 'X', E_UHEX }, { 'f', E_FLOAT },
+	{ 'u', E_UINT}, { '%', E_PERCENT }, { 'b', E_BITS },
+	};
 
 	i = 0;
-	length = sizeof(g_lookup_array) / sizeof(t_pair);
-	while (i < length)
+	while (i < 12)
 	{
-		pair = g_lookup_array[i];
+		pair = lookup_array[i];
 		if (c == pair.key)
 		{
 			return (pair.desc);
@@ -63,7 +48,11 @@ t_desc		find_descriptor(char c)
 	return (E_INVALID);
 }
 
-int			conversion(char **str, t_container *list)
+/*
+** check binary needs an extra check because it accept more flags with the %b
+*/
+
+static int		conversion(char **str, t_container *list)
 {
 	t_desc number;
 
@@ -73,12 +62,12 @@ int			conversion(char **str, t_container *list)
 	list->con = number;
 	if (list->con == 11)
 		pre_check_binary(str, list);
-	g_var_list[number](list);
+	f_list(number, list);
 	(*str)++;
 	return (0);
 }
 
-int			parser(char **str, t_container *list)
+static int		parser(char **str, t_container *list)
 {
 	empty(list);
 	(*str)++;
@@ -98,7 +87,7 @@ int			parser(char **str, t_container *list)
 	return (0);
 }
 
-int			make_print(t_container *list, char *str)
+int				make_print(t_container *list, char *str)
 {
 	list->i = 0;
 	ft_memset(list->buff, 0, BUFF_SIZE);

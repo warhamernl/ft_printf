@@ -6,7 +6,7 @@
 /*   By: mlokhors <mlokhors@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/09/23 11:57:59 by mlokhors       #+#    #+#                */
-/*   Updated: 2019/09/25 22:30:18 by mlokhors      ########   odam.nl         */
+/*   Updated: 2019/09/29 04:12:31 by mlokhors      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void			print_bits_str(t_container *list, t_bits sort)
 		i = 0;
 		while (i < 8)
 		{
-			if (sort.notsign & (1LL << (8 - 1 - i)))
+			if (sort.notsign & (1LL << (7 - i)))
 				addbuff(list, '1');
 			else
 				addbuff(list, '0');
@@ -77,4 +77,3 @@ void			pre_check_binary(char **str, t_container *list)
 			pre_check_unsigned(str, list);
 	}
 }
-

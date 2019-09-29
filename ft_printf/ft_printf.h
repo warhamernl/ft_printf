@@ -6,7 +6,7 @@
 /*   By: mark <mark@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/08/21 14:35:36 by mark           #+#    #+#                */
-/*   Updated: 2019/09/26 21:24:43 by mlokhors      ########   odam.nl         */
+/*   Updated: 2019/09/29 08:43:33 by mlokhors      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,13 +49,13 @@ typedef enum			e_desc {
 	E_STRING = 1,
 	E_VOID_POINTER = 2,
 	E_INT = 3,
-	E_OCTAL = 5,
-	E_HEX = 6,
-	E_UHEX = 7,
-	E_FLOAT = 8,
-	E_UINT = 9,
-	E_PERCENT = 10,
-	E_BITS = 11,
+	E_OCTAL = 4,
+	E_HEX = 5,
+	E_UHEX = 6,
+	E_FLOAT = 7,
+	E_UINT = 8,
+	E_PERCENT = 9,
+	E_BITS = 10,
 	E_INVALID = -1
 }						t_desc;
 
@@ -114,6 +114,10 @@ typedef struct			s_number
 
 }						t_number;
 
+void					add_sign(t_whole_float *number, t_container *list);
+void					right_float_flags(t_container *list,
+						int length_wholenum, t_whole_float *number);
+int						o_check_zero(t_container *list, t_number number);
 int						nanfin(t_container *list, long double number);
 void					pre_check_binary(char **str, t_container *list);
 typedef	void			(*t_print_var)(t_container *list);
@@ -140,7 +144,6 @@ int						get_amount_pf(t_container *list, t_number number);
 void					f_percent(t_container *list);
 void					f_uint(t_container *list);
 int						check_sign(t_number *number, long long *i);
-long long				cast_itoa(t_container *list);
 void					right_padding_int(t_container *list, t_number number);
 void					left_padding_int(t_container *list, t_number number);
 void					add_str(t_container *list, const char *str);
@@ -166,7 +169,6 @@ void					f_octal(t_container *list);
 void					f_hex(t_container *list);
 void					f_string(t_container *list);
 void					f_uint(t_container *list);
-void					f_uhex(t_container *list);
 void					check_flag(char **str, t_container *list);
 void					check_widthprecision(char **str, t_container *list);
 void					check_lenthmod(char **str, t_container *list);
@@ -174,6 +176,5 @@ void					empty(t_container *list);
 void					ft_itoa_base_len(t_container *list,
 						t_number number, int letter_case);
 unsigned long long		ft_power(int x, int power);
-
 
 #endif

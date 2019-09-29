@@ -6,7 +6,7 @@
 /*   By: mlokhors <mlokhors@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/09/25 19:33:22 by mlokhors       #+#    #+#                */
-/*   Updated: 2019/09/26 21:14:14 by mlokhors      ########   odam.nl         */
+/*   Updated: 2019/09/29 05:41:32 by mlokhors      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,10 +47,7 @@ void			ft_itoa_base_len_float(t_float_str *line,
 
 static void		is_nine(t_float_str *line)
 {
-	int check;
-
-	check = 1;
-	while (line->str[line->length] == '9' && check == 1)
+	while (line->str[line->length] == '9')
 	{
 		line->str[line->length] = '0';
 		if ((line->str[0] == '-' && line->str[0] == '+')
@@ -86,7 +83,11 @@ void			rounding(t_float_str *line, int after_precision)
 		line->length--;
 		last_number = line->str[line->length] - '0';
 		if (line->str[line->length] == '9')
+		{
 			is_nine(line);
+			if (!line->str)
+				return ;
+		}
 		else
 		{
 			if (line->str[line->length] == '.')

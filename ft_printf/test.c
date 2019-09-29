@@ -1,10 +1,29 @@
-#include <stdio.h>
+
 #include "../includes/ft_printf.h"
 #include "../includes/libft.h"
+#include <limits.h>
+#include <stdio.h>
 
-int 		main(void)
+
+int		main(void)
 {
-    printf("printf:		[%-20.10f]\n", (double)-((double)10 / 3));
-	ft_printf("ft_printf:	[%-20.10f]\n", (double)-((double)10 / 3));
+    printf("printf:		[%-#*.*o]\n", 0, 0, 0);
+	ft_printf("ft_printf:	[%-#*.*o]\n", 0, 0, 0);
+
+	    printf("printf:		[%-#*.*o]\n", 5, 0, 0);
+	ft_printf("ft_printf:	[%-#*.*o]\n", 5, 0, 0);
+
+	    printf("printf:		[%-#*.*o]\n", 0, 5, 0);
+	ft_printf("ft_printf:	[%-#*.*o]\n", 0, 5, 0);
+
+
+  printf("printf:		[%-#*.*o]\n", 5, 5, 0);
+	ft_printf("ft_printf:	[%-#*.*o]\n", 5, 5, 0);
+
+
+
+
 
 }
+
+

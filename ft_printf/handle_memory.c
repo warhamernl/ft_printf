@@ -6,13 +6,14 @@
 /*   By: mlokhors <mlokhors@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/08/22 13:21:14 by mlokhors       #+#    #+#                */
-/*   Updated: 2019/09/25 18:32:12 by mlokhors      ########   odam.nl         */
+/*   Updated: 2019/09/29 05:27:54 by mlokhors      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void		right_padding_pointer(t_container *list, t_number number, char *str)
+static void		right_padding_pointer(t_container *list,
+					t_number number, char *str)
 {
 	if (list->width > (number.length + 2))
 		add_space(list, list->width - number.length - 2);
@@ -21,7 +22,8 @@ void		right_padding_pointer(t_container *list, t_number number, char *str)
 		ft_itoa_base_len(list, number, 0);
 }
 
-void		left_padding_pointer(t_container *list, t_number number, char *str)
+static void		left_padding_pointer(t_container *list,
+					t_number number, char *str)
 {
 	add_str(list, str);
 	if (list->precision != 0)
@@ -30,7 +32,7 @@ void		left_padding_pointer(t_container *list, t_number number, char *str)
 		add_space(list, list->width - number.length - 2);
 }
 
-void		f_void_pointer(t_container *list)
+void			f_void_pointer(t_container *list)
 {
 	void		*pointer;
 	t_number	number;

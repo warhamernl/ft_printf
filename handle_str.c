@@ -6,13 +6,13 @@
 /*   By: mlokhors <mlokhors@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/08/22 13:21:56 by mlokhors       #+#    #+#                */
-/*   Updated: 2019/09/25 18:43:58 by mlokhors      ########   odam.nl         */
+/*   Updated: 2019/09/29 05:23:21 by mlokhors      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void		left_padding_str(char *str, t_container *list)
+static void		left_padding_str(char *str, t_container *list)
 {
 	int amount;
 	int max;
@@ -20,7 +20,6 @@ void		left_padding_str(char *str, t_container *list)
 
 	amount = 0;
 	length = ft_strlen(str);
-	max = INT_MAX;
 	if (list->precision != -1 && length > list->precision)
 		max = list->precision;
 	else
@@ -37,7 +36,7 @@ void		left_padding_str(char *str, t_container *list)
 		add_space(list, list->width - max);
 }
 
-void		right_padding_str(char *str, t_container *list)
+static void		right_padding_str(char *str, t_container *list)
 {
 	int amount;
 	int max;
@@ -61,7 +60,7 @@ void		right_padding_str(char *str, t_container *list)
 	}
 }
 
-void		f_string(t_container *list)
+void			f_string(t_container *list)
 {
 	char *str;
 

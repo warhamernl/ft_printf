@@ -6,7 +6,7 @@
 /*   By: mark <mark@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/09/21 20:18:02 by mark           #+#    #+#                */
-/*   Updated: 2019/09/26 14:24:52 by mlokhors      ########   odam.nl         */
+/*   Updated: 2019/09/29 04:45:29 by mlokhors      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static int		num__len(int nb)
 	return (i);
 }
 
-int			get_width(char **str, t_container *list)
+static int		get_width(char **str, t_container *list)
 {
 	if (**str == '*')
 	{
@@ -49,7 +49,7 @@ int			get_width(char **str, t_container *list)
 	return (0);
 }
 
-int			get_precision(char **str, t_container *list)
+static int		get_precision(char **str, t_container *list)
 {
 	if (**str == '*')
 	{

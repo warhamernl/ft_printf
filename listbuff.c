@@ -6,12 +6,13 @@
 /*   By: mark <mark@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/09/21 20:30:38 by mark           #+#    #+#                */
-/*   Updated: 2019/09/25 21:14:25 by mlokhors      ########   odam.nl         */
+/*   Updated: 2019/09/29 08:44:49 by mlokhors      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include <unistd.h>
+#include <stdio.h>
 
 void		empty(t_container *list)
 {
@@ -30,11 +31,6 @@ void		addbuff(t_container *list, char c)
 		list->writer(list);
 }
 
-void		rrmaining(t_container *list)
-{
-	list->writer(list);
-}
-
 void		writer_fd(t_container *list)
 {
 	list->total += list->i;
@@ -45,11 +41,15 @@ void		writer_fd(t_container *list)
 
 void		writer_str(t_container *list)
 {
-	list->total += list->i;
-	if (!list->str)
-		list->str = ft_strdup(list->buff);
+	char *tmp;
+
+	tmp = NULL;
+	if (list->total == 0)
+		list->str = (void *)ft_strdup(list->buff);
 	else
-		list->str = ft_strjoin(list->str, list->buff);
-	ft_memset(list->buff, 0, BUFF_SIZE);
-	list->i = 0;
+	{
+		tmp = ft_strjoin((char *)list->str, list->buff);
+		free(list->str);
+		list->str = tmp;
+	}
 }

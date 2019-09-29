@@ -1,24 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   handle_uhex.c                                      :+:    :+:            */
+/*   handle_hex.c                                       :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: mlokhors <mlokhors@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/08/22 13:26:13 by mlokhors       #+#    #+#                */
-/*   Updated: 2019/09/26 15:01:18 by mlokhors      ########   odam.nl         */
+/*   Created: 2019/08/22 13:24:33 by mlokhors       #+#    #+#                */
+/*   Updated: 2019/09/29 04:36:24 by mlokhors      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void		f_uhex(t_container *list)
+void		f_hex(t_container *list)
 {
 	unsigned long long	i;
 	t_number			number;
 
-	if (list->flags & NUL && list->flags & MIN)
-		list->flags &= ~(NUL);
 	i = va_arg(list->ap, unsigned long long);
 	number.sign = 0;
 	number.base = 16;
@@ -29,8 +27,8 @@ void		f_uhex(t_container *list)
 		(list->precision != -1))
 		list->flags &= ~(NUL);
 	if (list->flags & MIN)
-		left_padding_pf_base(list, number, 1);
+		left_padding_pf_base(list, number, list->con - 5);
 	else
-		right_padding_pf_base(list, number, 1);
+		right_padding_pf_base(list, number, list->con - 5);
 	return ;
 }

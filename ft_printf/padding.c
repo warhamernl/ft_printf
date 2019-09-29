@@ -6,7 +6,7 @@
 /*   By: mlokhors <mlokhors@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/08/22 17:56:34 by mlokhors       #+#    #+#                */
-/*   Updated: 2019/09/26 15:07:40 by mlokhors      ########   odam.nl         */
+/*   Updated: 2019/09/29 04:04:01 by mlokhors      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void		check_flags(t_container *list, t_number number)
 	};
 
 	if (number.number == 0 && (list->flags & HASH ||
-		list->precision == 0) && list->con != 5)
+		list->precision == 0) && list->con != 4)
 		return ;
 	if (number.sign == 1)
 		addbuff(list, '-');
@@ -40,11 +40,11 @@ void		check_flags(t_container *list, t_number number)
 		addbuff(list, ' ');
 	else if (list->flags & HASH)
 	{
-		if (list->con == 5)
+		if (list->con == 4)
 			add_str(list, str[0]);
-		else if (list->con == 6)
+		else if (list->con == 5)
 			add_str(list, str[1]);
-		else if (list->con == 7)
+		else if (list->con == 6)
 			add_str(list, str[2]);
 	}
 }
