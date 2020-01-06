@@ -5,20 +5,18 @@
 #                                                      +:+                     #
 #    By: mlokhors <mlokhors@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
-#    Created: 2019/09/25 20:22:36 by mlokhors       #+#    #+#                 #
-#    Updated: 2019/09/29 06:45:28 by mlokhors      ########   odam.nl          #
+#    Created: 2019/09/29 09:57:34 by mlokhors       #+#    #+#                 #
+#    Updated: 2019/10/11 06:37:13 by mlokhors      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = ../libftprintf.a
-
-
-HEADER = ../includes/
-NEW_PATH = ../
+NAME = libftprintf.a
+LIBFT = ./libft/libft.a
+LIBFT_DIR = ./libft
 SRC_DIR = ./
 OBJ_DIR = ./.obj/
-LIBFT_A = ../libft.a
-FLAGS = -Wall -Werror -Wextra
+FLAGS = -Wall -Werror -Wextra -I./
+CC=gcc
 
 OBJ_NAMES =  handle_char \
 			 handle_float \
@@ -45,23 +43,29 @@ OBJ_NAMES =  handle_char \
 			 print_version \
 			 make_print \
 
+
 OBJS = $(patsubst %, $(OBJ_DIR)/%.o, $(OBJ_NAMES))
 SRCS = $(patsubst %, $(SRC_DIR)/%.c, $(OBJ_NAMES))
 
 all: $(NAME)
 
-$(NAME) : $(OBJS)
+$(NAME) : $(LIBFT) $(OBJS)
+		cp ./libft/libft.a $(NAME)
 		ar crs $(NAME) $(OBJS)
-		mv $(NAME) ../
+		@echo succes
+
+$(LIBFT) : 
+		$(MAKE) -C ./libft/
 
 $(OBJ_DIR)/%.o : $(SRC_DIR)/%.c
 		mkdir -p $(OBJ_DIR)
-		$(CC) -c -o $@ $< $(FLAGS) -I../includes -L$(LIBFT_A) -lft
-		
+		$(CC) -c -o $@ $< $(FLAGS)
 clean:
+		$(MAKE) -C $(LIBFT_DIR) clean
 		rm -rf $(OBJ_DIR)
-		
+
 fclean: clean
+		$(MAKE) -C $(LIBFT_DIR) fclean
 		rm -f $(NAME)
-		
+
 re: fclean all

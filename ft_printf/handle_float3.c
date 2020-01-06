@@ -6,7 +6,7 @@
 /*   By: mlokhors <mlokhors@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/09/25 19:33:22 by mlokhors       #+#    #+#                */
-/*   Updated: 2019/09/29 05:41:32 by mlokhors      ########   odam.nl         */
+/*   Updated: 2019/09/29 14:16:50 by mlokhors      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,13 +75,9 @@ static void		is_nine(t_float_str *line)
 
 void			rounding(t_float_str *line, int after_precision)
 {
-	int last_number;
-
-	last_number = 0;
 	if (after_precision >= 5)
 	{
 		line->length--;
-		last_number = line->str[line->length] - '0';
 		if (line->str[line->length] == '9')
 		{
 			is_nine(line);

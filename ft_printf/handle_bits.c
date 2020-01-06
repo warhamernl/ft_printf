@@ -6,38 +6,42 @@
 /*   By: mark <mark@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/09/22 17:07:18 by mark           #+#    #+#                */
-/*   Updated: 2019/09/25 18:22:34 by mlokhors      ########   odam.nl         */
+/*   Updated: 2019/09/29 14:38:34 by mlokhors      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int				bits_max(t_container *list, int *space_count)
+static int		bits_max(t_container *list, int *space_count)
 {
 	if (list->bit == 1 || list->bit == 2)
+	{
 		*space_count = 0;
-	else if (list->bit == 3 || list->bit == 4)
-		*space_count = 3;
-	else if (list->bit == 5 || list->bit == 6)
-		*space_count = 1;
-	else if (list->bit == 7 || list->bit == 8)
-		*space_count = 7;
-	else if (list->bit == 9 || list->bit == 10)
-		*space_count = 15;
-	if (*space_count == 0)
 		return (8);
-	if (*space_count == 3)
+	}
+	else if (list->bit == 3 || list->bit == 4)
+	{
+		*space_count = 3;
 		return (32);
-	if (*space_count == 1)
+	}
+	else if (list->bit == 5 || list->bit == 6)
+	{
+		*space_count = 1;
 		return (16);
-	if (*space_count == 7)
+	}
+	else if (list->bit == 7 || list->bit == 8)
+	{
+		*space_count = 7;
 		return (64);
-	if (*space_count == 15)
+	}
+	else
+	{
+		*space_count = 15;
 		return (128);
-	return (0);
+	}
 }
 
-void			print_bits(t_container *list, t_bits sort)
+static void		print_bits(t_container *list, t_bits sort)
 {
 	int max;
 	int i;
@@ -47,7 +51,7 @@ void			print_bits(t_container *list, t_bits sort)
 	max = bits_max(list, &space_count);
 	while (i < max)
 	{
-		if (sort.notsign & (1LL << (max - 1 - i)))
+		if (sort.notsign & (1ULL << (max - 1 - i)))
 			addbuff(list, '1');
 		else
 			addbuff(list, '0');
@@ -61,7 +65,7 @@ void			print_bits(t_container *list, t_bits sort)
 	return ;
 }
 
-void			long_get_data(t_container *list, t_bits *sort)
+static void		long_get_data(t_container *list, t_bits *sort)
 {
 	if (list->bit == 6 || list->bit == 7)
 	{
@@ -80,7 +84,7 @@ void			long_get_data(t_container *list, t_bits *sort)
 	return ;
 }
 
-void			get_data(t_container *list, t_bits *sort)
+static void		get_data(t_container *list, t_bits *sort)
 {
 	if (list->bit == 1 || list->bit == 2)
 	{
@@ -120,7 +124,7 @@ void			f_bits(t_container *list)
 		long_get_data(list, &sort);
 	else if (list->bit >= 1 && list->bit <= 5)
 		get_data(list, &sort);
-	if (list->bit != 0 && list->bit != 12)
-		print_bits(list, sort);
-	return ;
+	if (list->bit <= 0 && list->bit >= 12)
+		return ;
+	print_bits(list, sort);
 }

@@ -6,13 +6,12 @@
 /*   By: mark <mark@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/09/21 20:30:38 by mark           #+#    #+#                */
-/*   Updated: 2019/09/29 08:44:49 by mlokhors      ########   odam.nl         */
+/*   Updated: 2019/09/29 09:15:44 by mlokhors      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include <unistd.h>
-#include <stdio.h>
 
 void		empty(t_container *list)
 {

@@ -6,7 +6,7 @@
 /*   By: mark <mark@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/08/21 14:35:36 by mark           #+#    #+#                */
-/*   Updated: 2019/09/29 08:43:33 by mlokhors      ########   odam.nl         */
+/*   Updated: 2019/09/29 13:40:47 by mlokhors      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,6 @@
 # define CYAN "\033[0;36m"
 # define BCYAN "\033[1;36m"
 # define RESET "\033[0m"
-# define SL	'x'
-# define LL 'z'
 
 typedef enum			e_desc {
 	E_CHAR = 0,
@@ -176,5 +174,8 @@ void					empty(t_container *list);
 void					ft_itoa_base_len(t_container *list,
 						t_number number, int letter_case);
 unsigned long long		ft_power(int x, int power);
+int						ft_printf(char *str, ...);
+int						ft_dprintf(int fd, char *format, ...);
+int						ft_sprintf(char *str, char *format, ...);
 
 #endif

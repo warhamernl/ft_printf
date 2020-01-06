@@ -6,7 +6,7 @@
 /*   By: mlokhors <mlokhors@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/09/17 16:55:58 by mlokhors       #+#    #+#                */
-/*   Updated: 2019/09/29 04:49:46 by mlokhors      ########   odam.nl         */
+/*   Updated: 2019/09/29 14:19:56 by mlokhors      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ void						f_uint(t_container *list)
 	i = cast_itoa_u(list);
 	if (list->lengthmod & NUL && list->precision != -1)
 		list->lengthmod |= ~(NUL);
+	number.sign = 0;
 	number.base = 10;
 	number.number = i;
 	number.length = ft_numlen_ull(number.number, number.base);

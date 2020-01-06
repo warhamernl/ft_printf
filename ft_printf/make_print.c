@@ -6,7 +6,7 @@
 /*   By: mlokhors <mlokhors@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/08/02 14:06:17 by mlokhors       #+#    #+#                */
-/*   Updated: 2019/09/29 07:26:46 by mlokhors      ########   odam.nl         */
+/*   Updated: 2019/09/29 13:41:36 by mlokhors      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static void		f_list(t_desc number, t_container *list)
 	const t_print_var var_list[11] = {
 	f_char, f_string, f_void_pointer,
 	f_int, f_octal, f_hex, f_hex,
-	f_float, f_uint, f_percent, f_bits
+	f_float, f_uint, f_percent, f_bits,
 	};
 
 	var_list[number](list);
@@ -60,7 +60,7 @@ static int		conversion(char **str, t_container *list)
 	if (number == -1)
 		return (-1);
 	list->con = number;
-	if (list->con == 11)
+	if (list->con == 10)
 		pre_check_binary(str, list);
 	f_list(number, list);
 	(*str)++;

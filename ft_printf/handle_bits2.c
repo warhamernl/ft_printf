@@ -6,7 +6,7 @@
 /*   By: mlokhors <mlokhors@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/09/23 11:57:59 by mlokhors       #+#    #+#                */
-/*   Updated: 2019/09/29 04:12:31 by mlokhors      ########   odam.nl         */
+/*   Updated: 2019/09/29 14:38:27 by mlokhors      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ void			print_bits_str(t_container *list, t_bits sort)
 	char	*str;
 	int		i;
 
-	i = 0;
 	str = va_arg(list->ap, char *);
 	while (*str)
 	{
@@ -41,7 +40,7 @@ void			print_bits_str(t_container *list, t_bits sort)
 static void		pre_check_unsigned(char **str, t_container *list)
 {
 	(*str)++;
-	if (ft_strchr("csidlxz", (int)**str) != NULL)
+	if (ft_strchr("csidlsz", (int)**str) != NULL)
 	{
 		if (**str == 'c')
 			list->bit = 2;
@@ -49,9 +48,9 @@ static void		pre_check_unsigned(char **str, t_container *list)
 			list->bit = 4;
 		else if (**str == 'l')
 			list->bit = 8;
-		else if (**str == SL)
+		else if (**str == 's')
 			list->bit = 6;
-		else if (**str == LL)
+		else if (**str == 'z')
 			list->bit = 10;
 	}
 }
@@ -69,9 +68,9 @@ void			pre_check_binary(char **str, t_container *list)
 			list->bit = 3;
 		else if (**str == 'l')
 			list->bit = 7;
-		else if (**str == SL)
+		else if (**str == 's')
 			list->bit = 5;
-		else if (**str == LL)
+		else if (**str == 'z')
 			list->bit = 9;
 		else if (**str == 'u')
 			pre_check_unsigned(str, list);
