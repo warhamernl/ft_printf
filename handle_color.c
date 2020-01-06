@@ -6,13 +6,13 @@
 /*   By: mark <mark@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/09/22 13:51:55 by mark           #+#    #+#                */
-/*   Updated: 2019/09/29 06:53:54 by mlokhors      ########   odam.nl         */
+/*   Updated: 2020/01/06 08:46:00 by mlokhors      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int			check_color(t_container *list, int number, int length)
+static int	check_color(t_container *list, int number, int length)
 {
 	const char *colors[13] = {RED, BRED, GREEN, BGREEN,
 	YELLOW, BYELLOW, BLUE, BBLUE, MAGENTA, BMAGENTA, CYAN,
@@ -23,7 +23,7 @@ int			check_color(t_container *list, int number, int length)
 	return (length);
 }
 
-int			handle_b_blue(t_container *list, char *str)
+static int	handle_b_blue(t_container *list, char *str)
 {
 	if (ft_strncmp(str, "{BRED}", 6) == 0)
 		return (check_color(list, 1, 6));
@@ -33,8 +33,8 @@ int			handle_b_blue(t_container *list, char *str)
 		return (check_color(list, 5, 9));
 	else if (ft_strncmp(str, "{BBLUE}", 7) == 0)
 		return (check_color(list, 7, 7));
-	else if (ft_strncmp(str, "{BMAGENTA}", 9) == 0)
-		return (check_color(list, 9, 9));
+	else if (ft_strncmp(str, "{BMAGENTA}", 10) == 0)
+		return (check_color(list, 9, 10));
 	else if (ft_strncmp(str, "{BCYAN}", 7) == 0)
 		return (check_color(list, 11, 7));
 	return (0);
